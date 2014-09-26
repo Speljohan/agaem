@@ -51,14 +51,14 @@ public class AGame implements ApplicationListener {
 
         if (ASSETS.update()) {
 
-            player.update();
-            camera.position.set(player.x + 16, player.y + 16, 0);
+            player.update(elapsed);
+            camera.position.set(player.realX + 16, player.realY + 16, 0);
             camera.update();
             batch.setProjectionMatrix(camera.combined);
             batch.enableBlending();
             batch.begin();
             batch.draw(ASSETS.get("sprites/libgdx-logo.png", Texture.class), 0, 0);
-            batch.draw(player.sprite, player.x, player.y);
+            batch.draw(player.sprite, player.realX, player.realY);
             batch.end();
         }
 

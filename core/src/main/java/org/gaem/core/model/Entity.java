@@ -5,6 +5,7 @@ package org.gaem.core.model;
  */
 public abstract class Entity {
 
-    public int x, y;
+    public int tileX, tileY;
+    public float realX, realY;
 
 }
