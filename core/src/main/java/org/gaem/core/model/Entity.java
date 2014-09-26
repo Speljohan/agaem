@@ -5,6 +5,6 @@ package org.gaem.core.model;
  */
 public abstract class Entity {
 
-    private int x, y;
+    public int x, y;
 
 }
