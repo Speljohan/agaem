@@ -10,8 +10,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -49,7 +52,17 @@ public class AGame implements ApplicationListener {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
         MapLayer mapLayer = tiledMap.getLayers().get("obte");
+
         MapObject mapObject = mapLayer.getObjects().get("WAT");
+        System.out.println( mapLayer.getObjects().getCount());
+        MapObjects mo = mapLayer.getObjects();
+      /*  for(MapObject mot:mo)
+        {
+            for(Object obj: mot.getProperties())
+            {
+                System.out.println((String)obj);
+            }
+        }*/
         while(!ASSETS.update());
         player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
         inputManager = new InputManager(player, tiledMap);
