@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+import org.gaem.core.input.InputManager;
 import org.gaem.core.model.Player;
 import org.gaem.core.util.YDownBitmapFontLoader;
 import org.gaem.core.util.YDownTextureLoader;
@@ -33,6 +34,7 @@ public class AGame implements ApplicationListener {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Player player;
+    private InputManager inputManager;
 
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
@@ -52,7 +54,11 @@ public class AGame implements ApplicationListener {
         MapObject mapObject = mapLayer.getObjects().get("WAT");
         while(!ASSETS.update());
         player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"));
-	}
+        inputManager = new InputManager(player, tiledMap);
+
+        Gdx.input.setInputProcessor(inputManager);
+
+    }
 
     private void loadAssets() {
         ASSETS.setLoader(Texture.class, new YDownTextureLoader(new InternalFileHandleResolver()));
@@ -75,7 +81,7 @@ public class AGame implements ApplicationListener {
 
 
         if (ASSETS.update()) {
-
+            inputManager.update(elapsed);
             player.update(elapsed);
             updateCamera();
             camera.update();

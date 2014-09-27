@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
@@ -24,57 +25,44 @@ public class Player extends Mobile {
         realX = x;
         realY = y;
 
-        System.out.println(""+tileX+","+tileY+","+realX+","+realY);
-       // tileX = 10;
-       // tileY = 10;
         this.sprite = new Sprite(AGame.ASSETS.get("sprites/player.png", Texture.class));
+        this.sprite.setCenter(16, 16);
         this.velocity = new Vector2();
         this.isMoving = false;
     }
 
     public void update(float delta) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                move(-1, 0);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                move(1, 0);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                move(0, 1);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                move(0, -1);
-            }
-
-
         if (isMoving) {
-            Vector2 v = TileUtils.tileForPos(realX, realY);
-            System.out.println(v);
-            if (v.x == targetX && v.y == targetY) {
+            if (realX == targetX * 16 && realY == targetY * 16) {
                 this.tileX = targetX;
                 this.tileY = targetY;
+
                 this.velocity.set(0, 0);
                 isMoving = false;
                 return;
             }
+
             this.realX += velocity.x;
             this.realY += velocity.y;
         }
 
     }
 
-    private boolean canMove(int targetX, int targetY) {
+    private boolean canMove(int targetX, int targetY, TiledMapTileLayer layer) {
         if (targetX < 0 || targetY < 0) {
+            return false;
+        }
+        if (layer.getCell(targetX, targetY) == null || TileUtils.isBlocked(layer.getCell(targetX, targetY).getTile().getId())) {
             return false;
         }
         return true;
     }
 
 
-    private void move(int x, int y) {
+    public void move(int x, int y, TiledMapTileLayer layer) {
         if (isMoving) return;
-        if (!canMove(tileX + x, tileY + y)) return;
+        if (!canMove(tileX + x, tileY + y, layer)) return;
         this.targetX = tileX + x;
         this.targetY = tileY + y;
         velocity.set(x, y);
