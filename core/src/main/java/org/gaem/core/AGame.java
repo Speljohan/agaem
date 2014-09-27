@@ -6,12 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.gaem.core.screen.OverworldScreen;
+import org.gaem.core.screen.BattleScreen;
 
 public class AGame extends Game {
     public static AssetManager ASSETS;
     public SpriteBatch batch;
-    float elapsed;
 
     @Override
     public void create () {
@@ -20,8 +19,7 @@ public class AGame extends Game {
         loadAssets();
         batch = new SpriteBatch();
 
-        while(!ASSETS.update());
-        this.setScreen(new OverworldScreen(this));
+        this.setScreen(new BattleScreen(this));
 
     }
 
@@ -29,6 +27,8 @@ public class AGame extends Game {
         ASSETS.load("sprites/player.pack", TextureAtlas.class);
         ASSETS.load("fonts/SILKWONDER.fnt", BitmapFont.class);
         ASSETS.load("sprites/chatbox.png", Texture.class);
+        ASSETS.load("sprites/pointer.png", Texture.class);
+        while (!ASSETS.update()) ;
     }
 
     @Override
