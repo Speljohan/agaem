@@ -2,9 +2,13 @@ package org.gaem.core;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
@@ -16,6 +20,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import org.gaem.core.model.Player;
+import org.gaem.core.util.YDownBitmapFontLoader;
+import org.gaem.core.util.YDownTextureLoader;
 
 public class AGame implements ApplicationListener {
 	float elapsed;
@@ -47,8 +53,11 @@ public class AGame implements ApplicationListener {
 	}
 
     private void loadAssets() {
+        ASSETS.setLoader(Texture.class, new YDownTextureLoader(new InternalFileHandleResolver()));
+        ASSETS.setLoader(BitmapFont.class, new YDownBitmapFontLoader(new InternalFileHandleResolver()));
         ASSETS.load("sprites/player.png", Texture.class);
         ASSETS.load("sprites/libgdx-logo.png", Texture.class);
+        ASSETS.load("fonts/SILKWONDER.fnt", BitmapFont.class);
     }
 
 	@Override
@@ -75,8 +84,8 @@ public class AGame implements ApplicationListener {
             batch.setProjectionMatrix(camera.combined);
             batch.enableBlending();
             batch.begin();
-          //  batch.draw(ASSETS.get("sprites/libgdx-logo.png", Texture.class), 0, 0);
             batch.draw(player.sprite, player.realX, player.realY);
+            ASSETS.get("fonts/SILKWONDER.fnt", BitmapFont.class).draw(batch, "This is a test", 10, 10);
             batch.end();
         }
 
