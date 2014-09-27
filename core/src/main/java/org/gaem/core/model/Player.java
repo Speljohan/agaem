@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
 import org.gaem.core.util.TileUtils;
@@ -16,7 +17,13 @@ public class Player extends Mobile {
     public Sprite sprite;
     private boolean isMoving;
 
-    public Player() {
+    public Player(float x, float y) {
+        tileX = MathUtils.floor(x/16);
+        tileY = MathUtils.floor(y/16);
+        realX = x;
+        realY = y;
+       // tileX = 10;
+       // tileY = 10;
         this.sprite = new Sprite(AGame.ASSETS.get("sprites/player.png", Texture.class));
         this.velocity = new Vector2();
         this.isMoving = false;

@@ -13,15 +13,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import org.gaem.core.model.Player;
 import org.gaem.core.util.YDownBitmapFontLoader;
 import org.gaem.core.util.YDownTextureLoader;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class AGame implements ApplicationListener {
 	float elapsed;
@@ -35,6 +38,9 @@ public class AGame implements ApplicationListener {
     TiledMap tiledMap;
    // OrthographicCamera camera;
     TiledMapRenderer tiledMapRenderer;
+    ArrayList<TiledMapTileLayer.Cell> waterCellsInScene;
+
+    Map<String,TiledMapTile> waterTiles;
 
 	@Override
 	public void create () {
@@ -47,9 +53,10 @@ public class AGame implements ApplicationListener {
 
         tiledMap = new TmxMapLoader().load("map/testmap.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-
+        MapLayer mapLayer = tiledMap.getLayers().get("obte");
+        MapObject mapObject = mapLayer.getObjects().get("WAT");
         while(!ASSETS.update());
-        player = new Player();
+        player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("x"));
 	}
 
     private void loadAssets() {
