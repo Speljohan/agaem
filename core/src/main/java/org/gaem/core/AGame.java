@@ -33,8 +33,8 @@ public class AGame implements ApplicationListener {
 
     private Dialogue dialogue;
 
-	@Override
-	public void create () {
+    @Override
+    public void create () {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
         ASSETS = new AssetManager();
@@ -60,12 +60,12 @@ public class AGame implements ApplicationListener {
         ASSETS.load("sprites/chatbox.png", Texture.class);
     }
 
-	@Override
-	public void resize (int width, int height) {
-	}
+    @Override
+    public void resize (int width, int height) {
+    }
 
-	@Override
-	public void render () {
+    @Override
+    public void render () {
         elapsed += Gdx.graphics.getDeltaTime();
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
@@ -93,21 +93,21 @@ public class AGame implements ApplicationListener {
             dialogue.render(elapsed);
         }
 
-	}
+    }
 
     private void updateCamera() {
         camera.position.set(MathUtils.clamp(player.realX + 16, 100, 1000), MathUtils.clamp(player.realY + 16, 100, 1000), 0);
     }
 
-	@Override
-	public void pause () {
-	}
+    @Override
+    public void pause () {
+    }
 
-	@Override
-	public void resume () {
-	}
+    @Override
+    public void resume () {
+    }
 
-	@Override
-	public void dispose () {
-	}
+    @Override
+    public void dispose () {
+    }
 }
