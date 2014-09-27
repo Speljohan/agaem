@@ -36,9 +36,6 @@ public class AGame implements ApplicationListener {
 
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
-    ArrayList<TiledMapTileLayer.Cell> waterCellsInScene;
-
-    Map<String,TiledMapTile> waterTiles;
 
 	@Override
 	public void create () {
