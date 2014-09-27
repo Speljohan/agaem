@@ -1,5 +1,6 @@
 package org.gaem.core.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -14,7 +15,10 @@ import org.gaem.core.util.TileUtils;
 public class Player extends Mobile {
 
     public Sprite sprite;
+    private float elapsed;
     private boolean isMoving;
+    private float speed;
+    private  boolean moveBool;
 
     public Player(float x, float y) {
         tileX = MathUtils.floor(x/16);
@@ -23,6 +27,12 @@ public class Player extends Mobile {
         realX = x;
         realY = y;
 
+        moveBool = true;
+
+        speed = 0.5f;
+
+        elapsed = 0;
+
         this.sprite = new Sprite(AGame.ASSETS.get("sprites/player.png", Texture.class));
         this.sprite.setCenter(16, 16);
         this.velocity = new Vector2();
@@ -30,7 +40,14 @@ public class Player extends Mobile {
     }
 
     public void update(float delta) {
-
+        elapsed += Gdx.graphics.getDeltaTime();
+        if(elapsed > speed){
+            moveBool = true;
+            elapsed -= speed;
+            System.out.println("GOGOGOG");
+            if(isMoving)
+                System.out.println("WATWAT");
+        }
         if (isMoving) {
             if (realX == targetX * 16 && realY == targetY * 16) {
                 this.tileX = targetX;
@@ -60,12 +77,17 @@ public class Player extends Mobile {
 
 
     public void move(int x, int y, TiledMapTileLayer layer) {
+        System.out.println("MOVEIT");
         if (isMoving) return;
-        if (!canMove(tileX + x, tileY + y, layer)) return;
-        this.targetX = tileX + x;
-        this.targetY = tileY + y;
-        velocity.set(x, y);
-        isMoving = true;
+        if(moveBool) {
+            if (!canMove(tileX + x, tileY + y, layer)) return;
+            this.targetX = tileX + x;
+            this.targetY = tileY + y;
+            velocity.set(x, y);
+            isMoving = true;
+            moveBool = false;
+            elapsed = 0;
+        }
     }
 
 }

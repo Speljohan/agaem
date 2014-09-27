@@ -1,5 +1,6 @@
 package org.gaem.core.input;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -21,12 +22,7 @@ public class InputManager implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        return true;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.LEFT) {
+       /* if (keycode == Input.Keys.LEFT) {
             player.move(-1, 0, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
         }
         if (keycode == Input.Keys.RIGHT) {
@@ -37,7 +33,13 @@ public class InputManager implements InputProcessor {
         }
         if (keycode == Input.Keys.UP) {
             player.move(0, 1, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
-        }
+        }*/
+        return true;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+
         return true;
     }
 
@@ -72,6 +74,22 @@ public class InputManager implements InputProcessor {
     }
 
     public void update(float delta) {
+        if ((Gdx.input.isKeyPressed(Input.Keys.LEFT)))
+        {
+            player.move(-1, 0, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
+        }
+        if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT)))
+        {
+            player.move(1, 0, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
+        }
+        if ((Gdx.input.isKeyPressed(Input.Keys.UP)))
+        {
+            player.move(0, 1, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
+        }
+        if ((Gdx.input.isKeyPressed(Input.Keys.DOWN)))
+        {
 
+            player.move(0, -1, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
+        }
     }
 }
