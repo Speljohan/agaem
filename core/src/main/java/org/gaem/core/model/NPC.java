@@ -11,7 +11,7 @@ import org.gaem.core.AGame;
  */
 public class NPC extends Mobile {
 
-    Sprite sprite;
+   public Sprite sprite;
 
     public NPC(float x, float y) {
         tileX = MathUtils.floor(x / 16);

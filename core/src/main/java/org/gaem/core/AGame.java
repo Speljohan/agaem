@@ -16,8 +16,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.input.InputManager;
+import org.gaem.core.model.NPC;
 import org.gaem.core.model.Player;
 import org.gaem.core.ui.Dialogue;
+
+import java.util.ArrayList;
 
 public class AGame implements ApplicationListener {
     public static AssetManager ASSETS;
@@ -31,10 +34,14 @@ public class AGame implements ApplicationListener {
     private int mapWidth;
     private int mapHeigth;
 
+    private ArrayList<NPC> npcList; //Borde använda något effektivare än arraylist.
+
     private Dialogue dialogue;
 
     @Override
     public void create () {
+        npcList = new ArrayList<NPC>();
+
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
         ASSETS = new AssetManager();
@@ -50,6 +57,9 @@ public class AGame implements ApplicationListener {
         while(!ASSETS.update());
         player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"));
         inputManager = new InputManager(player, tiledMap);
+
+        npcList.add(new NPC(player.realX+64,player.realY));
+
         dialogue = new Dialogue(camera);
 
     }
@@ -75,6 +85,9 @@ public class AGame implements ApplicationListener {
         if (ASSETS.update()) {
             inputManager.update(elapsed);
             player.update(elapsed);
+            for(NPC npc: npcList) {
+                npc.update(elapsed);
+            }
             tiledMapRenderer.render();
             updateCamera();
             camera.update();
@@ -88,6 +101,9 @@ public class AGame implements ApplicationListener {
             batch.enableBlending();
             batch.begin();
             batch.draw(player.sprite, player.realX, player.realY - 48);
+            for(NPC npc: npcList) {
+                batch.draw( npc.sprite,npc.realX,npc.realY-48);
+            }
             batch.end();
 
             dialogue.render(elapsed);
