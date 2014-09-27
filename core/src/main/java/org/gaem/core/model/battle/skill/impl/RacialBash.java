@@ -19,6 +19,10 @@ public class RacialBash extends Skill {
         return 4;
     }
 
+    public String getDescription() {
+        return "{target} bashes some brown people";
+    }
+
     @Override
     public SkillResult inflict(BattleProperties target) {
         return new SkillResult("The contempt for humanity disgusts {target}", false);

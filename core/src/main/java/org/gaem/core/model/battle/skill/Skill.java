@@ -13,6 +13,8 @@ public abstract class Skill {
 
     public abstract int getCost();
 
+    public abstract String getDescription();
+
     public abstract SkillResult inflict(BattleProperties target);
 
 }

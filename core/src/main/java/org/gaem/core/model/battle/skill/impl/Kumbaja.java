@@ -19,6 +19,10 @@ public class Kumbaja extends Skill {
         return 5;
     }
 
+    public String getDescription() {
+        return "{target} sings a soothing song";
+    }
+
     @Override
     public SkillResult inflict(BattleProperties target) {
         return new SkillResult("The soothing song puts {target} to sleep", false);

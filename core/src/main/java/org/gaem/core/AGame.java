@@ -7,20 +7,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.gaem.core.screen.BattleScreen;
-import org.gaem.core.screen.OverworldScreen;
 
 public class AGame extends Game {
     public static AssetManager ASSETS;
     public SpriteBatch batch;
 
     @Override
-    public void create () {
+    public void create() {
 
         ASSETS = new AssetManager();
         loadAssets();
         batch = new SpriteBatch();
 
-        this.setScreen(new OverworldScreen(this));
+        this.setScreen(new BattleScreen(this));
 
     }
 
@@ -33,17 +32,17 @@ public class AGame extends Game {
     }
 
     @Override
-    public void resize (int width, int height) {
+    public void resize(int width, int height) {
     }
 
     @Override
-    public void render () {
+    public void render() {
         super.render();
 
     }
 
     @Override
-    public void dispose () {
+    public void dispose() {
         batch.dispose();
     }
 }

@@ -19,6 +19,10 @@ public class ProbationNotice extends Skill {
         return 5;
     }
 
+    public String getDescription() {
+        return "{target} reads a law paper";
+    }
+
     @Override
     public SkillResult inflict(BattleProperties target) {
         target.currentMP -= 5;

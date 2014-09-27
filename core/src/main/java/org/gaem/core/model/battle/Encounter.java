@@ -1,5 +1,6 @@
 package org.gaem.core.model.battle;
 
+import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.model.battle.skill.Skill;
 
 /**
@@ -7,38 +8,77 @@ import org.gaem.core.model.battle.skill.Skill;
  */
 public class Encounter {
 
-    private int turn;
+    private boolean enemyTurn;
     private boolean turnFinished = false;
     private BattleProperties player, enemy;
+    private float pause, currentTime;
 
-    public Encounter(BattleProperties player, BattleProperties enemy) {
+    private BattleListener listener;
+
+    private Skill currentSkill;
+
+    public Encounter(BattleProperties player, BattleProperties enemy, BattleListener listener) {
         this.player = player;
         this.enemy = enemy;
-        this.turn = 0;
+        this.enemyTurn = false;
+        this.pause = 1f;
+        this.listener = listener;
     }
 
     public void update(float delta) {
 
+        currentTime += delta;
+        if (currentTime >= pause) {
+            currentTime = 0;
+            if (enemyTurn && currentSkill == null) {
+                useAttack(enemy.skills.get(MathUtils.random(0, 3)));
+            }
+
+            if (turnFinished) {
+                if (currentSkill != null) {
+                    if (isEnemyTurn()) {
+                        listener.attackFinished(currentSkill.inflict(player));
+                    } else {
+                        listener.attackFinished(currentSkill.inflict(enemy));
+                    }
+                    currentSkill = null;
+                    System.out.println(enemyTurn);
+                    nextTurn();
+                }
+            }
+        }
+
+    }
+
+    public BattleProperties getCurrentTarget() {
+        return (enemyTurn ? player : enemy);
+    }
+
+    public BattleProperties getCurrentTurn() {
+        return (!enemyTurn ? player : enemy);
+    }
+
+    public boolean isEnemyTurn() {
+        return enemyTurn;
     }
 
     public BattleProperties getEnemy() {
         return enemy;
     }
 
-    public int getEnemyId() {
-        return turn == 1 ? 0 : 1;
-    }
-
     public BattleProperties getPlayer() {
         return player;
     }
 
-    public SkillResult useAttack(Skill skill, boolean enemy) {
-        return skill.inflict(enemy ? this.enemy : player);
+    public void useAttack(Skill skill) {
+        listener.attackStarted(skill.getDescription());
+        currentSkill = skill;
+        turnFinished = true;
     }
 
-    private void nextTurn() {
-        turn = (turn == 1 ? 0 : 1);
+    public void nextTurn() {
+        enemyTurn = !enemyTurn;
+        turnFinished = false;
     }
 
 

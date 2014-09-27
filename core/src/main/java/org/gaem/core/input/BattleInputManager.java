@@ -23,21 +23,23 @@ public class BattleInputManager {
         if (current <= interval) {
             return;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            battleWindow.nextSelection();
-            current = 0;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            battleWindow.previousSelection();
-            current = 0;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            battleWindow.select();
-            current = 0;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            battleWindow.rootMenu();
-            current = 0;
+        if (!battleWindow.encounter.isEnemyTurn()) {
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                battleWindow.nextSelection();
+                current = 0;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                battleWindow.previousSelection();
+                current = 0;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+                battleWindow.select();
+                current = 0;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+                battleWindow.rootMenu();
+                current = 0;
+            }
         }
 
     }

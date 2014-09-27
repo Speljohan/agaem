@@ -20,6 +20,10 @@ public class BongStrike extends Skill {
         return 10;
     }
 
+    public String getDescription() {
+        return "{target} makes an assault with a bong";
+    }
+
     @Override
     public SkillResult inflict(BattleProperties target) {
         target.currentHP -= MathUtils.random(5, 15);
