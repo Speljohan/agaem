@@ -38,9 +38,9 @@ public class NPC extends Mobile {
         for(NPCJsonData npc:npcList.npcs){
 
             System.out.println("id;;;;;;;;;;;;;;;;;; " + id + " " + npc.id);
-            if(npc.id == id)
+            if(npc.id.equals(id) )
             {
-
+                System.out.println("ID IS SAME JAJAJA " + id + " " + npc.id);
                 this.name = npc.name;
                 this.text = npc.text;
             }
