@@ -17,6 +17,7 @@ import org.gaem.core.input.InputManager;
 import org.gaem.core.model.overworld.NPC;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.ui.DialogueManager;
+import org.gaem.core.util.CameraUtils;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,8 @@ public class OverworldScreen implements Screen {
     private ArrayList<NPC> npcList;
     private Player player;
     private InputManager inputManager;
+    public static int mapWidth;
+    public static int mapHeigth;
 
 
     public OverworldScreen(AGame game) {
@@ -68,8 +71,10 @@ public class OverworldScreen implements Screen {
     }
 
     private void updateCamera() {
-      //  camera.position.set(MathUtils.clamp(player.realX + 16, 100, 1000), MathUtils.clamp(player.realY + 16, 100, 1000), 0);
-        camera.position.set(player.realX + 16,player.realY + 16, 0);
+      //  System.out.println("Camera update: Width: " + mapWidth + " heigth: " + mapHeigth + " player pos: " + player.realX + " " + player.realY + " clamp " + MathUtils.clamp(player.realX + 16,0,mapWidth) + " " + MathUtils.clamp(player.realY + 16, 0, mapHeigth));
+        camera.position.set(MathUtils.clamp(player.realX + 16, 0 + camera.viewportWidth/4, mapWidth - camera.viewportWidth/4), MathUtils.clamp(player.realY + 16, 0 + camera.viewportHeight/4, mapHeigth - camera.viewportHeight/4), 0);
+       // camera.position.set(player.realX + 16,player.realY + 16, 0);
+
         camera.update();
     }
 
@@ -95,6 +100,8 @@ public class OverworldScreen implements Screen {
         camera.zoom = 0.5f;
 
         tiledMap = new TmxMapLoader().load("map/testmap.tmx");
+        mapWidth = (Integer)tiledMap.getProperties().get("width") * 16;
+        mapHeigth = (Integer)tiledMap.getProperties().get("height") * 16;
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
         MapLayer mapLayer = tiledMap.getLayers().get("obte");

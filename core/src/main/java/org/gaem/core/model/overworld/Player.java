@@ -65,7 +65,8 @@ public class Player extends Mobile {
     }
 
     private boolean canMove(int targetX, int targetY, TiledMapTileLayer layer) {
-        if (targetX < 0 || targetY < 0) {
+        System.out.println("CAN MOVE; " + OverworldScreen.mapHeigth + " Target Y " + targetY + " Player pos" + realY);
+       if ((targetX < 0 || targetX >= OverworldScreen.mapWidth/16 )|| (targetY < 0|| targetY >= OverworldScreen.mapHeigth/16 )) {
             return false;
         }
         System.out.println(layer.getCell(targetX, targetY).getTile().getId());
