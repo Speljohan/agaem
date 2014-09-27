@@ -14,8 +14,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.AGame;
 import org.gaem.core.input.InputManager;
-import org.gaem.core.model.NPC;
-import org.gaem.core.model.Player;
+import org.gaem.core.model.overworld.NPC;
+import org.gaem.core.model.overworld.Player;
 import org.gaem.core.ui.DialogueManager;
 
 import java.util.ArrayList;
@@ -37,33 +37,6 @@ public class OverworldScreen implements Screen {
 
     public OverworldScreen(AGame game) {
         this.game = game;
-
-        npcList = new ArrayList<NPC>();
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.zoom = 0.5f;
-
-        tiledMap = new TmxMapLoader().load("map/testmap.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-
-        MapLayer mapLayer = tiledMap.getLayers().get("obte");
-
-        MapObject mapObject = mapLayer.getObjects().get("WAT");
-        System.out.println(mapLayer.getObjects().getCount());
-        MapObjects mo = mapLayer.getObjects();
-
-        for (MapObject mot : mo) {
-            if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 101) {
-                player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
-                System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
-            }
-            if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
-                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
-                System.out.println("Added NPC! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
-            }
-        }
-        // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
-        inputManager = new InputManager(player, tiledMap);
-        DIALOGUEMANAGER = new DialogueManager(camera);
 
     }
 
@@ -116,7 +89,32 @@ public class OverworldScreen implements Screen {
 
     @Override
     public void show() {
+        npcList = new ArrayList<NPC>();
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.zoom = 0.5f;
 
+        tiledMap = new TmxMapLoader().load("map/testmap.tmx");
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
+        MapLayer mapLayer = tiledMap.getLayers().get("obte");
+
+        MapObject mapObject = mapLayer.getObjects().get("WAT");
+        System.out.println(mapLayer.getObjects().getCount());
+        MapObjects mo = mapLayer.getObjects();
+
+        for (MapObject mot : mo) {
+            if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 101) {
+                player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
+                System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
+            }
+            if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
+                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
+                System.out.println("Added NPC! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
+            }
+        }
+        // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
+        inputManager = new InputManager(player, tiledMap);
+        DIALOGUEMANAGER = new DialogueManager(camera);
     }
 
     @Override

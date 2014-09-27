@@ -1,4 +1,4 @@
-package org.gaem.core.model;
+package org.gaem.core.model.overworld;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
