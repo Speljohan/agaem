@@ -61,16 +61,19 @@ public class BattleWindow extends UIWindow {
                 pointerLocation = new Vector2(-135, -85);
                 break;
             case 2:
-                pointerLocation = new Vector2(95, -45);
+                pointerLocation = new Vector2(55, -45);
                 break;
             case 3:
-                pointerLocation = new Vector2(95, -85);
+                pointerLocation = new Vector2(55, -85);
                 break;
         }
         System.out.println("CALLED");
     }
 
     public void nextSelection() {
+        if (currentSelection == 3) {
+            currentSelection = -1;
+        }
         changeSelection(++currentSelection);
     }
 }
