@@ -1,8 +1,6 @@
 package org.gaem.core.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
@@ -17,9 +15,6 @@ import java.util.ArrayList;
  */
 public class Player extends Mobile {
 
-    public Animation[] animations;
-    public Animation currentAnimation;
-
     private float elapsed;
     private boolean isMoving;
     private float speed;
@@ -27,7 +22,7 @@ public class Player extends Mobile {
     private ArrayList<NPC> npcList;
 
     public Player(float x, float y, ArrayList<NPC> npcList) {
-        loadAnimation(AGame.ASSETS.get("sprites/player.pack", TextureAtlas.class));
+        super(AGame.ASSETS.get("sprites/player.pack", TextureAtlas.class));
         this.npcList = npcList;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
@@ -40,29 +35,13 @@ public class Player extends Mobile {
         speed = 0.1f;
 
         elapsed = 0;
-        this.currentAnimation = animations[0];
-        this.currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
         this.velocity = new Vector2();
         this.isMoving = false;
     }
 
-    private void loadAnimation(TextureAtlas atlas) {
-        animations = new Animation[4];
-        animations[0] = new Animation(500, atlas.findRegion("up0"), atlas.findRegion("up1"));
-        animations[1] = new Animation(500, atlas.findRegion("right0"), atlas.findRegion("right1"));
-        animations[2] = new Animation(500, atlas.findRegion("down0"), atlas.findRegion("down1"));
-        animations[3] = new Animation(500, atlas.findRegion("left0"), atlas.findRegion("left1"));
-    }
-
-    public void render(float delta, SpriteBatch batch) {
-        batch.draw(currentAnimation.getKeyFrame(delta), realX, realY);
-    }
-
     public void update(float delta) {
+        super.update(delta);
         elapsed += Gdx.graphics.getDeltaTime();
-
-        currentAnimation = animations[facing];
-        currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
         if (elapsed > speed) {
             moveBool = true;
