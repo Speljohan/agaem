@@ -34,8 +34,8 @@ public class AGame implements ApplicationListener {
     private OrthographicCamera camera;
     private Player player;
     private InputManager inputManager;
-    private int mapWidth;
-    private int mapHeigth;
+   // private int mapWidth;
+ //   private int mapHeigth;
     private ArrayList<NPC> npcList;
 
     @Override
@@ -62,9 +62,11 @@ public class AGame implements ApplicationListener {
             if(mot.getProperties().containsKey("gid") && (Integer)mot.getProperties().get("gid") == 101)
             {
                 player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
+                System.out.println("Added player! " + mot.getProperties().get("x") + " " +mot.getProperties().get("y"));
             }
             if(mot.getProperties().containsKey("gid") && (Integer)mot.getProperties().get("gid") == 102){
-                //npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
+                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
+                System.out.println("Added NPC! " + mot.getProperties().get("x") + " " +mot.getProperties().get("y"));
             }
         }
        // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
