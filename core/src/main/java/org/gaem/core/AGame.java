@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.gaem.core.screen.BattleScreen;
+import org.gaem.core.screen.OverworldScreen;
 
 public class AGame extends Game {
     public static AssetManager ASSETS;
@@ -19,7 +20,7 @@ public class AGame extends Game {
         loadAssets();
         batch = new SpriteBatch();
 
-        this.setScreen(new BattleScreen(this));
+        this.setScreen(new OverworldScreen(this));
 
     }
 
