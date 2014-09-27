@@ -36,6 +36,9 @@ public class AGame implements ApplicationListener {
     private Player player;
     private InputManager inputManager;
 
+    private int mapWidth;
+    private  int mapHeigth;
+
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
 
@@ -43,13 +46,16 @@ public class AGame implements ApplicationListener {
 	public void create () {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
-        camera.setToOrtho(true);
+       // camera.setToOrtho(true);
+       // camera.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         ASSETS = new AssetManager();
         loadAssets();
         batch = new SpriteBatch();
 
         tiledMap = new TmxMapLoader().load("map/testmap.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
+
         MapLayer mapLayer = tiledMap.getLayers().get("obte");
         MapObject mapObject = mapLayer.getObjects().get("WAT");
         while(!ASSETS.update());
@@ -83,11 +89,13 @@ public class AGame implements ApplicationListener {
         if (ASSETS.update()) {
             inputManager.update(elapsed);
             player.update(elapsed);
+            tiledMapRenderer.render();
             updateCamera();
             camera.update();
 
+
+
             tiledMapRenderer.setView(camera);
-            tiledMapRenderer.render();
 
             batch.setProjectionMatrix(camera.combined);
             batch.enableBlending();
