@@ -18,12 +18,13 @@ import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.input.InputManager;
 import org.gaem.core.model.NPC;
 import org.gaem.core.model.Player;
-import org.gaem.core.ui.Dialogue;
+import org.gaem.core.ui.DialogueManager;
 
 import java.util.ArrayList;
 
 public class AGame implements ApplicationListener {
     public static AssetManager ASSETS;
+    public static DialogueManager DIALOGUEMANAGER;
     float elapsed;
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
@@ -34,8 +35,6 @@ public class AGame implements ApplicationListener {
     private int mapWidth;
     private int mapHeigth;
     private ArrayList<NPC> npcList;
-
-    private Dialogue dialogue;
 
     @Override
     public void create () {
@@ -54,7 +53,7 @@ public class AGame implements ApplicationListener {
         while(!ASSETS.update());
         player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
         inputManager = new InputManager(player, tiledMap);
-        dialogue = new Dialogue(camera);
+        DIALOGUEMANAGER = new DialogueManager(camera);
 
         npcList.add(new NPC(player.realX + 64, player.realY));
 
@@ -95,7 +94,7 @@ public class AGame implements ApplicationListener {
             batch.draw(player.sprite, player.realX, player.realY - 48);
             batch.end();
 
-            dialogue.render(elapsed);
+            DIALOGUEMANAGER.render(elapsed);
         }
 
     }
@@ -112,7 +111,7 @@ public class AGame implements ApplicationListener {
         inputManager.update(elapsed);
         player.update(elapsed);
         updateCamera();
-        dialogue.update(elapsed);
+        DIALOGUEMANAGER.update(elapsed);
     }
 
     @Override

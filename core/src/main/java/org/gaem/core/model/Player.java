@@ -83,11 +83,52 @@ public class Player extends Mobile {
         return true;
     }
 
+    private void updateFacing(int x, int y) {
+        if (y == 1) facing = 0;
+        if (x == 1) facing = 1;
+        if (y == -1) facing = 2;
+        if (x == -1) facing = 3;
+    }
+
+    private Mobile getTargetAtFace() {
+        int x = tileX, y = tileY;
+        switch (facing) {
+            case 0:
+                y += 1;
+            case 1:
+                x += 1;
+            case 2:
+                y -= 1;
+            case 3:
+                y += 1;
+        }
+
+        for (NPC npc : npcList) {
+            if (npc.tileX == x && npc.tileY == y) {
+                return npc;
+            }
+        }
+        return null;
+    }
+
+    public void interact() {
+
+    }
+
+    public void interactWithFace() {
+        Mobile mobile = getTargetAtFace();
+
+        if (mobile != null) {
+            mobile.interact();
+        }
+    }
 
     public void move(int x, int y, TiledMapTileLayer layer) {
+        updateFacing(x, y);
         if (isMoving) return;
         if (moveBool) {
             if (!canMove(tileX + x, tileY + y, layer)) return;
+            AGame.DIALOGUEMANAGER.hideDialogue();
             this.targetX = tileX + x;
             this.targetY = tileY + y;
             velocity.set(x, y);

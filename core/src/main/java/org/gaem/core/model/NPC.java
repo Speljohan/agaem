@@ -3,7 +3,6 @@ package org.gaem.core.model;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
 
 /**
@@ -24,6 +23,10 @@ public class NPC extends Mobile {
         this.sprite = new Sprite(AGame.ASSETS.get("sprites/player.png", Texture.class));
         this.sprite.setCenter(16, 16);
        // this.velocity = new Vector2();
+    }
+
+    public void interact() {
+        AGame.DIALOGUEMANAGER.createDialogue("LOL KEK U R NUBCAKE K");
     }
 
     public void update(float delta) {

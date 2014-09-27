@@ -15,9 +15,9 @@ public class Dialogue extends UIWindow {
     private TextScroller textScroller;
     private Sprite background;
 
-    public Dialogue(OrthographicCamera camera) {
+    public Dialogue(OrthographicCamera camera, String text) {
         super(camera);
-        this.textScroller = new TextScroller("Hai, World, this message is brought to you by NAZIS!!! OMG", 5);
+        this.textScroller = new TextScroller(text, 5);
         background = new Sprite(AGame.ASSETS.get("sprites/chatbox.png", Texture.class));
         textScroller.start();
     }

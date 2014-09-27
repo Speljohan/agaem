@@ -34,8 +34,10 @@ public class InputManager {
         }
         if ((Gdx.input.isKeyPressed(Input.Keys.DOWN)))
         {
-
             player.move(0, -1, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
+        }
+        if ((Gdx.input.isKeyPressed(Input.Keys.SPACE))) {
+            player.interactWithFace();
         }
     }
 }
