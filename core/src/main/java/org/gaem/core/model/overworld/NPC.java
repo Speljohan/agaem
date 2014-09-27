@@ -13,11 +13,14 @@ import org.gaem.core.screen.OverworldScreen;
 public class NPC extends Mobile {
 
    public Sprite sprite;
+   public String id;
 
-    public NPC(float x, float y) {
+    public NPC(float x, float y, String id) {
         super(AGame.ASSETS.get("sprites/player.pack", TextureAtlas.class));
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
+
+        this.id = id;
 
         realX = x;
         realY = y;
@@ -28,7 +31,8 @@ public class NPC extends Mobile {
     }
 
     public void interact() {
-        OverworldScreen.DIALOGUEMANAGER.createDialogue("LOL KEK U R NUBCAKE K");
+        OverworldScreen.DIALOGUEMANAGER.createDialogue(id);
+        System.out.println("You dud, mah ID is " + id);
     }
 
     public void update(float delta) {

@@ -2,6 +2,7 @@ package org.gaem.core.ui;
 
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import org.gaem.core.model.TextManager;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -15,8 +16,10 @@ public class DialogueManager {
         this.cam = cam;
     }
 
-    public void createDialogue(String text) {
-        currentDialogue = new Dialogue(cam, text);
+    public void createDialogue(String id) {
+       System.out.println("The NPC says: " + TextManager.getInstance().getTextByNPC(id));
+        currentDialogue = new Dialogue(cam, "THIS IS A TEXT DAMN YOU");
+
     }
 
     public void hideDialogue() {

@@ -68,7 +68,8 @@ public class OverworldScreen implements Screen {
     }
 
     private void updateCamera() {
-        camera.position.set(MathUtils.clamp(player.realX + 16, 100, 1000), MathUtils.clamp(player.realY + 16, 100, 1000), 0);
+      //  camera.position.set(MathUtils.clamp(player.realX + 16, 100, 1000), MathUtils.clamp(player.realY + 16, 100, 1000), 0);
+        camera.position.set(player.realX + 16,player.realY + 16, 0);
         camera.update();
     }
 
@@ -108,7 +109,9 @@ public class OverworldScreen implements Screen {
                 System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
             }
             if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
-                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
+                String npcID = (String)mot.getProperties().get("id");
+                System.out.println("NPC ID " + npcID);
+                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcID));
                 System.out.println("Added NPC! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
             }
         }
