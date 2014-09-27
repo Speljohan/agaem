@@ -9,7 +9,7 @@
   </data>
  </layer>
  <objectgroup name="obte">
-  <object name="WAT" x="720" y="496" width="16" height="16">
+  <object name="WAT" x="720" y="592" width="16" height="16">
    <properties>
     <property name="JAPP" value="gege"/>
     <property name="WATWAT" value="eFEFFE"/>
