@@ -1,8 +1,9 @@
 package org.gaem.core.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
  */
 public class Player extends Mobile {
 
+    public Animation up, right, down, left;
+    public Animation currentAnimation;
+
     public Sprite sprite;
     private float elapsed;
     private boolean isMoving;
@@ -24,6 +28,7 @@ public class Player extends Mobile {
     private ArrayList<NPC> npcList;
 
     public Player(float x, float y, ArrayList<NPC> npcList) {
+        loadAnimation(AGame.ASSETS.get("sprites/player.pack", TextureAtlas.class));
         this.npcList = npcList;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
@@ -36,15 +41,26 @@ public class Player extends Mobile {
         speed = 0.1f;
 
         elapsed = 0;
-
-        this.sprite = new Sprite(AGame.ASSETS.get("sprites/player.png", Texture.class));
+        this.currentAnimation = up;
+        this.currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        this.sprite = new Sprite();
         this.sprite.setCenter(16, 16);
         this.velocity = new Vector2();
         this.isMoving = false;
     }
 
+    private void loadAnimation(TextureAtlas atlas) {
+        up = new Animation(500, atlas.findRegion("up0"), atlas.findRegion("up1"));
+        right = new Animation(500, atlas.findRegion("right0"), atlas.findRegion("right1"));
+        down = new Animation(500, atlas.findRegion("down0"), atlas.findRegion("down1"));
+        left = new Animation(500, atlas.findRegion("left0"), atlas.findRegion("left1"));
+    }
+
     public void update(float delta) {
         elapsed += Gdx.graphics.getDeltaTime();
+
+        sprite.setTexture(currentAnimation.getKeyFrame(elapsed).getTexture());
+
         if (elapsed > speed) {
             moveBool = true;
             elapsed -= speed;
