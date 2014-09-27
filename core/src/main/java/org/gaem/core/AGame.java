@@ -59,11 +59,11 @@ public class AGame implements ApplicationListener {
         while(!ASSETS.update());
         for(MapObject mot:mo)
         {
-            if((Integer)mot.getProperties().get("gid") == 101)
+            if(mot.getProperties().containsKey("gid") && (Integer)mot.getProperties().get("gid") == 101)
             {
                 player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
             }
-            if((Integer)mot.getProperties().get("gid") == 102){
+            if(mot.getProperties().containsKey("gid") && (Integer)mot.getProperties().get("gid") == 102){
                 npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
             }
         }
