@@ -13,4 +13,5 @@ public abstract class Mobile extends Entity {
 
     public abstract void interact();
 
+
 }

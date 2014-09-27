@@ -2,6 +2,7 @@ package org.gaem.core.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.AGame;
 
@@ -27,6 +28,10 @@ public class NPC extends Mobile {
 
     public void interact() {
         AGame.DIALOGUEMANAGER.createDialogue("LOL KEK U R NUBCAKE K");
+    }
+
+    public void render(float delta, SpriteBatch batch) {
+        batch.draw(sprite, realX, realY - 48);
     }
 
     public void update(float delta) {

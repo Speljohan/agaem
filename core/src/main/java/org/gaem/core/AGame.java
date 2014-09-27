@@ -64,7 +64,7 @@ public class AGame implements ApplicationListener {
                 player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
             }
             if(mot.getProperties().containsKey("gid") && (Integer)mot.getProperties().get("gid") == 102){
-                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
+                //npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
             }
         }
        // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
@@ -105,9 +105,9 @@ public class AGame implements ApplicationListener {
             batch.enableBlending();
             batch.begin();
             for (NPC npc : npcList) {
-                batch.draw(npc.sprite, npc.realX, npc.realY - 48);
+                npc.render(elapsed, batch);
             }
-            batch.draw(player.sprite, player.realX, player.realY - 48);
+            player.render(elapsed, batch);
             batch.end();
 
             DIALOGUEMANAGER.render(elapsed);

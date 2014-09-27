@@ -2,7 +2,7 @@ package org.gaem.core.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
@@ -17,10 +17,9 @@ import java.util.ArrayList;
  */
 public class Player extends Mobile {
 
-    public Animation up, right, down, left;
+    public Animation[] animations;
     public Animation currentAnimation;
 
-    public Sprite sprite;
     private float elapsed;
     private boolean isMoving;
     private float speed;
@@ -41,25 +40,29 @@ public class Player extends Mobile {
         speed = 0.1f;
 
         elapsed = 0;
-        this.currentAnimation = up;
+        this.currentAnimation = animations[0];
         this.currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
-        this.sprite = new Sprite();
-        this.sprite.setCenter(16, 16);
         this.velocity = new Vector2();
         this.isMoving = false;
     }
 
     private void loadAnimation(TextureAtlas atlas) {
-        up = new Animation(500, atlas.findRegion("up0"), atlas.findRegion("up1"));
-        right = new Animation(500, atlas.findRegion("right0"), atlas.findRegion("right1"));
-        down = new Animation(500, atlas.findRegion("down0"), atlas.findRegion("down1"));
-        left = new Animation(500, atlas.findRegion("left0"), atlas.findRegion("left1"));
+        animations = new Animation[4];
+        animations[0] = new Animation(500, atlas.findRegion("up0"), atlas.findRegion("up1"));
+        animations[1] = new Animation(500, atlas.findRegion("right0"), atlas.findRegion("right1"));
+        animations[2] = new Animation(500, atlas.findRegion("down0"), atlas.findRegion("down1"));
+        animations[3] = new Animation(500, atlas.findRegion("left0"), atlas.findRegion("left1"));
+    }
+
+    public void render(float delta, SpriteBatch batch) {
+        batch.draw(currentAnimation.getKeyFrame(delta), realX, realY);
     }
 
     public void update(float delta) {
         elapsed += Gdx.graphics.getDeltaTime();
 
-        sprite.setTexture(currentAnimation.getKeyFrame(elapsed).getTexture());
+        currentAnimation = animations[facing];
+        currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
         if (elapsed > speed) {
             moveBool = true;
