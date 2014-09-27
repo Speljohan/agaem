@@ -33,15 +33,13 @@ public class AGame implements ApplicationListener {
     private InputManager inputManager;
     private int mapWidth;
     private int mapHeigth;
-
-    private ArrayList<NPC> npcList; //Borde använda något effektivare än arraylist.
+    private ArrayList<NPC> npcList;
 
     private Dialogue dialogue;
 
     @Override
     public void create () {
         npcList = new ArrayList<NPC>();
-
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
         ASSETS = new AssetManager();
@@ -51,16 +49,15 @@ public class AGame implements ApplicationListener {
         tiledMap = new TmxMapLoader().load("map/testmap.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
-
         MapLayer mapLayer = tiledMap.getLayers().get("obte");
         MapObject mapObject = mapLayer.getObjects().get("WAT");
         while(!ASSETS.update());
-        player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"),npcList);
+        player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
         inputManager = new InputManager(player, tiledMap);
-
-        npcList.add(new NPC(player.realX+64,player.realY));
-
         dialogue = new Dialogue(camera);
+
+        npcList.add(new NPC(player.realX + 64, player.realY));
+
 
     }
 
@@ -83,27 +80,19 @@ public class AGame implements ApplicationListener {
 
 
         if (ASSETS.update()) {
-            inputManager.update(elapsed);
-            player.update(elapsed);
-            for(NPC npc: npcList) {
-                npc.update(elapsed);
-            }
+
+            doUpdate();
+
             tiledMapRenderer.render();
-            updateCamera();
-            camera.update();
-            dialogue.update(elapsed);
-
-
-
             tiledMapRenderer.setView(camera);
 
             batch.setProjectionMatrix(camera.combined);
             batch.enableBlending();
             batch.begin();
-            batch.draw(player.sprite, player.realX, player.realY - 48);
-            for(NPC npc: npcList) {
-                batch.draw( npc.sprite,npc.realX,npc.realY-48);
+            for (NPC npc : npcList) {
+                batch.draw(npc.sprite, npc.realX, npc.realY - 48);
             }
+            batch.draw(player.sprite, player.realX, player.realY - 48);
             batch.end();
 
             dialogue.render(elapsed);
@@ -113,6 +102,17 @@ public class AGame implements ApplicationListener {
 
     private void updateCamera() {
         camera.position.set(MathUtils.clamp(player.realX + 16, 100, 1000), MathUtils.clamp(player.realY + 16, 100, 1000), 0);
+        camera.update();
+    }
+
+    private void doUpdate() {
+        for (NPC npc : npcList) {
+            npc.update(elapsed);
+        }
+        inputManager.update(elapsed);
+        player.update(elapsed);
+        updateCamera();
+        dialogue.update(elapsed);
     }
 
     @Override
