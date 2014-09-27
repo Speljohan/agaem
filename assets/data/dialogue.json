@@ -1,6 +1,13 @@
 {
-    "npc_test": {
-      "name": "Hobo",
-      "text": "Hey man, got any change?"
-      }
+      "npcs": [{
+          "id" : "npc_test",
+          "name": "Hobo",
+          "text": "Hey man, got any change?"
+          },
+          {
+            "id" : "npc_test2",
+            "name": "Jesus",
+            "text": "Hey man, got any weed?"
+          }]
+
 }
