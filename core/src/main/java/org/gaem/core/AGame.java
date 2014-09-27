@@ -1,46 +1,34 @@
 package org.gaem.core;
 
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.tiled.*;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector3;
 import org.gaem.core.input.InputManager;
 import org.gaem.core.model.Player;
-import org.gaem.core.util.YDownBitmapFontLoader;
-import org.gaem.core.util.YDownTextureLoader;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 public class AGame implements ApplicationListener {
-	float elapsed;
     public static AssetManager ASSETS;
-
+    float elapsed;
+    TiledMap tiledMap;
+    TiledMapRenderer tiledMapRenderer;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Player player;
     private InputManager inputManager;
-
     private int mapWidth;
     private int mapHeigth;
-
-    TiledMap tiledMap;
-    TiledMapRenderer tiledMapRenderer;
 
 	@Override
 	public void create () {
@@ -59,8 +47,6 @@ public class AGame implements ApplicationListener {
         while(!ASSETS.update());
         player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"));
         inputManager = new InputManager(player, tiledMap);
-
-        Gdx.input.setInputProcessor(inputManager);
 
     }
 
@@ -96,6 +82,7 @@ public class AGame implements ApplicationListener {
             batch.enableBlending();
             batch.begin();
             batch.draw(player.sprite, player.realX, player.realY - 48);
+            ASSETS.get("fonts/SILKWONDER.fnt", BitmapFont.class).draw(batch, "Hai der!", 10, Gdx.graphics.getHeight() - 10);
             batch.end();
         }
 

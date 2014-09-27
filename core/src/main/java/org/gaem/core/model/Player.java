@@ -18,11 +18,11 @@ public class Player extends Mobile {
     private float elapsed;
     private boolean isMoving;
     private float speed;
-    private  boolean moveBool;
+    private boolean moveBool;
 
     public Player(float x, float y) {
-        tileX = MathUtils.floor(x/16);
-        tileY = MathUtils.floor(y/16);
+        tileX = MathUtils.floor(x / 16);
+        tileY = MathUtils.floor(y / 16);
 
         realX = x;
         realY = y;
@@ -41,12 +41,9 @@ public class Player extends Mobile {
 
     public void update(float delta) {
         elapsed += Gdx.graphics.getDeltaTime();
-        if(elapsed > speed){
+        if (elapsed > speed) {
             moveBool = true;
             elapsed -= speed;
-            System.out.println("GOGOGOG");
-            if(isMoving)
-                System.out.println("WATWAT");
         }
         if (isMoving) {
             if (realX == targetX * 16 && realY == targetY * 16) {
@@ -77,9 +74,8 @@ public class Player extends Mobile {
 
 
     public void move(int x, int y, TiledMapTileLayer layer) {
-        System.out.println("MOVEIT");
         if (isMoving) return;
-        if(moveBool) {
+        if (moveBool) {
             if (!canMove(tileX + x, tileY + y, layer)) return;
             this.targetX = tileX + x;
             this.targetY = tileY + y;
