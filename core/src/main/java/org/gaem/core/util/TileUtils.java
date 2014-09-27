@@ -9,7 +9,7 @@ import org.gaem.core.model.Mobile;
  */
 public class TileUtils {
 
-    public static final int[] SOLID = {0};
+    public static final int[] SOLID = {5};
 
 
     public static boolean isBlocked(int id) {

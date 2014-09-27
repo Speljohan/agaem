@@ -27,16 +27,16 @@ public class InputManager implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.LEFT) {
-            player.move(-1, 0, (TiledMapTileLayer)map.getLayers().get(0));
+            player.move(-1, 0, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
         }
         if (keycode == Input.Keys.RIGHT) {
-            player.move(1, 0, (TiledMapTileLayer)map.getLayers().get(0));
+            player.move(1, 0, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
         }
         if (keycode == Input.Keys.DOWN) {
-            player.move(0, -1, (TiledMapTileLayer)map.getLayers().get(0));
+            player.move(0, -1, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
         }
         if (keycode == Input.Keys.UP) {
-            player.move(0, 1, (TiledMapTileLayer)map.getLayers().get(0));
+            player.move(0, 1, (TiledMapTileLayer)map.getLayers().get("MainLayer"));
         }
         return true;
     }

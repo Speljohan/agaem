@@ -37,7 +37,7 @@ public class AGame implements ApplicationListener {
     private InputManager inputManager;
 
     private int mapWidth;
-    private  int mapHeigth;
+    private int mapHeigth;
 
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
@@ -65,10 +65,7 @@ public class AGame implements ApplicationListener {
     }
 
     private void loadAssets() {
-        //ASSETS.setLoader(Texture.class, new YDownTextureLoader(new InternalFileHandleResolver()));
-        //ASSETS.setLoader(BitmapFont.class, new YDownBitmapFontLoader(new InternalFileHandleResolver()));
         ASSETS.load("sprites/player.png", Texture.class);
-        ASSETS.load("sprites/libgdx-logo.png", Texture.class);
         ASSETS.load("fonts/SILKWONDER.fnt", BitmapFont.class);
     }
 
@@ -98,7 +95,7 @@ public class AGame implements ApplicationListener {
             batch.setProjectionMatrix(camera.combined);
             batch.enableBlending();
             batch.begin();
-            batch.draw(player.sprite, player.realX, player.realY);
+            batch.draw(player.sprite, player.realX, player.realY - 48);
             batch.end();
         }
 

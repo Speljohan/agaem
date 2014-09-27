@@ -51,6 +51,7 @@ public class Player extends Mobile {
         if (targetX < 0 || targetY < 0) {
             return false;
         }
+        System.out.println(layer.getCell(targetX, targetY).getTile().getId());
         if (layer.getCell(targetX, targetY) == null || TileUtils.isBlocked(layer.getCell(targetX, targetY).getTile().getId())) {
             return false;
         }
