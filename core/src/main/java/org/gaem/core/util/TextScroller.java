@@ -8,12 +8,13 @@ public class TextScroller {
     private String text;
 
     private String textChunk;
-    private int index, interval;
+    private int index, interval, current;
 
     private boolean isRunning;
 
     public TextScroller(String text, int interval) {
         this.text = text;
+        this.textChunk = "";
         this.interval = interval;
         this.index = 0;
         this.isRunning = false;
@@ -33,7 +34,14 @@ public class TextScroller {
 
     public void update(float delta) {
         if (isRunning) {
-            if (delta >= interval) {
+            current += delta;
+            if (current >= interval) {
+                current = 0;
+                if (index >= text.length()) {
+                    isRunning = false;
+                    stop();
+                }
+
                 textChunk = text.substring(0, index);
                 index++;
             }

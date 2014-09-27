@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.input.InputManager;
 import org.gaem.core.model.Player;
+import org.gaem.core.ui.Dialogue;
 
 public class AGame implements ApplicationListener {
     public static AssetManager ASSETS;
@@ -29,6 +30,8 @@ public class AGame implements ApplicationListener {
     private InputManager inputManager;
     private int mapWidth;
     private int mapHeigth;
+
+    private Dialogue dialogue;
 
 	@Override
 	public void create () {
@@ -47,12 +50,14 @@ public class AGame implements ApplicationListener {
         while(!ASSETS.update());
         player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"));
         inputManager = new InputManager(player, tiledMap);
+        dialogue = new Dialogue(camera);
 
     }
 
     private void loadAssets() {
         ASSETS.load("sprites/player.png", Texture.class);
         ASSETS.load("fonts/SILKWONDER.fnt", BitmapFont.class);
+        ASSETS.load("sprites/chatbox.png", Texture.class);
     }
 
 	@Override
@@ -73,6 +78,7 @@ public class AGame implements ApplicationListener {
             tiledMapRenderer.render();
             updateCamera();
             camera.update();
+            dialogue.update(elapsed);
 
 
 
@@ -82,8 +88,9 @@ public class AGame implements ApplicationListener {
             batch.enableBlending();
             batch.begin();
             batch.draw(player.sprite, player.realX, player.realY - 48);
-            ASSETS.get("fonts/SILKWONDER.fnt", BitmapFont.class).draw(batch, "Hai der!", 10, Gdx.graphics.getHeight() - 10);
             batch.end();
+
+            dialogue.render(elapsed);
         }
 
 	}
