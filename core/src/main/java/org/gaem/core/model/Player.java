@@ -20,8 +20,11 @@ public class Player extends Mobile {
     public Player(float x, float y) {
         tileX = MathUtils.floor(x/16);
         tileY = MathUtils.floor(y/16);
+
         realX = x;
         realY = y;
+
+        System.out.println(""+tileX+","+tileY+","+realX+","+realY);
        // tileX = 10;
        // tileY = 10;
         this.sprite = new Sprite(AGame.ASSETS.get("sprites/player.png", Texture.class));

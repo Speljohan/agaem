@@ -54,7 +54,7 @@ public class AGame implements ApplicationListener {
         MapLayer mapLayer = tiledMap.getLayers().get("obte");
         MapObject mapObject = mapLayer.getObjects().get("WAT");
         while(!ASSETS.update());
-        player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("x"));
+        player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"));
 	}
 
     private void loadAssets() {
