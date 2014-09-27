@@ -29,7 +29,7 @@ public class Player extends Mobile {
 
         moveBool = true;
 
-        speed = 0.5f;
+        speed = 0.1f;
 
         elapsed = 0;
 

@@ -1,2 +1,19 @@
+An action game where you time travel with hippies and you can't stop gaining powers.
+Cooking.
+Mayan.
+
 Add battlesystem.
 Inventory
+Party?
+NPCs.
+Dialog.
+Karttransition.
+Interactibles. Knappar, stenar, dörrar, huggbara träd.
+Matlagning.
+Main Menu.
+Game Menu.
+Hobo.
+Sparfunktion.
+Musik.
+Grafik.
+Ljudeffekter.
