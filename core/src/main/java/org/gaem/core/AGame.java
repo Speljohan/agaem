@@ -55,19 +55,23 @@ public class AGame implements ApplicationListener {
         MapObject mapObject = mapLayer.getObjects().get("WAT");
         System.out.println( mapLayer.getObjects().getCount());
         MapObjects mo = mapLayer.getObjects();
-      /*  for(MapObject mot:mo)
-        {
-            for(Object obj: mot.getProperties())
-            {
-                System.out.println((String)obj);
-            }
-        }*/
+
         while(!ASSETS.update());
-        player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
+        for(MapObject mot:mo)
+        {
+            if((Integer)mot.getProperties().get("gid") == 101)
+            {
+                player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
+            }
+            if((Integer)mot.getProperties().get("gid") == 102){
+                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
+            }
+        }
+       // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
         inputManager = new InputManager(player, tiledMap);
         DIALOGUEMANAGER = new DialogueManager(camera);
 
-        npcList.add(new NPC(player.realX + 64, player.realY));
+
 
 
     }
