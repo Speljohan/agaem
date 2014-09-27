@@ -34,9 +34,7 @@ public class AGame implements ApplicationListener {
     private OrthographicCamera camera;
     private Player player;
 
-    Texture img;
     TiledMap tiledMap;
-   // OrthographicCamera camera;
     TiledMapRenderer tiledMapRenderer;
     ArrayList<TiledMapTileLayer.Cell> waterCellsInScene;
 
@@ -82,7 +80,7 @@ public class AGame implements ApplicationListener {
         if (ASSETS.update()) {
 
             player.update(elapsed);
-            camera.position.set(player.realX + 16, player.realY + 16, 0);
+            updateCamera();
             camera.update();
 
             tiledMapRenderer.setView(camera);
@@ -92,11 +90,14 @@ public class AGame implements ApplicationListener {
             batch.enableBlending();
             batch.begin();
             batch.draw(player.sprite, player.realX, player.realY);
-            ASSETS.get("fonts/SILKWONDER.fnt", BitmapFont.class).draw(batch, "This is a test", 10, 10);
             batch.end();
         }
 
 	}
+
+    private void updateCamera() {
+        camera.position.set(MathUtils.clamp(player.realX + 16, 100, 1000), MathUtils.clamp(player.realY + 16, 100, 1000), 0);
+    }
 
 	@Override
 	public void pause () {

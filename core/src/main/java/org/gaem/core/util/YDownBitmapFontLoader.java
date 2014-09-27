@@ -74,6 +74,7 @@ public class YDownBitmapFontLoader extends AsynchronousAssetLoader<BitmapFont, Y
             TextureRegion[] regs = new TextureRegion[data.getImagePaths().length];
             for (int i = 0; i < regs.length; i++) {
                 regs[i] = new TextureRegion(manager.get(data.getImagePath(i), Texture.class));
+
             }
             return new BitmapFont(data, regs, true);
         }

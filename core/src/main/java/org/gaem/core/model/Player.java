@@ -61,9 +61,17 @@ public class Player extends Mobile {
 
     }
 
+    private boolean canMove(int targetX, int targetY) {
+        if (targetX < 0 || targetY < 0) {
+            return false;
+        }
+        return true;
+    }
+
 
     private void move(int x, int y) {
         if (isMoving) return;
+        if (!canMove(tileX + x, tileY + y)) return;
         this.targetX = tileX + x;
         this.targetY = tileY + y;
         velocity.set(x, y);
