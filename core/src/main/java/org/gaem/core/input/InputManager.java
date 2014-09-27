@@ -1,6 +1,5 @@
 package org.gaem.core.input;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -34,10 +33,10 @@ public class InputManager implements InputProcessor {
             player.move(1, 0, (TiledMapTileLayer)map.getLayers().get(0));
         }
         if (keycode == Input.Keys.DOWN) {
-            player.move(0, 1, (TiledMapTileLayer)map.getLayers().get(0));
+            player.move(0, -1, (TiledMapTileLayer)map.getLayers().get(0));
         }
         if (keycode == Input.Keys.UP) {
-            player.move(0, -1, (TiledMapTileLayer)map.getLayers().get(0));
+            player.move(0, 1, (TiledMapTileLayer)map.getLayers().get(0));
         }
         return true;
     }

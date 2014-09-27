@@ -46,8 +46,6 @@ public class AGame implements ApplicationListener {
 	public void create () {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
-       // camera.setToOrtho(true);
-       // camera.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         ASSETS = new AssetManager();
         loadAssets();
         batch = new SpriteBatch();
@@ -67,8 +65,8 @@ public class AGame implements ApplicationListener {
     }
 
     private void loadAssets() {
-        ASSETS.setLoader(Texture.class, new YDownTextureLoader(new InternalFileHandleResolver()));
-        ASSETS.setLoader(BitmapFont.class, new YDownBitmapFontLoader(new InternalFileHandleResolver()));
+        //ASSETS.setLoader(Texture.class, new YDownTextureLoader(new InternalFileHandleResolver()));
+        //ASSETS.setLoader(BitmapFont.class, new YDownBitmapFontLoader(new InternalFileHandleResolver()));
         ASSETS.load("sprites/player.png", Texture.class);
         ASSETS.load("sprites/libgdx-logo.png", Texture.class);
         ASSETS.load("fonts/SILKWONDER.fnt", BitmapFont.class);
