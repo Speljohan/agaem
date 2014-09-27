@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
 import org.gaem.core.util.TileUtils;
 
+import java.util.ArrayList;
+
 /**
  * Created by Johan on 2014-09-26.
  */
@@ -19,8 +21,10 @@ public class Player extends Mobile {
     private boolean isMoving;
     private float speed;
     private boolean moveBool;
+    private ArrayList<NPC> npcList;
 
-    public Player(float x, float y) {
+    public Player(float x, float y, ArrayList<NPC> npcList) {
+        this.npcList = npcList;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
 
@@ -68,6 +72,13 @@ public class Player extends Mobile {
         System.out.println(layer.getCell(targetX, targetY).getTile().getId());
         if (layer.getCell(targetX, targetY) == null || TileUtils.isBlocked(layer.getCell(targetX, targetY).getTile().getId())) {
             return false;
+        }
+        for (NPC npc: npcList)
+        {
+            if(npc.tileX == targetX && npc.tileY == targetY)
+            {
+                return false;
+            }
         }
         return true;
     }

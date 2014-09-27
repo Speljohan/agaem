@@ -55,7 +55,7 @@ public class AGame implements ApplicationListener {
         MapLayer mapLayer = tiledMap.getLayers().get("obte");
         MapObject mapObject = mapLayer.getObjects().get("WAT");
         while(!ASSETS.update());
-        player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"));
+        player = new Player((Float)mapObject.getProperties().get("x"),(Float)mapObject.getProperties().get("y"),npcList);
         inputManager = new InputManager(player, tiledMap);
 
         npcList.add(new NPC(player.realX+64,player.realY));
