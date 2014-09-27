@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
+import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.util.TileUtils;
 
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class Player extends Mobile {
         if (isMoving) return;
         if (moveBool) {
             if (!canMove(tileX + x, tileY + y, layer)) return;
-            AGame.DIALOGUEMANAGER.hideDialogue();
+            OverworldScreen.DIALOGUEMANAGER.hideDialogue();
             this.targetX = tileX + x;
             this.targetY = tileY + y;
             velocity.set(x, y);

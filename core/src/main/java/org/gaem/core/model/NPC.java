@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.AGame;
+import org.gaem.core.screen.OverworldScreen;
 
 /**
  * Created by Joar on 2014-09-27.
@@ -27,7 +28,7 @@ public class NPC extends Mobile {
     }
 
     public void interact() {
-        AGame.DIALOGUEMANAGER.createDialogue("LOL KEK U R NUBCAKE K");
+        OverworldScreen.DIALOGUEMANAGER.createDialogue("LOL KEK U R NUBCAKE K");
     }
 
     public void update(float delta) {
