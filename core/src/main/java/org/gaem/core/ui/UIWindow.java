@@ -46,6 +46,10 @@ public abstract class UIWindow {
         font.draw(batch, s, origin.x + x, origin.y + y);
     }
 
+    public void drawTextWrapped(String s, int x, int y, int wrap) {
+        font.drawWrapped(batch, s, x, y, wrap, BitmapFont.HAlignment.LEFT);
+    }
+
     public void drawTexture(Texture t, int x, int y) {
         batch.draw(t, origin.x + x, origin.y + y);
     }
