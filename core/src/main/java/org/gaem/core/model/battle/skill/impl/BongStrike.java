@@ -21,12 +21,12 @@ public class BongStrike extends Skill {
     }
 
     public String getDescription() {
-        return "{target} makes an assault with a bong";
+        return "{source} makes an assault with a bong";
     }
 
     @Override
     public SkillResult inflict(BattleProperties target) {
         target.currentHP -= MathUtils.random(5, 15);
-        return new SkillResult("You strike {target} to the head", false);
+        return new SkillResult("{source} strike {target} to the head", false);
     }
 }

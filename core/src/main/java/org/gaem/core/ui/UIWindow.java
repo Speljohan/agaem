@@ -1,5 +1,6 @@
 package org.gaem.core.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -48,6 +49,14 @@ public abstract class UIWindow {
 
     public void drawTextWrapped(String s, int x, int y, int wrap) {
         font.drawWrapped(batch, s, x, y, wrap, BitmapFont.HAlignment.LEFT);
+    }
+
+    public void setFontColor(Color color) {
+        font.setColor(color);
+    }
+
+    public void resetFontColor() {
+        font.setColor(Color.BLACK);
     }
 
     public void drawTexture(Texture t, int x, int y) {

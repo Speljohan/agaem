@@ -5,27 +5,28 @@ import org.gaem.core.model.battle.SkillResult;
 import org.gaem.core.model.battle.skill.Skill;
 
 /**
- * Created by Johan on 2014-09-27.
+ * Created by Johan on 2014-09-28.
  */
-public class ProbationNotice extends Skill {
+public class GenericAttack extends Skill {
 
     @Override
     public String getName() {
-        return "Probation Notice";
+        return "Generic_Attack";
     }
 
     @Override
     public int getCost() {
-        return 5;
+        return 0;
     }
 
+    @Override
     public String getDescription() {
-        return "{source} reads a law paper";
+        return "{source} launch at {target}";
     }
 
     @Override
     public SkillResult inflict(BattleProperties target) {
-        target.currentMP -= 5;
-        return new SkillResult("Dismayed by the probation, {target} spends a day protesting (wait one turn)", false);
+        target.currentHP -= 1;
+        return new SkillResult("{source} strike {target} hard to the head.", false);
     }
 }

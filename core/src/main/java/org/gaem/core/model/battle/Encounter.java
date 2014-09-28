@@ -2,6 +2,12 @@ package org.gaem.core.model.battle;
 
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.model.battle.skill.Skill;
+import org.gaem.core.model.battle.skill.impl.BongStrike;
+import org.gaem.core.model.battle.skill.impl.Kumbaja;
+import org.gaem.core.model.battle.skill.impl.ProbationNotice;
+import org.gaem.core.model.battle.skill.impl.RacialBash;
+
+import java.util.ArrayList;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -22,6 +28,19 @@ public class Encounter {
         this.enemy = enemy;
         this.enemyTurn = false;
         this.pause = 1f;
+        this.listener = listener;
+    }
+
+    public static Encounter generateRandomEncounter() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(new BongStrike());
+        skills.add(new Kumbaja());
+        skills.add(new ProbationNotice());
+        skills.add(new RacialBash());
+        return new Encounter(new BattleProperties("you", 10, 10, 10, 10, skills, null), new BattleProperties("GenericFiend", 10, 10, 10, 10, skills, null), null);
+    }
+
+    public void setListener(BattleListener listener) {
         this.listener = listener;
     }
 

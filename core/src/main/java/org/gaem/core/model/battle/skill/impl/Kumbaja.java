@@ -20,7 +20,7 @@ public class Kumbaja extends Skill {
     }
 
     public String getDescription() {
-        return "{target} sings a soothing song";
+        return "{source} sings a soothing song";
     }
 
     @Override

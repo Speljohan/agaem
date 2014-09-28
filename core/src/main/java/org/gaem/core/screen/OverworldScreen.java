@@ -14,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.AGame;
 import org.gaem.core.input.InputManager;
+import org.gaem.core.model.battle.Encounter;
 import org.gaem.core.model.overworld.NPC;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.ui.DialogueManager;
@@ -29,6 +30,7 @@ public class OverworldScreen implements Screen {
     public static int mapWidth;
     public static int mapHeigth;
     static boolean stopAnim = true;
+    private static Encounter encounter;
     public OrthographicCamera camera;
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
@@ -42,8 +44,9 @@ public class OverworldScreen implements Screen {
 
     }
 
-    public static void startBattleTransition() {
+    public static void startBattleTransition(Encounter encounter) {
         stopAnim = false;
+        OverworldScreen.encounter = encounter;
     }
 
     @Override
@@ -80,15 +83,15 @@ public class OverworldScreen implements Screen {
             camera.zoom -= 0.005f;
             if (camera.zoom <= 0.01) {
                 stopAnim = true;
-                game.setScreen(new BattleScreen(game));
+                game.setScreen(new BattleScreen(game, encounter));
             }
         }
     }
 
     private void updateCamera() {
-      //  System.out.println("Camera update: Width: " + mapWidth + " heigth: " + mapHeigth + " player pos: " + player.realX + " " + player.realY + " clamp " + MathUtils.clamp(player.realX + 16,0,mapWidth) + " " + MathUtils.clamp(player.realY + 16, 0, mapHeigth));
-        camera.position.set(MathUtils.clamp(player.realX + 16, 0 + camera.viewportWidth/4, mapWidth - camera.viewportWidth/4), MathUtils.clamp(player.realY + 16, 0 + camera.viewportHeight/4, mapHeigth - camera.viewportHeight/4), 0);
-       // camera.position.set(player.realX + 16,player.realY + 16, 0);
+        //  System.out.println("Camera update: Width: " + mapWidth + " heigth: " + mapHeigth + " player pos: " + player.realX + " " + player.realY + " clamp " + MathUtils.clamp(player.realX + 16,0,mapWidth) + " " + MathUtils.clamp(player.realY + 16, 0, mapHeigth));
+        camera.position.set(MathUtils.clamp(player.realX + 16, 0 + camera.viewportWidth / 4, mapWidth - camera.viewportWidth / 4), MathUtils.clamp(player.realY + 16, 0 + camera.viewportHeight / 4, mapHeigth - camera.viewportHeight / 4), 0);
+        // camera.position.set(player.realX + 16,player.realY + 16, 0);
 
         camera.update();
     }
@@ -115,8 +118,8 @@ public class OverworldScreen implements Screen {
         camera.zoom = 0.5f;
 
         tiledMap = new TmxMapLoader().load("map/testmap.tmx");
-        mapWidth = (Integer)tiledMap.getProperties().get("width") * 16;
-        mapHeigth = (Integer)tiledMap.getProperties().get("height") * 16;
+        mapWidth = (Integer) tiledMap.getProperties().get("width") * 16;
+        mapHeigth = (Integer) tiledMap.getProperties().get("height") * 16;
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
         MapLayer mapLayer = tiledMap.getLayers().get("obte");
@@ -131,7 +134,7 @@ public class OverworldScreen implements Screen {
                 System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
             }
             if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
-                String npcID = (String)mot.getProperties().get("id");
+                String npcID = (String) mot.getProperties().get("id");
                 System.out.println("NPC ID " + npcID);
                 npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcID));
                 System.out.println("Added NPC! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));

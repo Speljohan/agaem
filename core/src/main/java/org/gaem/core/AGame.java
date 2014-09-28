@@ -5,7 +5,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import org.gaem.core.screen.OverworldScreen;
+import org.gaem.core.model.battle.Encounter;
+import org.gaem.core.screen.BattleScreen;
 
 public class AGame extends Game {
     public static AssetManager ASSETS;
@@ -18,8 +19,8 @@ public class AGame extends Game {
         loadAssets();
         batch = new SpriteBatch();
 
-        //this.setScreen(new BattleScreen(this));
-        this.setScreen(new OverworldScreen(this));
+        this.setScreen(new BattleScreen(this, Encounter.generateRandomEncounter()));
+        //this.setScreen(new OverworldScreen(this));
 
     }
 

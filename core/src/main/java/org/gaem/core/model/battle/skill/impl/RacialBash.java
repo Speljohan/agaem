@@ -20,7 +20,7 @@ public class RacialBash extends Skill {
     }
 
     public String getDescription() {
-        return "{target} bashes some brown people";
+        return "{source} bashes some brown people";
     }
 
     @Override

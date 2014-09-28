@@ -7,18 +7,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
 import org.gaem.core.model.battle.BattleListener;
-import org.gaem.core.model.battle.BattleProperties;
 import org.gaem.core.model.battle.Encounter;
 import org.gaem.core.model.battle.SkillResult;
 import org.gaem.core.model.battle.skill.Skill;
-import org.gaem.core.model.battle.skill.impl.BongStrike;
-import org.gaem.core.model.battle.skill.impl.Kumbaja;
-import org.gaem.core.model.battle.skill.impl.ProbationNotice;
-import org.gaem.core.model.battle.skill.impl.RacialBash;
+import org.gaem.core.model.battle.skill.impl.GenericAttack;
 import org.gaem.core.screen.BattleScreen;
 import org.gaem.core.ui.UIWindow;
-
-import java.util.ArrayList;
+import org.gaem.core.ui.menu.SelectionMenu;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -33,16 +28,14 @@ public class BattleWindow extends UIWindow implements BattleListener {
     private int optionsIndices = 3;
     private String lastLog;
 
+    private SelectionMenu menu;
+
     public BattleWindow(OrthographicCamera camera, Encounter encounter) {
         super(camera);
-        ArrayList<Skill> skills = new ArrayList<Skill>();
-        skills.add(new RacialBash());
-        skills.add(new BongStrike());
-        skills.add(new ProbationNotice());
-        skills.add(new Kumbaja());
-        this.encounter = new Encounter(new BattleProperties("you", 47, 142, 0, 53, skills, null), new BattleProperties("Tea Party Member", 15, 15, 15, 15, skills, null), this);
+        this.encounter = encounter;
+        this.encounter.setListener(this);
         this.lastLog = "";
-
+        this.menu = new SelectionMenu();
         background = new Sprite(AGame.ASSETS.get("sprites/chatbox.png", Texture.class));
         pointer = new Sprite(AGame.ASSETS.get("sprites/pointer.png", Texture.class));
         font.setScale(0.6f);
@@ -57,12 +50,12 @@ public class BattleWindow extends UIWindow implements BattleListener {
 
     @Override
     public void attackStarted(String message) {
-        lastLog = message.replace("{target}", encounter.getCurrentTurn().name);
+        lastLog = message.replace("{source}", encounter.getCurrentTurn().name).replace("{target}", encounter.getCurrentTarget().name);
     }
 
     @Override
     public void attackFinished(SkillResult result) {
-        lastLog = result.log.replace("{target}", encounter.getCurrentTarget().name);
+        lastLog = result.log.replace("{source}", encounter.getCurrentTurn().name).replace("{target}", encounter.getCurrentTarget().name);
     }
 
 
@@ -77,11 +70,13 @@ public class BattleWindow extends UIWindow implements BattleListener {
         if (!encounter.isEnemyTurn()) {
             drawTexture(pointer.getTexture(), (int) pointerLocation.x, (int) pointerLocation.y);
             if (currentMenu == 0) {
-                drawText("Fight", -115, -25);
+                drawText("Attack", -115, -25);
+                setFontColor(Color.GRAY);
                 drawText("Items", -115, -65);
-                drawText("Spells", 75, -25);
+                drawText("Skills", 75, -25);
+                resetFontColor();
                 drawText("Run Away man!", 75, -65);
-            } else if (currentMenu == 1) {
+            } else if (currentMenu == 3) {
                 Skill s1 = encounter.getPlayer().skills.get(0);
                 drawText(s1.getName(), -115, -25);
                 Skill s2 = encounter.getPlayer().skills.get(1);
@@ -119,12 +114,19 @@ public class BattleWindow extends UIWindow implements BattleListener {
     }
 
     public void select() {
-        if (currentMenu == 1) {
+        System.out.println("SELECTION: " + currentSelection + "," + currentMenu);
+        if (currentMenu == 0) {
+            if (currentSelection == 0) {
+                encounter.useAttack(new GenericAttack());
+            } else if (currentSelection == 1) {
+
+            } else if (currentSelection == 3) {
+                BattleScreen.startOverworldTransition();
+            } else {
+                currentMenu = currentSelection + 1;
+            }
+        } else if (currentMenu == 3) {
             encounter.useAttack(encounter.getPlayer().skills.get(currentSelection));
-        } else if (currentSelection == 3) {
-            BattleScreen.startOverworldTransition();
-        } else {
-            currentMenu = currentSelection + 1;
         }
     }
 

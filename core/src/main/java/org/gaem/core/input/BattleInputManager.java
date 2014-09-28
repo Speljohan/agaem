@@ -11,6 +11,7 @@ public class BattleInputManager {
 
     public BattleWindow battleWindow;
     private float current, interval;
+
     public BattleInputManager(BattleWindow window) {
         this.battleWindow = window;
         this.current = 0;
@@ -32,7 +33,7 @@ public class BattleInputManager {
                 battleWindow.previousSelection();
                 current = 0;
             }
-            if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
                 battleWindow.select();
                 current = 0;
             }

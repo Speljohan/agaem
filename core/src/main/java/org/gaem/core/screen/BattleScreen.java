@@ -21,8 +21,9 @@ public class BattleScreen implements Screen {
     private BattleInputManager inputManager;
     private Encounter encounter;
 
-    public BattleScreen(AGame game) {
+    public BattleScreen(AGame game, Encounter encounter) {
         this.game = game;
+        this.encounter = encounter;
     }
 
     public static void startOverworldTransition() {
@@ -58,7 +59,7 @@ public class BattleScreen implements Screen {
     public void show() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
-        battleWindow = new BattleWindow(camera, null);
+        battleWindow = new BattleWindow(camera, encounter);
         inputManager = new BattleInputManager(battleWindow);
 
     }
