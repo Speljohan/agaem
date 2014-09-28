@@ -12,12 +12,6 @@
   </data>
  </layer>
  <objectgroup name="obte">
-  <object type="teleporter" gid="103" x="64" y="112">
-   <properties>
-    <property name="teleport_map" value="testmap"/>
-    <property name="teleport_x" value="18"/>
-    <property name="teleport_y" value="36"/>
-   </properties>
-  </object>
+  <object gid="101" x="64" y="96"/>
  </objectgroup>
 </map>

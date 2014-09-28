@@ -40,12 +40,24 @@
    </properties>
   </object>
   <object name="Player" gid="101" x="288" y="608"/>
-  <object type="teleporter" gid="103" x="288" y="576">
+  <object name="teleporter" gid="103" x="288" y="576">
    <properties>
     <property name="teleport_map" value="testmap2"/>
     <property name="teleport_x" value="4"/>
     <property name="teleport_y" value="5"/>
    </properties>
   </object>
+  <object gid="104" x="416" y="608"/>
+  <object gid="104" x="416" y="576"/>
+  <object gid="104" x="368" y="544"/>
+  <object gid="104" x="416" y="512"/>
+  <object gid="104" x="448" y="544"/>
+  <object gid="104" x="560" y="560"/>
+  <object gid="104" x="528" y="608"/>
+  <object gid="104" x="512" y="544"/>
+  <object gid="104" x="480" y="608"/>
+  <object gid="104" x="528" y="656"/>
+  <object gid="104" x="512" y="576"/>
+  <object gid="104" x="560" y="608"/>
  </objectgroup>
 </map>

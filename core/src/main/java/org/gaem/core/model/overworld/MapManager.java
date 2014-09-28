@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import org.gaem.core.engine.PlayerData;
 import org.gaem.core.model.overworld.interactables.Rock;
+import org.gaem.core.model.overworld.triggerables.Teleporter;
 import org.gaem.core.screen.OverworldScreen;
 
 /**
@@ -44,25 +45,39 @@ public class MapManager {
 
         for (MapObject mot : mo) {
             MapProperties props = mot.getProperties();
-            if (props.containsKey("gid") && (Integer) props.get("gid") == 101) {
-                if (PlayerData.posX == -1 && PlayerData.posY == -1) {
-                    screen.manager.setPlayer(new Player((Float) props.get("x"), (Float) props.get("y")));
-                    PlayerData.posX = (Float) props.get("x");
-                    PlayerData.posY = (Float) props.get("y");
-                } else {
-                    screen.manager.setPlayer(new Player(PlayerData.posX, PlayerData.posY));
+            if (props.containsKey("gid")) {
+                int gid = (Integer) props.get("gid");
+                switch (gid) {
+                    case 101:
+                        if (PlayerData.posX == -1 && PlayerData.posY == -1) {
+                            screen.manager.setPlayer(new Player((Float) props.get("x"), (Float) props.get("y")));
+                            PlayerData.posX = (Float) props.get("x");
+                            PlayerData.posY = (Float) props.get("y");
+                        } else {
+                            screen.manager.setPlayer(new Player(PlayerData.posX, PlayerData.posY));
+                        }
+                        break;
+                    case 102:
+                        String npcID = (String) props.get("id");
+                        screen.manager.add(new NPC((Float) props.get("x"), (Float) props.get("y"), npcID));
+                        break;
+                    case 103:
+                        String map = props.get("teleport_map", String.class);
+                        int teleport_x = Integer.parseInt(props.get("teleport_x", String.class));
+                        int teleport_y = Integer.parseInt(props.get("teleport_y", String.class));
+                        screen.manager.add(new Teleporter(
+                                props.get("x", Float.class),
+                                props.get("y", Float.class),
+                                map,
+                                teleport_x,
+                                teleport_y));
+                        break;
+                    case 104:
+                        screen.manager.add(new Rock((Float) props.get("x"), (Float) props.get("y")));
+                        break;
                 }
             }
-            if (props.containsKey("gid") && (Integer) props.get("gid") == 102) {
-                String npcID = (String) props.get("id");
-                screen.manager.add(new NPC((Float) props.get("x"), (Float) props.get("y"), npcID));
-            }
-            if (props.containsKey("gid") && (Integer) props.get("gid") == 103) {
-                screen.manager.add(new Rock((Float) props.get("x"), (Float) props.get("y")));
-            }
         }
-        screen.manager.add(new Rock(screen.manager.getPlayer().realX + 64, screen.manager.getPlayer().realY));
-        screen.manager.add(new Rock(screen.manager.getPlayer().realX + 128, screen.manager.getPlayer().realY));
     }
 
     public void render(OrthographicCamera camera) {

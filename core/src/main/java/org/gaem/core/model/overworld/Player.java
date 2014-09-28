@@ -48,9 +48,13 @@ public class Player extends Mobile {
             if (realX == targetX * 16 && realY == targetY * 16) {
                 this.tileX = targetX;
                 this.tileY = targetY;
-
                 this.velocity.set(0, 0);
                 isMoving = false;
+                for (Entity e : manager.getEntities()) {
+                    if ((e instanceof Triggerable) && e.tileX == tileX && e.tileY == tileY) {
+                        ((Triggerable) e).trigger(this);
+                    }
+                }
                 return;
             }
 
@@ -73,7 +77,7 @@ public class Player extends Mobile {
         {
             if (e.tileX == targetX && e.tileY == targetY)
             {
-                return false;
+                return e instanceof Triggerable;
             }
         }
         return true;
