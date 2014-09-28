@@ -48,7 +48,7 @@ public class NPC extends Mobile {
     }
 
     public void interact() {
-        OverworldScreen.DIALOGUEMANAGER.createDialogue(text);
+        OverworldScreen.DIALOGUEMANAGER.createDialogue(name + " " + text);
         System.out.println("You dud, mah ID is " + id);
         System.out.println(name + ": " + text);
    //   JsonUtil.readJson();

@@ -18,7 +18,7 @@ public class DialogueManager {
 
     public void createDialogue(String id) {
        System.out.println("The NPC says: " + TextManager.getInstance().getTextByNPC(id));
-        currentDialogue = new Dialogue(cam, "THIS IS A TEXT DAMN YOU");
+        currentDialogue = new Dialogue(cam, id);
 
     }
 
