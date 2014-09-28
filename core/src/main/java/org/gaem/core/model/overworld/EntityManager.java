@@ -18,6 +18,11 @@ public class EntityManager {
         this.entities = new ArrayList<Entity>();
     }
 
+    public void clear() {
+        toRemove.addAll(entities);
+        toRemove.add(player);
+    }
+
     public void add(Entity e) {
         e.manager = this;
         toAdd.add(e);

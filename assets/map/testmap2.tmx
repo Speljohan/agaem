@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="12" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="testtile" tilewidth="16" tileheight="16">
+  <image source="../tiles/testtile.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="101" name="objset" tilewidth="16" tileheight="16">
+  <image source="../tiles/mobtiles.png" width="160" height="160"/>
+ </tileset>
+ <layer name="MainLayer" width="10" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzjYmBg4CISsxLAyOq4ceDBog7Zzbj8QQwe7AAAe+0Cxg==
+  </data>
+ </layer>
+ <objectgroup name="obte">
+  <object type="teleporter" gid="103" x="64" y="112">
+   <properties>
+    <property name="teleport_map" value="testmap"/>
+    <property name="teleport_x" value="18"/>
+    <property name="teleport_y" value="36"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
