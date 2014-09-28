@@ -83,6 +83,14 @@ public class Player extends Mobile {
         return true;
     }
 
+    public void setLocation(float x, float y) {
+        tileX = MathUtils.floor(x / 16);
+        tileY = MathUtils.floor(y / 16);
+
+        realX = x;
+        realY = y;
+    }
+
     public Vector2 getLookDirection() {
         int x = 0, y = 0;
         switch (facing) {

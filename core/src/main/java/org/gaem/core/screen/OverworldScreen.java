@@ -20,12 +20,12 @@ public class OverworldScreen implements Screen {
 
     public static DialogueManager DIALOGUEMANAGER;
     public static MapManager mapManager;
+    public static EntityManager manager;
+    public static InputManager inputManager;
     static boolean stopAnim = true;
     private static Encounter encounter;
     public OrthographicCamera camera;
-    public EntityManager manager;
     private AGame game;
-    private InputManager inputManager;
 
     public OverworldScreen(AGame game) {
         this.game = game;
@@ -94,12 +94,12 @@ public class OverworldScreen implements Screen {
 
     @Override
     public void show() {
+        inputManager = new InputManager(null, null);
         manager = new EntityManager();
         mapManager = new MapManager(this);
         mapManager.loadMap("testmap");
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
-        inputManager = new InputManager(manager.getPlayer(), mapManager.getCurrentMap());
         DIALOGUEMANAGER = new DialogueManager(camera);
 
 

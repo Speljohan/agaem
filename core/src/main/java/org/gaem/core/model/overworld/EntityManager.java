@@ -20,7 +20,10 @@ public class EntityManager {
 
     public void clear() {
         toRemove.addAll(entities);
-        toRemove.add(player);
+    }
+
+    public void mapUpdate(String mapName) {
+        clear();
     }
 
     public void add(Entity e) {

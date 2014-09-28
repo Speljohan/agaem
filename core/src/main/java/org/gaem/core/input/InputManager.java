@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import org.gaem.core.model.overworld.Player;
+import org.gaem.core.screen.OverworldScreen;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -17,6 +18,11 @@ public class InputManager {
     public InputManager(Player player, TiledMap map) {
         this.player = player;
         this.map = map;
+    }
+
+    public void refresh() {
+        this.map = OverworldScreen.mapManager.getCurrentMap();
+        this.player = OverworldScreen.manager.getPlayer();
     }
 
     public void update(float delta) {

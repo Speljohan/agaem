@@ -5,6 +5,11 @@
  </tileset>
  <tileset firstgid="101" name="objset" tilewidth="16" tileheight="16">
   <image source="../tiles/mobtiles.png" width="160" height="160"/>
+  <tile id="0">
+   <properties>
+    <property name="playerspawn" value="1"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="MainLayer" width="10" height="12">
   <data encoding="base64" compression="zlib">
@@ -12,6 +17,13 @@
   </data>
  </layer>
  <objectgroup name="obte">
-  <object gid="101" x="64" y="96"/>
+  <object name="Player" gid="101" x="64" y="96"/>
+  <object gid="103" x="64" y="112">
+   <properties>
+    <property name="teleport_map" value="testmap"/>
+    <property name="teleport_x" value="18"/>
+    <property name="teleport_y" value="63"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

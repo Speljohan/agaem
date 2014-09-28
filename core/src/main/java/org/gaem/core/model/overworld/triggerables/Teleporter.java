@@ -1,5 +1,6 @@
 package org.gaem.core.model.overworld.triggerables;
 
+import org.gaem.core.engine.PlayerData;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.model.overworld.Triggerable;
 import org.gaem.core.screen.OverworldScreen;
@@ -21,6 +22,9 @@ public class Teleporter extends Triggerable {
 
     @Override
     public void trigger(Player player) {
+        PlayerData.posX = -1;
+        PlayerData.posY = -1;
         OverworldScreen.mapManager.loadMap(targetMap);
+        manager.getPlayer().setLocation(targetX * 16, targetY * 16);
     }
 }

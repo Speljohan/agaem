@@ -44,7 +44,7 @@
    <properties>
     <property name="teleport_map" value="testmap2"/>
     <property name="teleport_x" value="4"/>
-    <property name="teleport_y" value="5"/>
+    <property name="teleport_y" value="6"/>
    </properties>
   </object>
   <object gid="104" x="416" y="608"/>
