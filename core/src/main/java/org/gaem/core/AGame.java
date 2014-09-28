@@ -5,6 +5,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import org.gaem.core.model.battle.Encounter;
+import org.gaem.core.screen.BattleScreen;
 import org.gaem.core.screen.OverworldScreen;
 
 public class AGame extends Game {

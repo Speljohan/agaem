@@ -12,4 +12,6 @@ public abstract class Entity {
 
     public abstract void render(float delta, SpriteBatch batch);
 
+    public abstract void interact(Player player);
+
 }

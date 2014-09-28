@@ -16,6 +16,7 @@ import org.gaem.core.AGame;
 import org.gaem.core.engine.PlayerData;
 import org.gaem.core.input.InputManager;
 import org.gaem.core.model.battle.Encounter;
+import org.gaem.core.model.overworld.Interactable;
 import org.gaem.core.model.overworld.NPC;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.ui.DialogueManager;
@@ -37,8 +38,10 @@ public class OverworldScreen implements Screen {
     TiledMapRenderer tiledMapRenderer;
     private AGame game;
     private ArrayList<NPC> npcList;
+    public static ArrayList<Interactable> interList;
     private Player player;
     private InputManager inputManager;
+  //  private Interactable inter;
 
     public OverworldScreen(AGame game) {
         this.game = game;
@@ -69,6 +72,10 @@ public class OverworldScreen implements Screen {
             for (NPC npc : npcList) {
                 npc.render(delta, game.batch);
             }
+            for (Interactable inter : interList) {
+                inter.render(delta, game.batch);
+            }
+           // inter.render(delta,game.batch);
             player.render(delta, game.batch);
             game.batch.end();
 
@@ -104,6 +111,9 @@ public class OverworldScreen implements Screen {
         for (NPC npc : npcList) {
             npc.update(delta);
         }
+        for (Interactable inter : interList) {
+            inter.update(delta);
+        }
         inputManager.update(delta);
         player.update(delta);
         updateCamera();
@@ -117,6 +127,7 @@ public class OverworldScreen implements Screen {
 
     @Override
     public void show() {
+        interList = new ArrayList<Interactable>();
         npcList = new ArrayList<NPC>();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
@@ -153,6 +164,9 @@ public class OverworldScreen implements Screen {
         // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
         inputManager = new InputManager(player, tiledMap);
         DIALOGUEMANAGER = new DialogueManager(camera);
+
+        interList.add(new Interactable(player.realX + 64,player.realY));
+        interList.add(new Interactable(player.realX + 128,player.realY));
     }
 
     @Override

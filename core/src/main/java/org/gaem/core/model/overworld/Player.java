@@ -80,6 +80,15 @@ public class Player extends Mobile {
                 return false;
             }
         }
+        for (Interactable inter: OverworldScreen.interList)
+        {
+         //   System.out.println("INTERPRINT WOHOOO");
+         //   System.out.println("INTER -> TARGET " + inter.tileX + " " + targetX);
+            if(inter.tileX == targetX && inter.tileY == targetY)
+            {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -90,7 +99,7 @@ public class Player extends Mobile {
         if (x == -1) facing = 3;
     }
 
-    private Mobile getTargetAtFace() {
+    private Entity getTargetAtFace() {
         int x = tileX, y = tileY;
         switch (facing) {
             case 0:
@@ -108,18 +117,25 @@ public class Player extends Mobile {
                 return npc;
             }
         }
+        for (Interactable inter: OverworldScreen.interList)
+        {
+            if (inter.tileX == x && inter.tileY == y) {
+                return inter;
+            }
+        }
+
         return null;
     }
 
-    public void interact() {
+    public void interact(Player player) {
 
     }
 
     public void interactWithFace() {
-        Mobile mobile = getTargetAtFace();
+        Entity mobile = getTargetAtFace();
 
         if (mobile != null) {
-            mobile.interact();
+            mobile.interact(this);
         }
     }
 

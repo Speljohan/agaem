@@ -43,7 +43,7 @@ public class NPC extends Mobile {
         }
     }
 
-    public void interact() {
+    public void interact(Player player) {
         OverworldScreen.DIALOGUEMANAGER.createDialogue(name, text);
         System.out.println("You dud, mah ID is " + id);
         System.out.println(name + ": " + text);
