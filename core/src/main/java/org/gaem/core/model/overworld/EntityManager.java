@@ -41,6 +41,15 @@ public class EntityManager {
         this.player = player;
     }
 
+    public Entity getEntityAt(int x, int y) {
+        for (Entity e : entities) {
+            if (e.tileX == x && e.tileY == y) {
+                return e;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Entity> getEntities() {
         return entities;
     }

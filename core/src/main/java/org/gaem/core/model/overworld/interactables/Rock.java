@@ -24,6 +24,9 @@ public class Rock extends Interactable {
     public void interact(Player player) {
         System.out.println("I AM INTERACTED WITH");
         Vector2 v = player.getLookDirection();
+        if (manager.getEntityAt((int) (tileX + v.x), (int) (tileY + v.y)) != null) {
+            return;
+        }
         tileY += (int) v.y;
         tileX += (int) v.x;
         realX += 16 * (int) v.x;
