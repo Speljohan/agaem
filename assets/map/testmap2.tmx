@@ -22,7 +22,7 @@
    <properties>
     <property name="teleport_map" value="testmap"/>
     <property name="teleport_x" value="18"/>
-    <property name="teleport_y" value="63"/>
+    <property name="teleport_y" value="36"/>
    </properties>
   </object>
  </objectgroup>

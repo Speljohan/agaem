@@ -25,6 +25,6 @@ public class Teleporter extends Triggerable {
         PlayerData.posX = -1;
         PlayerData.posY = -1;
         OverworldScreen.mapManager.loadMap(targetMap);
-        manager.getPlayer().setLocation(targetX * 16, targetY * 16);
+        manager.getPlayer().setLocation(targetX * 16, (OverworldScreen.mapManager.height - (targetY * 16)));
     }
 }
