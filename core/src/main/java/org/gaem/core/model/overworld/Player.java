@@ -92,6 +92,25 @@ public class Player extends Mobile {
         return true;
     }
 
+    public Vector2 getLookDirection() {
+        int x = 0, y = 0;
+        switch (facing) {
+            case 0:
+                y += 1;
+                break;
+            case 1:
+                x += 1;
+                break;
+            case 2:
+                y -= 1;
+                break;
+            case 3:
+                x -= 1;
+                break;
+        }
+        return new Vector2(x, y);
+    }
+
     private void updateFacing(int x, int y) {
         if (y == 1) facing = 0;
         if (x == 1) facing = 1;
@@ -104,12 +123,16 @@ public class Player extends Mobile {
         switch (facing) {
             case 0:
                 y += 1;
+                break;
             case 1:
                 x += 1;
+                break;
             case 2:
                 y -= 1;
+                break;
             case 3:
-                y += 1;
+                x -= 1;
+                break;
         }
 
         for (NPC npc : npcList) {
