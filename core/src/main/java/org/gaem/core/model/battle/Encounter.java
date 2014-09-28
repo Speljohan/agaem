@@ -26,12 +26,12 @@ public class Encounter {
     }
 
     public void update(float delta) {
-
         currentTime += delta;
         if (currentTime >= pause) {
             currentTime = 0;
             if (enemyTurn && currentSkill == null) {
                 useAttack(enemy.skills.get(MathUtils.random(0, 3)));
+                return;
             }
 
             if (turnFinished) {
@@ -42,7 +42,6 @@ public class Encounter {
                         listener.attackFinished(currentSkill.inflict(enemy));
                     }
                     currentSkill = null;
-                    System.out.println(enemyTurn);
                     nextTurn();
                 }
             }
@@ -74,6 +73,7 @@ public class Encounter {
         listener.attackStarted(skill.getDescription());
         currentSkill = skill;
         turnFinished = true;
+        currentTime = 0;
     }
 
     public void nextTurn() {
