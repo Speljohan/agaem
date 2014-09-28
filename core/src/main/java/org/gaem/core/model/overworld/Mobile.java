@@ -37,7 +37,7 @@ public abstract class Mobile extends Entity {
         batch.draw(currentAnimation.getKeyFrame(elapsed), realX, realY);
     }
 
-    public abstract void interact();
+
 
     public void update(float delta) {
         this.elapsed += delta;
