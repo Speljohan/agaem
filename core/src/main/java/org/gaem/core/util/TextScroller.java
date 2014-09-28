@@ -8,11 +8,12 @@ public class TextScroller {
     private String text;
 
     private String textChunk;
-    private int index, interval, current;
+    private int index;
+    private float interval, current;
 
     private boolean isRunning;
 
-    public TextScroller(String text, int interval) {
+    public TextScroller(String text, float interval) {
         this.text = text;
         this.textChunk = "";
         this.interval = interval;

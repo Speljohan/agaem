@@ -17,7 +17,7 @@ public class Dialogue extends UIWindow {
 
     public Dialogue(OrthographicCamera camera, String text) {
         super(camera);
-        this.textScroller = new TextScroller(text, 5);
+        this.textScroller = new TextScroller(text, 0.1f);
         background = new Sprite(AGame.ASSETS.get("sprites/chatbox.png", Texture.class));
         textScroller.start();
     }

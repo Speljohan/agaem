@@ -17,7 +17,6 @@ import org.gaem.core.input.InputManager;
 import org.gaem.core.model.overworld.NPC;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.ui.DialogueManager;
-import org.gaem.core.util.CameraUtils;
 
 import java.util.ArrayList;
 
@@ -27,6 +26,9 @@ import java.util.ArrayList;
 public class OverworldScreen implements Screen {
 
     public static DialogueManager DIALOGUEMANAGER;
+    public static int mapWidth;
+    public static int mapHeigth;
+    static boolean stopAnim = true;
     public OrthographicCamera camera;
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
@@ -34,13 +36,14 @@ public class OverworldScreen implements Screen {
     private ArrayList<NPC> npcList;
     private Player player;
     private InputManager inputManager;
-    public static int mapWidth;
-    public static int mapHeigth;
-
 
     public OverworldScreen(AGame game) {
         this.game = game;
 
+    }
+
+    public static void startBattleTransition() {
+        stopAnim = false;
     }
 
     @Override
@@ -66,8 +69,20 @@ public class OverworldScreen implements Screen {
             game.batch.end();
 
             DIALOGUEMANAGER.render(delta);
+            battleAnimationLoop();
         }
 
+    }
+
+    private void battleAnimationLoop() {
+        if (!stopAnim) {
+            camera.rotate(3);
+            camera.zoom -= 0.005f;
+            if (camera.zoom <= 0.01) {
+                stopAnim = true;
+                game.setScreen(new BattleScreen(game));
+            }
+        }
     }
 
     private void updateCamera() {
