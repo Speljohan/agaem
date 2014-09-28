@@ -44,9 +44,15 @@ public class NPC extends Mobile {
     }
 
     public void interact(Player player) {
-        OverworldScreen.DIALOGUEMANAGER.createDialogue(name, text);
-        System.out.println("You dud, mah ID is " + id);
-        System.out.println(name + ": " + text);
+        if(!OverworldScreen.DIALOGUEMANAGER.isInDialogue) {
+            OverworldScreen.DIALOGUEMANAGER.createDialogue(name, text);
+            System.out.println("You dud, mah ID is " + id);
+            System.out.println(name + ": " + text);
+        }
+        else {
+            OverworldScreen.DIALOGUEMANAGER.next();
+        }
+        if(!OverworldScreen.DIALOGUEMANAGER.isInDialogue)
         OverworldScreen.startBattleTransition(Encounter.generateRandomEncounter());
         //   JsonUtil.readJson();
     }

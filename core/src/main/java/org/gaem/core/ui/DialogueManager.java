@@ -11,12 +11,18 @@ public class DialogueManager {
 
     private Dialogue currentDialogue;
     private OrthographicCamera cam;
+    public boolean isInDialogue;
+    public boolean canGoNext;
+    public float timer;
 
     public DialogueManager(OrthographicCamera cam) {
         this.cam = cam;
+        isInDialogue = false;
     }
 
     public void createDialogue(String name, String text) {
+        canGoNext = false;
+       isInDialogue = true;
        System.out.println("The NPC says: " + TextManager.getInstance().getTextByNPC(text));
         currentDialogue = new Dialogue(cam, name,text);
 
@@ -24,6 +30,7 @@ public class DialogueManager {
 
     public void hideDialogue() {
         currentDialogue = null;
+        isInDialogue = false;
     }
 
     public void render(float delta) {
@@ -33,8 +40,21 @@ public class DialogueManager {
     }
 
     public void update(float delta) {
+        timer += delta;
+        if(timer > 1)
+        {
+            timer-=1;
+            canGoNext = true;
+        }
         if (currentDialogue != null) {
             currentDialogue.update(delta);
         }
+    }
+
+    public boolean next() {
+        if(canGoNext) {
+            hideDialogue();
+        }
+        return false;
     }
 }
