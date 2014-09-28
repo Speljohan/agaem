@@ -25,6 +25,6 @@ public class Kumbaja extends Skill {
 
     @Override
     public SkillResult inflict(BattleProperties target) {
-        return new SkillResult("The soothing song puts {target} to sleep", false);
+        return new SkillResult(this, "The soothing song puts {target} to sleep", false);
     }
 }

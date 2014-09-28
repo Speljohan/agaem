@@ -55,9 +55,21 @@ public class BattleWindow extends UIWindow implements BattleListener {
 
     @Override
     public void attackFinished(SkillResult result) {
+        encounter.getCurrentTurn().currentMP -= result.skill.getCost();
         lastLog = result.log.replace("{source}", encounter.getCurrentTurn().name).replace("{target}", encounter.getCurrentTarget().name);
     }
 
+    @Override
+    public void playerWin() {
+        lastLog = "You are victorious!";
+        encounter.win();
+    }
+
+    @Override
+    public void playerLose() {
+        lastLog = "You have suffered a devastating defeat!";
+        encounter.lose();
+    }
 
     @Override
     public void doRender(float delta) {
@@ -73,8 +85,8 @@ public class BattleWindow extends UIWindow implements BattleListener {
                 drawText("Attack", -115, -25);
                 setFontColor(Color.GRAY);
                 drawText("Items", -115, -65);
-                drawText("Skills", 75, -25);
                 resetFontColor();
+                drawText("Skills", 75, -25);
                 drawText("Run Away man!", 75, -65);
             } else if (currentMenu == 3) {
                 Skill s1 = encounter.getPlayer().skills.get(0);
@@ -119,13 +131,18 @@ public class BattleWindow extends UIWindow implements BattleListener {
             if (currentSelection == 0) {
                 encounter.useAttack(new GenericAttack());
             } else if (currentSelection == 1) {
-
+                // DO NOTHING LUL
             } else if (currentSelection == 3) {
                 BattleScreen.startOverworldTransition();
             } else {
                 currentMenu = currentSelection + 1;
             }
         } else if (currentMenu == 3) {
+            Skill s = encounter.getPlayer().skills.get(currentSelection);
+            if (encounter.getPlayer().currentMP < s.getCost()) {
+                lastLog = "Insufficient MP";
+                return;
+            }
             encounter.useAttack(encounter.getPlayer().skills.get(currentSelection));
         }
     }

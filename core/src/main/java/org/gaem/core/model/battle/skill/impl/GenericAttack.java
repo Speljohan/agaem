@@ -27,6 +27,6 @@ public class GenericAttack extends Skill {
     @Override
     public SkillResult inflict(BattleProperties target) {
         target.currentHP -= 1;
-        return new SkillResult("{source} strike {target} hard to the head.", false);
+        return new SkillResult(this, "{source} strike {target} hard to the head.", false);
     }
 }

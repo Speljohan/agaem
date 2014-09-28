@@ -45,6 +45,7 @@ public class BattleScreen implements Screen {
         battleWindow.update(delta);
 
         if (!stopAnim) {
+            stopAnim = true;
             game.setScreen(new OverworldScreen(game));
         }
 

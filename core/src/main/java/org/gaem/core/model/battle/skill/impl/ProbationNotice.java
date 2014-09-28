@@ -26,6 +26,6 @@ public class ProbationNotice extends Skill {
     @Override
     public SkillResult inflict(BattleProperties target) {
         target.currentMP -= 5;
-        return new SkillResult("Dismayed by the probation, {target} spends a day protesting (wait one turn)", false);
+        return new SkillResult(this, "Dismayed by the probation, {target} spends a day protesting (wait one turn)", false);
     }
 }

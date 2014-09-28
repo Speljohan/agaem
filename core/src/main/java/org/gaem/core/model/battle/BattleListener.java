@@ -8,4 +8,8 @@ public interface BattleListener {
     void attackStarted(String description);
 
     void attackFinished(SkillResult result);
+
+    void playerWin();
+
+    void playerLose();
 }

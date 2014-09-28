@@ -17,7 +17,7 @@ public class BongStrike extends Skill {
 
     @Override
     public int getCost() {
-        return 10;
+        return 11;
     }
 
     public String getDescription() {
@@ -27,6 +27,6 @@ public class BongStrike extends Skill {
     @Override
     public SkillResult inflict(BattleProperties target) {
         target.currentHP -= MathUtils.random(5, 15);
-        return new SkillResult("{source} strike {target} to the head", false);
+        return new SkillResult(this, "{source} strike {target} to the head", false);
     }
 }

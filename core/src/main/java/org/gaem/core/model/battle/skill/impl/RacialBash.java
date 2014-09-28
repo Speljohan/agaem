@@ -25,6 +25,6 @@ public class RacialBash extends Skill {
 
     @Override
     public SkillResult inflict(BattleProperties target) {
-        return new SkillResult("The contempt for humanity disgusts {target}", false);
+        return new SkillResult(this, "The contempt for humanity disgusts {target}", false);
     }
 }
