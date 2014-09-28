@@ -51,7 +51,7 @@ public class DialogueManager {
         }
     }
 
-    public boolean next() {
+    public boolean next() { //Skall returnera
         if(canGoNext) {
             hideDialogue();
         }

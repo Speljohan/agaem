@@ -21,6 +21,7 @@ public class Player extends Mobile {
 
     public Player(float x, float y) {
         super(new SpriteSheet(AGame.ASSETS.get("sprites/player_new.png", Texture.class), 16, 16));
+        solid = true;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
 
