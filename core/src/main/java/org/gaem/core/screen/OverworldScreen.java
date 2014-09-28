@@ -24,7 +24,7 @@ public class OverworldScreen implements Screen {
     public static InputManager inputManager;
     static boolean stopAnim = true;
     private static Encounter encounter;
-    public OrthographicCamera camera;
+    public static OrthographicCamera camera;
     private AGame game;
 
     public OverworldScreen(AGame game) {
@@ -76,7 +76,13 @@ public class OverworldScreen implements Screen {
     }
 
     private void updateCamera() {
-        camera.position.set(MathUtils.clamp(manager.getPlayer().realX + 16, 0 + camera.viewportWidth / 4, mapManager.width - camera.viewportWidth / 4), MathUtils.clamp(manager.getPlayer().realY + 16, 0 + camera.viewportHeight / 4, mapManager.height - camera.viewportHeight / 4), 0);
+        if(!(mapManager.width < camera.viewportWidth || mapManager.height < camera.viewportHeight)){
+            camera.position.set(MathUtils.clamp(manager.getPlayer().realX + 16, 0 + camera.viewportWidth / 4, mapManager.width - camera.viewportWidth / 4), MathUtils.clamp(manager.getPlayer().realY + 16, 0 + camera.viewportHeight / 4, mapManager.height - camera.viewportHeight / 4), 0);
+        }
+        else{
+           // camera.position.set(manager.getPlayer().realX + 16, manager.getPlayer().realY + 16, 0);
+        }
+
         camera.update();
     }
 
@@ -97,9 +103,10 @@ public class OverworldScreen implements Screen {
         inputManager = new InputManager(null, null);
         manager = new EntityManager();
         mapManager = new MapManager(this);
-        mapManager.loadMap("testmap");
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
+        mapManager.loadMap("testmap");
+
         DIALOGUEMANAGER = new DialogueManager(camera);
 
 

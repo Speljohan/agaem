@@ -37,6 +37,7 @@ public class MapManager {
     }
 
     public void loadMap(String mapName) {
+
         currentMap = new TmxMapLoader().load("map/" + mapName + ".tmx");
         width = (Integer) currentMap.getProperties().get("width") * 16;
         height = (Integer) currentMap.getProperties().get("height") * 16;
@@ -81,6 +82,7 @@ public class MapManager {
                 }
             }
         }
+        OverworldScreen.camera.position.set((Integer) currentMap.getProperties().get("width")+OverworldScreen.camera.viewportWidth/10,(Integer) currentMap.getProperties().get("height")+OverworldScreen.camera.viewportHeight/5,0f);
         OverworldScreen.inputManager.refresh();
     }
 
