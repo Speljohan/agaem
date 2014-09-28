@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -39,26 +40,25 @@ public class MapManager {
 
         MapLayer mapLayer = currentMap.getLayers().get("obte");
 
-        MapObject mapObject = mapLayer.getObjects().get("WAT");
-        System.out.println(mapLayer.getObjects().getCount());
         MapObjects mo = mapLayer.getObjects();
 
         for (MapObject mot : mo) {
-            if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 101) {
+            MapProperties props = mot.getProperties();
+            if (props.containsKey("gid") && (Integer) props.get("gid") == 101) {
                 if (PlayerData.posX == -1 && PlayerData.posY == -1) {
-                    screen.manager.setPlayer(new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
-                    System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
-                    PlayerData.posX = (Float) mot.getProperties().get("x");
-                    PlayerData.posY = (Float) mot.getProperties().get("y");
+                    screen.manager.setPlayer(new Player((Float) props.get("x"), (Float) props.get("y")));
+                    PlayerData.posX = (Float) props.get("x");
+                    PlayerData.posY = (Float) props.get("y");
                 } else {
                     screen.manager.setPlayer(new Player(PlayerData.posX, PlayerData.posY));
                 }
             }
-            if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
-                String npcID = (String) mot.getProperties().get("id");
-                System.out.println("NPC ID " + npcID);
-                screen.manager.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcID));
-                System.out.println("Added NPC! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
+            if (props.containsKey("gid") && (Integer) props.get("gid") == 102) {
+                String npcID = (String) props.get("id");
+                screen.manager.add(new NPC((Float) props.get("x"), (Float) props.get("y"), npcID));
+            }
+            if (props.containsKey("gid") && (Integer) props.get("gid") == 103) {
+                screen.manager.add(new Rock((Float) props.get("x"), (Float) props.get("y")));
             }
         }
         screen.manager.add(new Rock(screen.manager.getPlayer().realX + 64, screen.manager.getPlayer().realY));
