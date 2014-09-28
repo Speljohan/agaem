@@ -51,6 +51,6 @@ public class NPC extends Mobile {
     }
 
     public void update(float delta) {
-
+        super.update(delta);
     }
 }
