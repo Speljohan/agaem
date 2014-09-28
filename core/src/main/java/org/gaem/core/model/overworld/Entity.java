@@ -9,6 +9,7 @@ public abstract class Entity {
 
     public int tileX, tileY;
     public float realX, realY;
+    public boolean solid;
     public EntityManager manager;
 
     public abstract void render(float delta, SpriteBatch batch);
