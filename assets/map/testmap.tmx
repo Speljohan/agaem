@@ -25,7 +25,7 @@
  </tileset>
  <layer name="MainLayer" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2jtuwzAQQEF/EiC+/4VTpDEM2SIZSrtaTTGdVHAfSAG0r5fL5bqzW+fzX0/uK/ZeSwV65DLaY62FHnpUoEcueuTS06PnW66HHhWM9GhpoUeuHtHryuD2RI88LXqabNEjehbRllq0NtFjvxYRPaLnEU2PfEZb6LFfj553Z/WInkMmIy302L7Jlu/okauhHnqczcz73ei1VKBHLnrkokcuoz2WmkSvpQI9cnFe5aJHLrN6RK+jitYe9ka/xwI9avdwd9Xue4Ee9Xo4q/7X40ePVGb/fu6sqtPj+ZmzNpzZY/SsetfuSD3W/tu2ldk91locqUk2W7Wo0uP1znuGWT3O0mL2/O+NPXrvD6v3eDfLWdb2Sc+3o3KLLRt86vFpP80SPdusLXq6nLXH3h32Fj3f0R7Rc9PiT/TMtNAjs+i56VC7x9GbRM9Oi5o9oueoR70WFXpEzy+qUWu7keajdwTRczqylhY9PaLXU8Gsu8PodVTibMpJi1xeZ61HPLMHAAAAAAAAAAAAAAAAAGBvv23aMuU=
+   eJzt2rGOwjAQRdEQFgkk/v97t9gmipzY4534jSe3OA2EwnNlgywey7I8BluNz/9sPCtGryUDesTS26PWgh70yIAeGt8D68l7X3pc2qP0+tn+2H/G8l1OD3rMxLNHS4sMPc7OcQ8je6hnGcG6UZstPca1KDUZ2UM9C7VSi30TeuhbKHqo56FGj3hqLeih71GbbWuPElrYmlhma7m/qu0P9Qyisd7VWj9Dj1gN6UGPu+npcdREvZYM6BELPWKhRyy9PUpN1GvJgB6xcF7FQo9YvHqo15FFaw/2ht2ngB65e3B31e5VQI98PTir/tfjTY9QLL9hLT04q+bvsX3mrg09e/SeVUftZupR+2/bVbx71FrM1CSaq1pk6bG/8/bg1eMuLbzn/2zsYb0/zN7jaJZeavvE8t2RucWVDc56nO0nL+rZRm1h6XLXHqM7jKaeb28P9dxo8Uc9M1rQIzL13OiQu8fsTdSzo0XOHuo50iNfiww91PNTNWpt19O8945APaeZtbSw9FCvJwOvu0P1OjLhbIqJFrHsZ00PPWYPAAAAAAAAAAAAAAAAAAAAAAAAAACA0X4BwTc2Iw==
   </data>
  </layer>
  <objectgroup name="obte">
@@ -59,5 +59,54 @@
   <object gid="104" x="528" y="656"/>
   <object gid="104" x="512" y="576"/>
   <object gid="104" x="560" y="608"/>
+  <object gid="104" x="464" y="272"/>
+  <object gid="104" x="448" y="272"/>
+  <object gid="104" x="480" y="272"/>
+  <object gid="104" x="480" y="240"/>
+  <object gid="104" x="496" y="240"/>
+  <object gid="104" x="496" y="256"/>
+  <object gid="104" x="496" y="272"/>
+  <object gid="104" x="512" y="240"/>
+  <object gid="104" x="512" y="256"/>
+  <object gid="104" x="512" y="272"/>
+  <object gid="104" x="528" y="240"/>
+  <object gid="104" x="528" y="256"/>
+  <object gid="104" x="528" y="272"/>
+  <object gid="104" x="448" y="240"/>
+  <object gid="104" x="416" y="240"/>
+  <object gid="104" x="416" y="256"/>
+  <object gid="104" x="416" y="272"/>
+  <object gid="104" x="400" y="208"/>
+  <object gid="104" x="416" y="192"/>
+  <object gid="104" x="432" y="176"/>
+  <object gid="104" x="448" y="176"/>
+  <object gid="104" x="464" y="128"/>
+  <object gid="104" x="448" y="112"/>
+  <object gid="104" x="480" y="112"/>
+  <object gid="104" x="448" y="144"/>
+  <object gid="104" x="448" y="160"/>
+  <object gid="104" x="432" y="160"/>
+  <object gid="104" x="432" y="144"/>
+  <object gid="104" x="432" y="224"/>
+  <object gid="104" x="448" y="192"/>
+  <object gid="104" x="464" y="192"/>
+  <object gid="104" x="480" y="176"/>
+  <object gid="104" x="496" y="160"/>
+  <object gid="104" x="496" y="144"/>
+  <object gid="104" x="496" y="128"/>
+  <object gid="104" x="496" y="176"/>
+  <object gid="104" x="560" y="112"/>
+  <object gid="104" x="544" y="144"/>
+  <object gid="104" x="512" y="176"/>
+  <object gid="104" x="560" y="192"/>
+  <object gid="104" x="544" y="176"/>
+  <object gid="104" x="560" y="176"/>
+  <object gid="104" x="544" y="224"/>
+  <object gid="104" x="560" y="240"/>
+  <object gid="104" x="544" y="256"/>
+  <object gid="104" x="560" y="272"/>
+  <object gid="104" x="512" y="208"/>
+  <object gid="104" x="496" y="224"/>
+  <object gid="104" x="496" y="192"/>
  </objectgroup>
 </map>
