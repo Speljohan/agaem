@@ -1,11 +1,11 @@
 package org.gaem.core.model.overworld;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
+import org.gaem.core.engine.SpriteSheet;
 import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.util.TileUtils;
 
@@ -23,7 +23,7 @@ public class Player extends Mobile {
     private ArrayList<NPC> npcList;
 
     public Player(float x, float y, ArrayList<NPC> npcList) {
-        super(AGame.ASSETS.get("sprites/player.pack", TextureAtlas.class));
+        super(new SpriteSheet(AGame.ASSETS.get("sprites/player_new.png", Texture.class), 16, 16));
         this.npcList = npcList;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
@@ -42,7 +42,7 @@ public class Player extends Mobile {
 
     public void update(float delta) {
         super.update(delta);
-        elapsed += Gdx.graphics.getDeltaTime();
+        elapsed += delta;
 
         if (elapsed > speed) {
             moveBool = true;
