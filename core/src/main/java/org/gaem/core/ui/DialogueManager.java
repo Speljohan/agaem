@@ -16,9 +16,9 @@ public class DialogueManager {
         this.cam = cam;
     }
 
-    public void createDialogue(String id) {
-       System.out.println("The NPC says: " + TextManager.getInstance().getTextByNPC(id));
-        currentDialogue = new Dialogue(cam, id);
+    public void createDialogue(String name, String text) {
+       System.out.println("The NPC says: " + TextManager.getInstance().getTextByNPC(text));
+        currentDialogue = new Dialogue(cam, name,text);
 
     }
 
