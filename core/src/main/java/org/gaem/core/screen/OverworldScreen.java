@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.AGame;
+import org.gaem.core.engine.PlayerData;
 import org.gaem.core.input.InputManager;
 import org.gaem.core.model.battle.Encounter;
 import org.gaem.core.model.overworld.NPC;
@@ -83,6 +84,9 @@ public class OverworldScreen implements Screen {
             camera.zoom -= 0.005f;
             if (camera.zoom <= 0.01) {
                 stopAnim = true;
+                PlayerData.posX = player.realX;
+                PlayerData.posY = player.realY;
+                PlayerData.facing = player.facing;
                 game.setScreen(new BattleScreen(game, encounter));
             }
         }
@@ -130,8 +134,14 @@ public class OverworldScreen implements Screen {
 
         for (MapObject mot : mo) {
             if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 101) {
-                player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
-                System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
+                if (PlayerData.posX == -1 && PlayerData.posY == -1) {
+                    player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
+                    System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
+                    PlayerData.posX = (Float) mot.getProperties().get("x");
+                    PlayerData.posY = (Float) mot.getProperties().get("y");
+                } else {
+                    player = new Player(PlayerData.posX, PlayerData.posY, npcList);
+                }
             }
             if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
                 String npcID = (String) mot.getProperties().get("id");

@@ -1,6 +1,8 @@
 package org.gaem.core.model.battle;
 
 import com.badlogic.gdx.math.MathUtils;
+import org.gaem.core.engine.PlayerData;
+import org.gaem.core.model.battle.ai.RandomAI;
 import org.gaem.core.model.battle.skill.Skill;
 import org.gaem.core.model.battle.skill.impl.BongStrike;
 import org.gaem.core.model.battle.skill.impl.Kumbaja;
@@ -42,7 +44,7 @@ public class Encounter {
         skills.add(new Kumbaja());
         skills.add(new ProbationNotice());
         skills.add(new RacialBash());
-        return new Encounter(new BattleProperties("you", 10, 10, 10, 10, skills, null), new BattleProperties("GenericFiend", 10, 10, 10, 10, skills, null), null);
+        return new Encounter(PlayerData.PLAYER, new BattleProperties("GenericFiend", 10, 10, 10, 10, skills, null, new RandomAI()), null);
     }
 
     public void win() {
@@ -78,7 +80,7 @@ public class Encounter {
                 return;
             }
             if (enemyTurn && currentSkill == null) {
-                useAttack(enemy.skills.get(MathUtils.random(0, 3)));
+                enemy.getAI(this).executeTurn();
                 return;
             }
 

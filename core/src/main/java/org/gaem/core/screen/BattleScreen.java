@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import org.gaem.core.AGame;
+import org.gaem.core.engine.PlayerData;
 import org.gaem.core.input.BattleInputManager;
 import org.gaem.core.model.battle.Encounter;
 import org.gaem.core.ui.impl.BattleWindow;
@@ -28,6 +29,7 @@ public class BattleScreen implements Screen {
 
     public static void startOverworldTransition() {
         stopAnim = false;
+        PlayerData.PLAYER.reset();
     }
 
     @Override
