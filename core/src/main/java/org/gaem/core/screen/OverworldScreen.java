@@ -16,12 +16,11 @@ import org.gaem.core.AGame;
 import org.gaem.core.engine.PlayerData;
 import org.gaem.core.input.InputManager;
 import org.gaem.core.model.battle.Encounter;
-import org.gaem.core.model.overworld.Interactable;
+import org.gaem.core.model.overworld.EntityManager;
 import org.gaem.core.model.overworld.NPC;
 import org.gaem.core.model.overworld.Player;
+import org.gaem.core.model.overworld.interactables.Rock;
 import org.gaem.core.ui.DialogueManager;
-
-import java.util.ArrayList;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -37,10 +36,9 @@ public class OverworldScreen implements Screen {
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
     private AGame game;
-    private ArrayList<NPC> npcList;
-    public static ArrayList<Interactable> interList;
-    private Player player;
     private InputManager inputManager;
+
+    private EntityManager manager;
   //  private Interactable inter;
 
     public OverworldScreen(AGame game) {
@@ -69,14 +67,7 @@ public class OverworldScreen implements Screen {
             game.batch.setProjectionMatrix(camera.combined);
             game.batch.enableBlending();
             game.batch.begin();
-            for (NPC npc : npcList) {
-                npc.render(delta, game.batch);
-            }
-            for (Interactable inter : interList) {
-                inter.render(delta, game.batch);
-            }
-           // inter.render(delta,game.batch);
-            player.render(delta, game.batch);
+            manager.render(delta, game.batch);
             game.batch.end();
 
             DIALOGUEMANAGER.render(delta);
@@ -91,9 +82,9 @@ public class OverworldScreen implements Screen {
             camera.zoom -= 0.005f;
             if (camera.zoom <= 0.01) {
                 stopAnim = true;
-                PlayerData.posX = player.realX;
-                PlayerData.posY = player.realY;
-                PlayerData.facing = player.facing;
+                PlayerData.posX = manager.getPlayer().realX;
+                PlayerData.posY = manager.getPlayer().realY;
+                PlayerData.facing = manager.getPlayer().facing;
                 game.setScreen(new BattleScreen(game, encounter));
             }
         }
@@ -101,21 +92,15 @@ public class OverworldScreen implements Screen {
 
     private void updateCamera() {
         //  System.out.println("Camera update: Width: " + mapWidth + " heigth: " + mapHeigth + " player pos: " + player.realX + " " + player.realY + " clamp " + MathUtils.clamp(player.realX + 16,0,mapWidth) + " " + MathUtils.clamp(player.realY + 16, 0, mapHeigth));
-        camera.position.set(MathUtils.clamp(player.realX + 16, 0 + camera.viewportWidth / 4, mapWidth - camera.viewportWidth / 4), MathUtils.clamp(player.realY + 16, 0 + camera.viewportHeight / 4, mapHeigth - camera.viewportHeight / 4), 0);
+        camera.position.set(MathUtils.clamp(manager.getPlayer().realX + 16, 0 + camera.viewportWidth / 4, mapWidth - camera.viewportWidth / 4), MathUtils.clamp(manager.getPlayer().realY + 16, 0 + camera.viewportHeight / 4, mapHeigth - camera.viewportHeight / 4), 0);
         // camera.position.set(player.realX + 16,player.realY + 16, 0);
 
         camera.update();
     }
 
     private void doUpdate(float delta) {
-        for (NPC npc : npcList) {
-            npc.update(delta);
-        }
-        for (Interactable inter : interList) {
-            inter.update(delta);
-        }
+        manager.update(delta);
         inputManager.update(delta);
-        player.update(delta);
         updateCamera();
         DIALOGUEMANAGER.update(delta);
     }
@@ -127,8 +112,7 @@ public class OverworldScreen implements Screen {
 
     @Override
     public void show() {
-        interList = new ArrayList<Interactable>();
-        npcList = new ArrayList<NPC>();
+        manager = new EntityManager();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.zoom = 0.5f;
 
@@ -146,27 +130,27 @@ public class OverworldScreen implements Screen {
         for (MapObject mot : mo) {
             if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 101) {
                 if (PlayerData.posX == -1 && PlayerData.posY == -1) {
-                    player = new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcList);
+                    manager.setPlayer(new Player((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y")));
                     System.out.println("Added player! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
                     PlayerData.posX = (Float) mot.getProperties().get("x");
                     PlayerData.posY = (Float) mot.getProperties().get("y");
                 } else {
-                    player = new Player(PlayerData.posX, PlayerData.posY, npcList);
+                    manager.setPlayer(new Player(PlayerData.posX, PlayerData.posY));
                 }
             }
             if (mot.getProperties().containsKey("gid") && (Integer) mot.getProperties().get("gid") == 102) {
                 String npcID = (String) mot.getProperties().get("id");
                 System.out.println("NPC ID " + npcID);
-                npcList.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcID));
+                manager.add(new NPC((Float) mot.getProperties().get("x"), (Float) mot.getProperties().get("y"), npcID));
                 System.out.println("Added NPC! " + mot.getProperties().get("x") + " " + mot.getProperties().get("y"));
             }
         }
         // player = new Player((Float) mapObject.getProperties().get("x"), (Float) mapObject.getProperties().get("y"), npcList);
-        inputManager = new InputManager(player, tiledMap);
+        inputManager = new InputManager(manager.getPlayer(), tiledMap);
         DIALOGUEMANAGER = new DialogueManager(camera);
 
-        interList.add(new Interactable(player.realX + 64,player.realY));
-        interList.add(new Interactable(player.realX + 128,player.realY));
+        manager.add(new Rock(manager.getPlayer().realX + 64, manager.getPlayer().realY));
+        manager.add(new Rock(manager.getPlayer().realX + 128, manager.getPlayer().realY));
     }
 
     @Override

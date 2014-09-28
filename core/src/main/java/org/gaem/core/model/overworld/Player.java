@@ -9,8 +9,6 @@ import org.gaem.core.engine.SpriteSheet;
 import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.util.TileUtils;
 
-import java.util.ArrayList;
-
 /**
  * Created by Johan on 2014-09-26.
  */
@@ -20,11 +18,9 @@ public class Player extends Mobile {
     private boolean isMoving;
     private float speed;
     private boolean moveBool;
-    private ArrayList<NPC> npcList;
 
-    public Player(float x, float y, ArrayList<NPC> npcList) {
+    public Player(float x, float y) {
         super(new SpriteSheet(AGame.ASSETS.get("sprites/player_new.png", Texture.class), 16, 16));
-        this.npcList = npcList;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
 
@@ -73,18 +69,9 @@ public class Player extends Mobile {
         if (layer.getCell(targetX, targetY) == null || TileUtils.isBlocked(layer.getCell(targetX, targetY).getTile().getId())) {
             return false;
         }
-        for (NPC npc: npcList)
+        for (Entity e : manager.getEntities())
         {
-            if(npc.tileX == targetX && npc.tileY == targetY)
-            {
-                return false;
-            }
-        }
-        for (Interactable inter: OverworldScreen.interList)
-        {
-         //   System.out.println("INTERPRINT WOHOOO");
-         //   System.out.println("INTER -> TARGET " + inter.tileX + " " + targetX);
-            if(inter.tileX == targetX && inter.tileY == targetY)
+            if (e.tileX == targetX && e.tileY == targetY)
             {
                 return false;
             }
@@ -135,15 +122,9 @@ public class Player extends Mobile {
                 break;
         }
 
-        for (NPC npc : npcList) {
-            if (npc.tileX == x && npc.tileY == y) {
-                return npc;
-            }
-        }
-        for (Interactable inter: OverworldScreen.interList)
-        {
-            if (inter.tileX == x && inter.tileY == y) {
-                return inter;
+        for (Entity e : manager.getEntities()) {
+            if (e.tileX == x && e.tileY == y) {
+                return e;
             }
         }
 
