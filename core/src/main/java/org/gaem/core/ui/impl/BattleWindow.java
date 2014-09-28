@@ -15,6 +15,7 @@ import org.gaem.core.model.battle.skill.impl.BongStrike;
 import org.gaem.core.model.battle.skill.impl.Kumbaja;
 import org.gaem.core.model.battle.skill.impl.ProbationNotice;
 import org.gaem.core.model.battle.skill.impl.RacialBash;
+import org.gaem.core.screen.BattleScreen;
 import org.gaem.core.ui.UIWindow;
 
 import java.util.ArrayList;
@@ -115,12 +116,13 @@ public class BattleWindow extends UIWindow implements BattleListener {
                 pointerLocation = new Vector2(55, -85);
                 break;
         }
-        System.out.println("CALLED");
     }
 
     public void select() {
         if (currentMenu == 1) {
             encounter.useAttack(encounter.getPlayer().skills.get(currentSelection));
+        } else if (currentSelection == 3) {
+            BattleScreen.startOverworldTransition();
         } else {
             currentMenu = currentSelection + 1;
         }

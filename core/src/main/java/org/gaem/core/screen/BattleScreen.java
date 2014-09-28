@@ -14,6 +14,7 @@ import org.gaem.core.ui.impl.BattleWindow;
  */
 public class BattleScreen implements Screen {
 
+    private static boolean stopAnim = true;
     private AGame game;
     private OrthographicCamera camera;
     private BattleWindow battleWindow;
@@ -22,6 +23,10 @@ public class BattleScreen implements Screen {
 
     public BattleScreen(AGame game) {
         this.game = game;
+    }
+
+    public static void startOverworldTransition() {
+        stopAnim = false;
     }
 
     @Override
@@ -37,6 +42,10 @@ public class BattleScreen implements Screen {
     public void update(float delta) {
         inputManager.update(delta);
         battleWindow.update(delta);
+
+        if (!stopAnim) {
+            game.setScreen(new OverworldScreen(game));
+        }
 
     }
 

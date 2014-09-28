@@ -47,6 +47,7 @@ public class NPC extends Mobile {
         OverworldScreen.DIALOGUEMANAGER.createDialogue(name, text);
         System.out.println("You dud, mah ID is " + id);
         System.out.println(name + ": " + text);
+        OverworldScreen.startBattleTransition();
    //   JsonUtil.readJson();
     }
 
