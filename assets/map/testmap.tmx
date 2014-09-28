@@ -15,10 +15,17 @@
     <property name="npc spawn" value="1"/>
    </properties>
   </tile>
+  <tile id="2">
+   <properties>
+    <property name="teleport_map" value="amap"/>
+    <property name="teleport_x" value="5"/>
+    <property name="teleport_y" value="5"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="MainLayer" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2stuwjAQQNFQ4P9/uarUBYpiZ8Z5ODhncaRuSJu5tU0Qj2maHgAAAAAAAAAAAAAAVL0Dev+NdxGZtz7X6BDp0/s+RrDXLDW55gx1aZ9bZr6ZfUmTfIvMXN8bXtv7Xr9By9pofX3ve7267P/t1vdeR93H69/fz88Pved79IyWevwsOKvHa+Y5fX+Pretjqc/W37NXj29tku1Reo9VWh9ntLhjj5LaXqXFsT2WzovamaFHvkdkZmuzP6PFUodRzvL57CItrthhtBZrPaIdIi2ya2ytw0j7VKRJZHbRz7IyHe7eotajNv/ovqRFW4+1Z7uWs2Hv/WnUM6PUpHWWpRa1689bRJuMvjZq88qewaWOpbX1+VmgdRGbWWnGmW5bWyytibs0icw8+4xe6qFFrMke3zGJXKe1Re8Z9WrSInL91vVwxxZHy85fCy1G1PosocW5PTJrQovjmmhwHVpcy3zWevRn9gAAAAAAAAAAAAAAAAAAnO0XKe4spQ==
+   eJzt2DFuwzAMQFEnaYHm/hfu0CUIkthSZZOi3/A2L+SHZUOXZVkuB7s2Pv/14Lbi6Fkq0COX3h5rLfTQowI9ctEjl5YeLd9yPfSooKfHlhZ65OoRPdes9Mhljx7RM81Mj1xG94ieZ3Z65KJHLiN7RM9SgR656JGLHrnokcvI+93oWSrQIxc9ctEjl94er5pEz1KBHrk4r3LRI5dRPaLnqGJrD+9Gu/sLetTu4e5qu+8X9KjXw1n1vx4/eqTS8g/b0sNZNX+Px2fO2nBkj96z6l27mXpcg4zusdZipibZ7NWiSo/nO+8RRvU4S4vR+79t7NF6f1i9x7tdjrL2nrR8Oyq32LPBpx6f3qdRonebtUVLl7P2OLrD0aL329sjem9a/InemRZ6ZBa9Nx1q95i9SfTutKjZI3qPetRrUaFH9P6iGm1t19O8944gek8z29KipUf0PBWMujuMnqMSZ1NOWuTyvGs94tk9AAAAAAAAAAAAAAAAAABH+wUz2jK3
   </data>
  </layer>
  <objectgroup name="obte">
@@ -33,5 +40,12 @@
    </properties>
   </object>
   <object name="Player" gid="101" x="288" y="608"/>
+  <object type="teleporter" gid="103" x="288" y="576">
+   <properties>
+    <property name="teleport_map" value="testmap2"/>
+    <property name="teleport_x" value="4"/>
+    <property name="teleport_y" value="5"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

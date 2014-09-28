@@ -9,7 +9,7 @@ import org.gaem.core.model.overworld.Mobile;
  */
 public class TileUtils {
 
-    public static final int[] SOLID = {5};
+    public static final int[] SOLID = {5, 9};
 
 
     public static boolean isBlocked(int id) {
