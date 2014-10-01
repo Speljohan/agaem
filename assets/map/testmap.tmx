@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="54" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="TestSet" tilewidth="16" tileheight="16">
   <image source="../tiles/testtile.png" width="160" height="160"/>
  </tileset>
@@ -23,9 +23,9 @@
    </properties>
   </tile>
  </tileset>
- <layer name="MainLayer" width="100" height="100">
+ <layer name="MainLayer" width="45" height="54">
   <data encoding="base64" compression="zlib">
-   eJztm9FqwzAMRdO0gw26///dPZRA8BxLcuTIsc/DgdLZLb4nlouSPZZleTjyq3h/NX7ma8dTwHMt0WiyzL1nmZf6SMfk5szqo6U3j/0huRjJx1HGLXyV9kdu/Iw+pFyPrv30+pdqW+pD4xIfek8l3geshb+9M981sw/N9a2dl2a7Udof6RzLWT6Sj33tsTo6eo2Pvjjjo+YsH8FHqY57UOtjg71hY90hZYuPc0jn+Johykd0VtHkXKRO8BHvwsuH5TyPziOaK3xsTmb0UdO7klx4+HhM6qPGmeTijI8cuJApuShla+lfSfsjOoPesN7LsM7BxwfP+yG1PjTneXROvVH7W0A7Fh/tfaU+Sv1jqb8bvb7IPM/UsNr75/g4n7cEPtplW4OmXuHD11dpjOV5htdSdhKdxd3InT+19Qof/zP14MhHzt2s9cqa+RlHnOd9ufU6z6PXeVcszydqXeAjz08GaY7kY/azQ6JUT1r42KB3Zecrg+QTH7E+UjQ+qFXnfHzjIwxND93LB7XqOHNrxpr/H2zhYz9mVoee+6O2Vh25u5MP6dm2Vnj7kFzcyUlvtHJxNx9H9T7teXtQ+m6Lj1FdtHbwVPqw9g9H8yHdj9M8629B2ieWs2M0FyUPng5KPkr7yYvobHt1YfEyq4+rPVxNdL61PqJzw8WH6MxwgY+eic4ND2P7uLuT6OxwMaaP6BzxMZ6LEXxE5xflSOuuxnltjyA6pzujcWHxEb2eEfDqHUavYySoTX2Ci75Is8ZHPGQPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFfzB7aEOcs=
+   eJztmc2OwyAMhNOkK3WlZt//cas9ICHLf2MG0kMOc6El/hiMg9vHtm0Pos7E+A4+89npKMTTxpB5kll+R5vjMTO9lGMMnw/BbHHMWJPns/Z9izmKbXkofYzyKPLZy40MM+qj1NvQ7nz2VmJFzBmfsuuQ8TM+yzny/Ml8ZtSN04nPZp6hEWbr/B2bn1cMsXzumUe93DvNzOcsc3T2dkVXM/8qkrz9syT3NzFrvGxm7wx6zD+KVjE3bovZyluLucX1eK/Kjcb5MpgbN7tuaEJrnRXDq3NefOS+Ua3Pni/oXRidgzCP3NH/FdXJzDO8M5jx5Q8Ug3lWbliKao61p3Kscq87uxhI/4Uwa3vSVL2LZnyW64nqJJsZ6d8q65Vj2p40sXxGei0mM/L7hnbnHNVsZuZvH5HPry2fGyjXyDqQ9+qqHrbS31h5s7rvttaQrUMaL4PZe0dXcqNf4wizt9czmKXPsh8a9dl7R7Ny4wrmis9WXjCZtXvFNzFr+Y3cSRBmyZvtU6ocmf9TmMyomD57edH3+as1wszymSmE18o/eR9kyItd9ZjNeCSZMzVOemvFYynyG8nlmZwes7cvllbyIuzZuStYmeu9muPWrVu3ZuoDh68abg==
   </data>
  </layer>
  <objectgroup name="obte">

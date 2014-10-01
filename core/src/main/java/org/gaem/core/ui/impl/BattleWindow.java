@@ -49,8 +49,8 @@ public class BattleWindow extends UIWindow implements BattleListener {
     }
 
     @Override
-    public void attackStarted(String message) {
-        lastLog = message.replace("{source}", encounter.getCurrentTurn().name).replace("{target}", encounter.getCurrentTarget().name);
+    public void attackStarted(Skill skill) {
+        lastLog = encounter.getCurrentTurn().name + " uses " + skill.getName();
     }
 
     @Override

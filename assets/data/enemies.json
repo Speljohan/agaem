@@ -1,0 +1,12 @@
+{
+    "enemies": [{
+        "id" : "npc_test",
+        "name": "Hobo",
+        "hp": 10,
+        "mp": 10,
+        "ai": "test_ai",
+        "skills": ["default_attack", "some_other_attack", "this_attack_is_shite"],
+        "items" : ["some_item"]
+    }]
+
+}

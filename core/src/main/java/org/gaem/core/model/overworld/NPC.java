@@ -2,6 +2,7 @@ package org.gaem.core.model.overworld;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.JsonValue;
 import org.gaem.core.AGame;
 import org.gaem.core.engine.NPCJsonData;
 import org.gaem.core.engine.NPCList;
@@ -31,13 +32,11 @@ public class NPC extends Mobile {
         realY = y;
 
 
-        NPCList npcList = JsonUtil.readJson();
-        System.out.println("LEEEEEEEEEEEEEEEEEEEEEEEEEENG " + npcList.npcs.size());
+        NPCList npcList = new NPCList();
+        JsonValue val = AGame.ASSETS.get("data/dialogue.json");
+        npcList.deserialize(val);
         for (NPCJsonData npc : npcList.npcs) {
-
-            System.out.println("id;;;;;;;;;;;;;;;;;; " + id + " " + npc.id);
             if (npc.id.equals(id)) {
-                System.out.println("ID IS SAME JAJAJA " + id + " " + npc.id);
                 this.name = npc.name;
                 this.text = npc.text;
             }
@@ -47,8 +46,6 @@ public class NPC extends Mobile {
     public void interact(Player player) {
         if(!OverworldScreen.DIALOGUEMANAGER.isInDialogue) {
             OverworldScreen.DIALOGUEMANAGER.createDialogue(name, text);
-            System.out.println("You dud, mah ID is " + id);
-            System.out.println(name + ": " + text);
         }
         else {
             OverworldScreen.DIALOGUEMANAGER.next();

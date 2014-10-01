@@ -1,0 +1,8 @@
+{
+    "skills": [{
+        "id" : "default_attack",
+        "name": "Default Attack",
+        "use_message": "{source} launches at {target}",
+        "hit_message": "{source} strike {target} hard to the head."
+    }]
+}

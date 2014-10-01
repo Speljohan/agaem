@@ -125,7 +125,7 @@ public class Encounter {
     }
 
     public void useAttack(Skill skill) {
-        listener.attackStarted(skill.getDescription());
+        listener.attackStarted(skill);
         currentSkill = skill;
         turnFinished = true;
         currentTime = 0;

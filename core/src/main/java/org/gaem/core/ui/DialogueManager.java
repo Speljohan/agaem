@@ -22,10 +22,8 @@ public class DialogueManager {
 
     public void createDialogue(String name, String text) {
         canGoNext = false;
-       isInDialogue = true;
-       System.out.println("The NPC says: " + TextManager.getInstance().getTextByNPC(text));
+        isInDialogue = true;
         currentDialogue = new Dialogue(cam, name,text);
-
     }
 
     public void hideDialogue() {
