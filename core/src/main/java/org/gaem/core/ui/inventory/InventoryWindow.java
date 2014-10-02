@@ -33,6 +33,9 @@ public class InventoryWindow extends UIWindow{
     public int cursorPosX;
     public int cursorPosY;
 
+    public int maxItemX = 17;
+    public int maxItemY = 12;
+
     public boolean showWindow;
 
     public InventoryWindow(OrthographicCamera camera) {
@@ -69,10 +72,15 @@ public class InventoryWindow extends UIWindow{
             batch.draw(cursor, origin.x + cursorOriginX + 16 * cursorPosX, origin.y + cursorOriginY - 16 * cursorPosY);
 
 
-            int i = 0;
+            int iX = 0;
+            int iY = 0;
             for (Item item : OverworldScreen.manager.getPlayer().itemList) {
-                item.render(cursorOriginX + i * 16, cursorOriginY, origin, batch);
-                i++;
+                item.render(cursorOriginX + iX * 16, cursorOriginY - iY*16, origin, batch);
+                iX++;
+                if(iX > maxItemX){
+                   iX = 0;
+                   iY++;
+                }
             }
         }
 
@@ -84,11 +92,13 @@ public class InventoryWindow extends UIWindow{
     public void doUpdate(float delta) {
        // System.out.println("INV UPDATING");
       //  System.out.println("CURSOR X PRE: " + cursorPosX);
-        cursorPosX = MathUtils.clamp(cursorPosX,0,17);
+        cursorPosX = MathUtils.clamp(cursorPosX,0,maxItemX);
       //  System.out.println("CURSOR X POST: " + cursorPosX);
-       cursorPosY =  MathUtils.clamp(cursorPosY,0,12);
-        if(cursorPosX < OverworldScreen.manager.getPlayer().itemList.size()){
-            OverworldScreen.manager.getPlayer().activeItem = OverworldScreen.manager.getPlayer().itemList.get(cursorPosX);
+       cursorPosY =  MathUtils.clamp(cursorPosY,0,maxItemY);
+        int tempCursorPos = cursorPosY*maxItemX + cursorPosX + ((cursorPosY > 0) ? 1 : 0); //En etta läggs till om pekaren är på annan rad än första, annars kommer sista item:en i en rad vara samma som första.
+       // System.out.println("");
+        if(tempCursorPos < OverworldScreen.manager.getPlayer().itemList.size()){
+            OverworldScreen.manager.getPlayer().activeItem = OverworldScreen.manager.getPlayer().itemList.get(tempCursorPos);
         }
     }
 
