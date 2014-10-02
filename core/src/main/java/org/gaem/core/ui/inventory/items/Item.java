@@ -15,6 +15,7 @@ public abstract class Item { //Bör kunna laddas in via Json.
    // private Vector2 origin;
 
     public static final int ID_POWERGLOVE = 1;
+    public static final int ID_AXE= 2;
 
     public Item() {
       //  this.batch = batch;

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
 import org.gaem.core.engine.SpriteSheet;
 import org.gaem.core.screen.OverworldScreen;
+import org.gaem.core.ui.inventory.items.Axe;
 import org.gaem.core.ui.inventory.items.Item;
 import org.gaem.core.ui.inventory.items.PowerGlove;
 import org.gaem.core.util.TileUtils;
@@ -23,6 +24,7 @@ public class Player extends Mobile {
     private float speed;
     private boolean moveBool;
     public ArrayList<Item> itemList;
+    public Item activeItem;
 
     public Player(float x, float y) {
         super(new SpriteSheet(AGame.ASSETS.get("sprites/player_new.png", Texture.class), 16, 16));
@@ -47,11 +49,16 @@ public class Player extends Mobile {
         itemList.add(new PowerGlove());
         itemList.add(new PowerGlove());
         itemList.add(new PowerGlove());
+        itemList.add(new Axe());
     }
 
     public void update(float delta) {
         super.update(delta);
         elapsed += delta;
+
+        if(activeItem != null){
+         //   System.out.println("I HAVE AN ACTIVE ITEM!");
+        }
 
         if (elapsed > speed) {
             moveBool = true;

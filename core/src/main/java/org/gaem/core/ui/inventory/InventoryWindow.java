@@ -75,6 +75,8 @@ public class InventoryWindow extends UIWindow{
                 i++;
             }
         }
+
+
     }
 
 
@@ -85,6 +87,9 @@ public class InventoryWindow extends UIWindow{
         cursorPosX = MathUtils.clamp(cursorPosX,0,17);
       //  System.out.println("CURSOR X POST: " + cursorPosX);
        cursorPosY =  MathUtils.clamp(cursorPosY,0,12);
+        if(cursorPosX < OverworldScreen.manager.getPlayer().itemList.size()){
+            OverworldScreen.manager.getPlayer().activeItem = OverworldScreen.manager.getPlayer().itemList.get(cursorPosX);
+        }
     }
 
     public void show(){
