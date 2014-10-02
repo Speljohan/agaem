@@ -21,7 +21,7 @@ public class InventoryWindow extends UIWindow{
     private int paddingX;
     private int paddingY;
 
-    private final int SIZE = 16;
+    private final int SIZE = 32;
 
     private int cursorOriginX;
     private int cursorOriginY;
@@ -46,8 +46,8 @@ public class InventoryWindow extends UIWindow{
         cursor = new Sprite(AGame.ASSETS.get("sprites/cursor.png", Texture.class));
         marginX = 10;
         marginY = 10;
-        paddingX = 5;
-        paddingY = 5;
+        paddingX = 10;
+        paddingY = -10;
         windowWidth = (int) (camera.viewportWidth * camera.zoom) - marginX * 2;
         windowHeigth = (int) (camera.viewportHeight * camera.zoom) - marginY * 2;
 
@@ -62,8 +62,8 @@ public class InventoryWindow extends UIWindow{
 
         showWindow = false;
 
-        maxItemX = (int)(17 / (SIZE / 16));
-        maxItemY = (int)(12 / (SIZE / 16));
+        maxItemX = (int)MathUtils.floor((17 / (SIZE / 16)));
+        maxItemY = (int)MathUtils.floor((12 / (SIZE / 16)));
     }
 
 
@@ -96,6 +96,22 @@ public class InventoryWindow extends UIWindow{
     public void doUpdate(float delta) {
        // System.out.println("INV UPDATING");
       //  System.out.println("CURSOR X PRE: " + cursorPosX);
+        if(cursorPosX > maxItemX)
+        {
+            cursorPosX = 0;
+        }
+        if(cursorPosX < 0)
+        {
+            cursorPosX = maxItemX;
+        }
+        if(cursorPosY > maxItemY)
+        {
+            cursorPosY = 0;
+        }
+        if(cursorPosY < 0)
+        {
+            cursorPosY = maxItemY;
+        }
         cursorPosX = MathUtils.clamp(cursorPosX,0,maxItemX);
       //  System.out.println("CURSOR X POST: " + cursorPosX);
        cursorPosY =  MathUtils.clamp(cursorPosY,0,maxItemY);
