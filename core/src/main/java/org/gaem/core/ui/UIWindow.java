@@ -15,9 +15,9 @@ import org.gaem.core.util.CameraUtils;
 public abstract class UIWindow {
 
     protected BitmapFont font;
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Vector2 origin;
+    protected SpriteBatch batch;
+    protected OrthographicCamera camera;
+    protected Vector2 origin;
 
     public UIWindow(OrthographicCamera camera) {
         this.camera = camera;

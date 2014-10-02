@@ -14,10 +14,14 @@ public class InputManager {
 
     private Player player;
     private TiledMap map;
+    private boolean enterPressed;
+    private boolean hasPressedArrow;
 
     public InputManager(Player player, TiledMap map) {
         this.player = player;
         this.map = map;
+        enterPressed = false;
+        hasPressedArrow = false;
     }
 
     public void refresh() {
@@ -26,6 +30,43 @@ public class InputManager {
     }
 
     public void update(float delta) {
+
+        if(!OverworldScreen.inventoryWindow.showWindow) {
+            handlePlayerInput();
+        }
+        else{
+            if(!hasPressedArrow) {
+                if ((Gdx.input.isKeyPressed(Input.Keys.LEFT))) {
+                    OverworldScreen.inventoryWindow.cursorPosX--;
+                }
+                if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT))) {
+                    OverworldScreen.inventoryWindow.cursorPosX++;
+                }
+                if ((Gdx.input.isKeyPressed(Input.Keys.UP))) {
+                    OverworldScreen.inventoryWindow.cursorPosY--;
+                }
+                if ((Gdx.input.isKeyPressed(Input.Keys.DOWN))) {
+                    OverworldScreen.inventoryWindow.cursorPosY++;
+                }
+                hasPressedArrow = true;
+            }
+        }
+
+        if((!Gdx.input.isKeyPressed(Input.Keys.ENTER))){
+            enterPressed = false;
+        }
+
+        if((Gdx.input.isKeyPressed(Input.Keys.ENTER)) && !enterPressed){
+            enterPressed = true;
+            OverworldScreen.inventoryWindow.toggle();
+        }
+
+        if((!Gdx.input.isKeyPressed(Input.Keys.UP) && !Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !Gdx.input.isKeyPressed(Input.Keys.DOWN) && !Gdx.input.isKeyPressed(Input.Keys.LEFT))){
+            hasPressedArrow = false;
+        }
+    }
+
+    private void handlePlayerInput() {
         if ((Gdx.input.isKeyPressed(Input.Keys.LEFT))) {
             player.move(-1, 0, (TiledMapTileLayer) map.getLayers().get("MainLayer"));
         }
