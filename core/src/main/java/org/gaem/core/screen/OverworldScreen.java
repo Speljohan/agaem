@@ -14,6 +14,7 @@ import org.gaem.core.model.overworld.MapManager;
 import org.gaem.core.ui.DialogueManager;
 import org.gaem.core.ui.inventory.ActiveItemWindow;
 import org.gaem.core.ui.inventory.InventoryWindow;
+import org.gaem.core.ui.menu.OverworldMenuWindow;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -25,6 +26,7 @@ public class OverworldScreen implements Screen {
     public static EntityManager manager;
     public static InputManager inputManager;
     public static InventoryWindow inventoryWindow;
+    public static OverworldMenuWindow overworldMenuWindow;
     private ActiveItemWindow activeItemWindow;
     static boolean stopAnim = true;
     private static Encounter encounter;
@@ -62,6 +64,7 @@ public class OverworldScreen implements Screen {
             DIALOGUEMANAGER.render(delta);
             inventoryWindow.render(delta);
             activeItemWindow.render(delta);
+            overworldMenuWindow.render(delta);
             battleAnimationLoop();
         }
 
@@ -99,6 +102,7 @@ public class OverworldScreen implements Screen {
         DIALOGUEMANAGER.update(delta);
         inventoryWindow.update(delta);
         activeItemWindow.update(delta);
+        overworldMenuWindow.update(delta);
     }
 
     @Override
@@ -120,6 +124,8 @@ public class OverworldScreen implements Screen {
         inventoryWindow = new InventoryWindow(camera);
 
         activeItemWindow = new ActiveItemWindow(camera);
+
+        overworldMenuWindow = new OverworldMenuWindow(camera);
 
 
     }

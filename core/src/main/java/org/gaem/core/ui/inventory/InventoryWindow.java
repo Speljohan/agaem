@@ -116,7 +116,7 @@ public class InventoryWindow extends UIWindow{
       //  System.out.println("CURSOR X POST: " + cursorPosX);
        cursorPosY =  MathUtils.clamp(cursorPosY,0,maxItemY);
         int tempCursorPos = cursorPosY*maxItemX + cursorPosX + cursorPosY*1; //En etta läggs till om pekaren är på annan rad än första, annars kommer sista item:en i en rad vara samma som första.
-       System.out.println("Cursorpos: " + tempCursorPos + " X: " + cursorPosX + " Y: " + cursorPosY);
+      // System.out.println("Cursorpos: " + tempCursorPos + " X: " + cursorPosX + " Y: " + cursorPosY);
         if(tempCursorPos < OverworldScreen.manager.getPlayer().itemList.size()){
             OverworldScreen.manager.getPlayer().activeItem = OverworldScreen.manager.getPlayer().itemList.get(tempCursorPos);
         }
