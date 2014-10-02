@@ -21,6 +21,8 @@ public class InventoryWindow extends UIWindow{
     private int paddingX;
     private int paddingY;
 
+    private final int SIZE = 16;
+
     private int cursorOriginX;
     private int cursorOriginY;
 
@@ -53,13 +55,15 @@ public class InventoryWindow extends UIWindow{
         cursorPosY = 0;
 
         cursorOriginX = marginX + paddingX;
-        cursorOriginY = windowHeigth + marginX - 16 /*sprite heigth*/ - paddingY;
+        cursorOriginY = windowHeigth + marginX - SIZE /*sprite heigth*/ - paddingY;
         cursorX = cursorOriginX;
         cursorY = cursorOriginY;
 
 
         showWindow = false;
 
+        maxItemX = (int)(17 / (SIZE / 16));
+        maxItemY = (int)(12 / (SIZE / 16));
     }
 
 
@@ -69,13 +73,13 @@ public class InventoryWindow extends UIWindow{
        // System.out.println("" + camera.zoom);
         if(showWindow) {
             drawTexture(background.getTexture(), marginX, marginY, windowWidth, windowHeigth);
-            batch.draw(cursor, origin.x + cursorOriginX + 16 * cursorPosX, origin.y + cursorOriginY - 16 * cursorPosY);
+            batch.draw(cursor, origin.x + cursorOriginX + SIZE * cursorPosX, origin.y + cursorOriginY - SIZE * cursorPosY);
 
 
             int iX = 0;
             int iY = 0;
             for (Item item : OverworldScreen.manager.getPlayer().itemList) {
-                item.render(cursorOriginX + iX * 16, cursorOriginY - iY*16, origin, batch);
+                item.render(cursorOriginX + iX * SIZE, cursorOriginY - iY*SIZE, origin, batch);
                 iX++;
                 if(iX > maxItemX){
                    iX = 0;
