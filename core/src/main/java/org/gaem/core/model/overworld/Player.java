@@ -73,6 +73,31 @@ public class Player extends Mobile {
         itemList.add(new Axe());
         itemList.add(new Axe());
         itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+        itemList.add(new Axe());
+        itemList.add(new PowerGlove());
+        itemList.add(new Axe());
+
+
+
 
     }
 

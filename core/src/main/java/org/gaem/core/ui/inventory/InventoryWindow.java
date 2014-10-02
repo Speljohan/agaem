@@ -47,7 +47,7 @@ public class InventoryWindow extends UIWindow{
         marginX = 10;
         marginY = 10;
         paddingX = 10;
-        paddingY = -10;
+        paddingY = -10; //Skall vara 10 om SIZE == 16, -10 om SIZE == 32. Måste räknas ut automatiskt i framtiden.
         windowWidth = (int) (camera.viewportWidth * camera.zoom) - marginX * 2;
         windowHeigth = (int) (camera.viewportHeight * camera.zoom) - marginY * 2;
 
@@ -115,8 +115,8 @@ public class InventoryWindow extends UIWindow{
         cursorPosX = MathUtils.clamp(cursorPosX,0,maxItemX);
       //  System.out.println("CURSOR X POST: " + cursorPosX);
        cursorPosY =  MathUtils.clamp(cursorPosY,0,maxItemY);
-        int tempCursorPos = cursorPosY*maxItemX + cursorPosX + ((cursorPosY > 0) ? 1 : 0); //En etta läggs till om pekaren är på annan rad än första, annars kommer sista item:en i en rad vara samma som första.
-       // System.out.println("");
+        int tempCursorPos = cursorPosY*maxItemX + cursorPosX + cursorPosY*1; //En etta läggs till om pekaren är på annan rad än första, annars kommer sista item:en i en rad vara samma som första.
+       System.out.println("Cursorpos: " + tempCursorPos + " X: " + cursorPosX + " Y: " + cursorPosY);
         if(tempCursorPos < OverworldScreen.manager.getPlayer().itemList.size()){
             OverworldScreen.manager.getPlayer().activeItem = OverworldScreen.manager.getPlayer().itemList.get(tempCursorPos);
         }
