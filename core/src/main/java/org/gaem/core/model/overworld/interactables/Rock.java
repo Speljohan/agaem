@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.model.overworld.Interactable;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.screen.OverworldScreen;
+import org.gaem.core.ui.inventory.items.Item;
 import org.gaem.core.util.TileUtils;
 
 /**
@@ -26,19 +27,21 @@ public class Rock extends Interactable {
     }
 
     public void interact(Player player) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("MainLayer");
-        System.out.println("I AM INTERACTED WITH");
-        Vector2 v = player.getLookDirection();
-        if (manager.getEntityAt((int) (tileX + v.x), (int) (tileY + v.y)) != null) {
-            return;
+        if(player.activeItem.id == Item.ID_POWERGLOVE) {
+            TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("MainLayer");
+            System.out.println("I AM INTERACTED WITH");
+            Vector2 v = player.getLookDirection();
+            if (manager.getEntityAt((int) (tileX + v.x), (int) (tileY + v.y)) != null) {
+                return;
+            }
+            if (layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)) == null || TileUtils.isBlocked(layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)).getTile().getId())) {
+                return;
+            }
+            tileY += (int) v.y;
+            tileX += (int) v.x;
+            realX += 16 * (int) v.x;
+            realY += 16 * (int) v.y;
         }
-        if (layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)) == null || TileUtils.isBlocked(layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)).getTile().getId())) {
-            return;
-        }
-        tileY += (int) v.y;
-        tileX += (int) v.x;
-        realX += 16 * (int) v.x;
-        realY += 16 * (int) v.y;
     }
 
     public void render(float delta, SpriteBatch batch) {
