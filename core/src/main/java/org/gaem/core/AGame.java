@@ -31,6 +31,7 @@ public class AGame extends Game {
         ASSETS.load("sprites/pointer.png", Texture.class);
         ASSETS.load("data/dialogue.json", JsonValue.class);
         ASSETS.load("sprites/cursor.png", Texture.class);
+        ASSETS.load("sprites/items/powerglove.png", Texture.class);
 
         while (!ASSETS.update()) ;
     }

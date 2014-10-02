@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.AGame;
+import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.ui.UIWindow;
+import org.gaem.core.ui.inventory.items.Item;
 
 /**
  * Created by Joar on 2014-10-02.
@@ -64,7 +66,14 @@ public class InventoryWindow extends UIWindow{
        // System.out.println("" + camera.zoom);
         if(showWindow) {
             drawTexture(background.getTexture(), marginX, marginY, windowWidth, windowHeigth);
-            batch.draw(cursor,origin.x + cursorOriginX + 16*cursorPosX,origin.y + cursorOriginY - 16*cursorPosY);
+            batch.draw(cursor, origin.x + cursorOriginX + 16 * cursorPosX, origin.y + cursorOriginY - 16 * cursorPosY);
+
+
+            int i = 0;
+            for (Item item : OverworldScreen.manager.getPlayer().itemList) {
+                item.render(cursorOriginX + i * 16, cursorOriginY, origin, batch);
+                i++;
+            }
         }
     }
 
