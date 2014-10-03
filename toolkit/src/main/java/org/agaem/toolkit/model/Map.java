@@ -11,13 +11,20 @@ public class Map {
 
     private ArrayList<Layer> layers;
     private int width, height;
+    private String name;
 
-    public Map() {
-
+    public Map(int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.layers = new ArrayList<Layer>();
     }
 
     public ArrayList<Layer> getLayers() {
         return layers;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getWidth() {

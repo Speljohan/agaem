@@ -43,6 +43,7 @@ public class BattleScreen implements Screen {
     }
 
     public void update(float delta) {
+        camera.update();
         inputManager.update(delta);
         battleWindow.update(delta);
 
@@ -61,7 +62,7 @@ public class BattleScreen implements Screen {
     @Override
     public void show() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.zoom = 0.5f;
+        //camera.zoom = 0.5f;
         battleWindow = new BattleWindow(camera, encounter);
         inputManager = new BattleInputManager(battleWindow);
 

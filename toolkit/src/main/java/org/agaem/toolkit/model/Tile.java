@@ -8,18 +8,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class Tile {
 
-    private int spriteIdx;
+    private int tileIdx;
 
-    public Tile(int spriteIdx) {
-        this.spriteIdx = spriteIdx;
+    public Tile(int tileIdx) {
+        this.tileIdx = tileIdx;
     }
 
     public Tile() {
-        this.spriteIdx = -1;
+        this.tileIdx = -1;
+    }
+
+    public int getTileIdx() {
+        return tileIdx;
     }
 
     public void render(float delta, int x, int y, int tileWidth, int tileHeight, SpriteBatch batch) {
-        if (spriteIdx != -1) {
+        if (tileIdx != -1) {
             batch.draw((Texture) null, x * tileWidth, y * tileHeight);
         }
     }
