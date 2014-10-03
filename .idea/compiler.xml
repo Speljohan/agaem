@@ -31,6 +31,7 @@
         <module name="agaem-core" />
         <module name="agaem-desktop" />
         <module name="agaem-html" />
+        <module name="toolkit" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -40,6 +41,7 @@
       <module name="agaem-desktop" target="1.6" />
       <module name="agaem-html" target="1.6" />
       <module name="agaem-ios" target="1.6" />
+      <module name="toolkit" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

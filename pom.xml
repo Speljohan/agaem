@@ -149,5 +149,6 @@
 
 	<modules>
 		<module>core</module>
-	</modules>
+        <module>toolkit</module>
+    </modules>
 </project>

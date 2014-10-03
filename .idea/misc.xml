@@ -5,7 +5,10 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="android" url="file://$PROJECT_DIR$/android" />
+    <file type="gwt" url="file://$PROJECT_DIR$/html" />
+    <file type="web" url="file://$PROJECT_DIR$/html" />
   </component>
+  <component name="IdProvider" IDEtalkID="8401FEC58E50FFDD8327FAA1F914073D" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
