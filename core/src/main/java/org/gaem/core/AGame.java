@@ -25,7 +25,7 @@ public class AGame extends Game {
 
     private void loadAssets() {
         ASSETS.setLoader(JsonValue.class, new JsonLoader(new InternalFileHandleResolver()));
-        ASSETS.load("sprites/player_new.png", Texture.class);
+        ASSETS.load("sprites/player_newnew.png", Texture.class);
         ASSETS.load("fonts/SILKWONDER.fnt", BitmapFont.class);
         ASSETS.load("sprites/chatbox.png", Texture.class);
         ASSETS.load("sprites/pointer.png", Texture.class);

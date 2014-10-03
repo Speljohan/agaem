@@ -4,8 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.utils.Array;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.screen.OverworldScreen;
+
+import java.util.ArrayList;
 
 /**
  * Created by Johan on 2014-09-27.

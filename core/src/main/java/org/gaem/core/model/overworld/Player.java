@@ -27,7 +27,7 @@ public class Player extends Mobile {
     public Item activeItem;
 
     public Player(float x, float y) {
-        super(new SpriteSheet(AGame.ASSETS.get("sprites/player_new.png", Texture.class), 16, 16));
+        super(new SpriteSheet(AGame.ASSETS.get("sprites/player_newnew.png", Texture.class), 16, 16));
         solid = true;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
@@ -104,6 +104,7 @@ public class Player extends Mobile {
     public void update(float delta) {
         super.update(delta);
         elapsed += delta;
+        this.idle = !isMoving;
 
         if(activeItem != null){
          //   System.out.println("I HAVE AN ACTIVE ITEM!");
