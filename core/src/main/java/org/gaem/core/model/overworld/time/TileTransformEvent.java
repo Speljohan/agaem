@@ -1,7 +1,6 @@
 package org.gaem.core.model.overworld.time;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.MathUtils;
 import org.gaem.core.screen.OverworldScreen;
 
@@ -21,7 +20,6 @@ public class TileTransformEvent extends TimedEvent {
 
     @Override
     public void onTrigger() {
-        System.out.println("TRIGGERED LOL!");
         TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
         TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
         cell.setTile(OverworldScreen.mapManager.currentMap.getTileSets().getTile(MathUtils.random(1, 3)));
