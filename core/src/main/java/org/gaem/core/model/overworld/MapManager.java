@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import org.gaem.core.engine.PlayerData;
@@ -32,13 +33,12 @@ public class MapManager {
         return currentMap;
     }
 
-    public void loadNewMap(String mapName) {
-        screen.manager.mapUpdate(mapName);
-    }
-
     public void loadMap(String mapName) {
         OverworldScreen.manager.clear();
         currentMap = new TmxMapLoader().load("map/" + mapName + ".tmx");
+        TiledMapTileLayer timeLayer = new TiledMapTileLayer((Integer) currentMap.getProperties().get("width"), (Integer) currentMap.getProperties().get("height"), 16, 16);
+        timeLayer.setName("timeLayer");
+        currentMap.getLayers().add(timeLayer);
         width = (Integer) currentMap.getProperties().get("width") * 16;
         height = (Integer) currentMap.getProperties().get("height") * 16;
         tiledMapRenderer = new OrthogonalTiledMapRenderer(currentMap);

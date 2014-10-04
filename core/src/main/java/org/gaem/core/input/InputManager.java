@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.utils.Array;
 import org.gaem.core.model.overworld.Player;
+import org.gaem.core.model.overworld.time.TileTransformEvent;
 import org.gaem.core.screen.OverworldScreen;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class InputManager {
     private int KEY_INVENTORY = Input.Keys.I;
     private int KEY_MENU = Input.Keys.ENTER;
     private int KEY_INTERACT = Input.Keys.SPACE;
-
+    private boolean LOLTEST = false;
     public InputManager(Player player, TiledMap map) {
         this.player = player;
         this.map = map;
@@ -76,7 +77,12 @@ public class InputManager {
         if((!Gdx.input.isKeyPressed(KEY_MENU))){
             hasPressedMenu = false;
         }
-
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            if (!LOLTEST) {
+                OverworldScreen.timeManager.addEvent(new TileTransformEvent(18, 15, 5, 1));
+                LOLTEST = true;
+            }
+        }
         if((Gdx.input.isKeyPressed(KEY_INVENTORY)) && !inventoryPressed){
             inventoryPressed = true;
             OverworldScreen.inventoryWindow.toggle();
