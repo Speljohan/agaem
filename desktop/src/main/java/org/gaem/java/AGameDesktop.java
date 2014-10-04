@@ -8,6 +8,7 @@ import org.gaem.core.AGame;
 public class AGameDesktop {
 	public static void main (String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.vSyncEnabled = true;
 		new LwjglApplication(new AGame(), config);
 	}
 }
