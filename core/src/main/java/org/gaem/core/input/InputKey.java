@@ -13,6 +13,9 @@ public class InputKey {
     private boolean isPressingRightNow;
     private boolean hasJustReleased;
     private boolean oldInput;
+    private float timed;
+    private boolean isTimedPress;
+    private float timer;
 
 
     public InputKey(int keyCode) {
@@ -21,6 +24,8 @@ public class InputKey {
         isPressingRightNow = false;
         oldInput = false;
         hasJustReleased = false;
+        isTimedPress = false;
+        timed = 0;
     }
 
     public void update(float delta){
@@ -28,6 +33,10 @@ public class InputKey {
         hasJustPressed = false;
         isPressingRightNow = false;
         hasJustReleased = false;
+        isTimedPress = false;
+
+
+
 
         boolean newInput = Gdx.input.isKeyPressed(keyCode);
 
@@ -46,6 +55,21 @@ public class InputKey {
         }
 
 
+        timer += delta;
+
+        if(newInput == true) {
+            System.out.println("TIMED PRESS NOW! " + timed + " " + timer);
+            if (timer > timed) {
+                System.out.println("TIMER IS LARGER");
+                timer = 0;
+
+
+                isTimedPress = true;
+
+            }
+
+        }
+
         oldInput = newInput;
     }
 
@@ -60,5 +84,11 @@ public class InputKey {
 
     public boolean isPressing(){
         return  isPressingRightNow;
+    }
+
+    public  boolean timedPress(float time){
+
+        timed = time;
+        return isTimedPress;
     }
 }

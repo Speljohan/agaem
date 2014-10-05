@@ -1,8 +1,10 @@
 package org.gaem.core.input;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import org.gaem.core.model.overworld.Player;
+import org.gaem.core.model.overworld.time.CropGrowthEvent;
 import org.gaem.core.screen.OverworldScreen;
 
 import java.util.ArrayList;
@@ -117,6 +119,12 @@ public class InputManager {
 
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            if (!LOLTEST) {
+                OverworldScreen.timeManager.addEvent(new CropGrowthEvent(5, 14, 17, 0));
+                LOLTEST = true;
+            }
+        }
         if(KEY_INVENTORY.justPressed()){
             inventoryPressed = true;
             OverworldScreen.inventoryWindow.show();
@@ -128,6 +136,12 @@ public class InputManager {
             }
 
         }
+
+
+
+       /* if(!(Gdx.input.isKeyPressed(KEY_UP) || Gdx.input.isKeyPressed(KEY_RIGHT) || Gdx.input.isKeyPressed(KEY_DOWN) || Gdx.input.isKeyPressed(KEY_LEFT))){
+            hasPressedMovement = false;
+        }*/
     }
 
     private void handlePlayerInput() {
@@ -143,7 +157,10 @@ public class InputManager {
         if (KEY_DOWN.isPressing()) {
             player.move(0, -1, map);
         }
-        if (KEY_INTERACT.justPressed()) {
+       /* if (KEY_INTERACT.isPressing()) {
+            player.interactWithFace();
+        }*/
+        if (KEY_INTERACT.timedPress(0.5f)) {
             player.interactWithFace();
         }
     }
