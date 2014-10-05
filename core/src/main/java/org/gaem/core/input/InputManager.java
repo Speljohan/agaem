@@ -157,7 +157,10 @@ public class InputManager {
         if (KEY_DOWN.isPressing()) {
             player.move(0, -1, map);
         }
-        if (KEY_INTERACT.isPressing()) {
+       /* if (KEY_INTERACT.isPressing()) {
+            player.interactWithFace();
+        }*/
+        if (KEY_INTERACT.timedPress(0.5f)) {
             player.interactWithFace();
         }
     }
