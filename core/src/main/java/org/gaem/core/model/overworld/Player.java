@@ -182,7 +182,10 @@ public class Player extends Mobile {
         if (mobile != null) {
             mobile.interact(this);
         } else {
-            activeItem.useAt(getLookTile());
+            if(activeItem != null){
+                activeItem.useAt(getLookTile());
+            }
+
         }
     }
 
