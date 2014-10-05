@@ -1,7 +1,7 @@
 package org.gaem.core.model.overworld;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
@@ -19,12 +19,12 @@ import java.util.ArrayList;
  */
 public class Player extends Mobile {
 
+    public ArrayList<Item> itemList;
+    public Item activeItem;
     private float elapsed;
     private boolean isMoving;
     private float speed;
     private boolean moveBool;
-    public ArrayList<Item> itemList;
-    public Item activeItem;
 
     public Player(float x, float y) {
         super(new SpriteSheet(AGame.ASSETS.get("sprites/player_newnew.png", Texture.class), 16, 16));
@@ -134,13 +134,8 @@ public class Player extends Mobile {
 
     }
 
-    private boolean canMove(int targetX, int targetY, TiledMapTileLayer layer) {
-     //   System.out.println("CAN MOVE; " + OverworldScreen.mapHeigth + " Target Y " + targetY + " Player pos" + realY);
-        if ((targetX < 0 || targetX >= OverworldScreen.mapManager.width / 16) || (targetY < 0 || targetY >= OverworldScreen.mapManager.height / 16)) {
-            return false;
-        }
-   //     System.out.println(layer.getCell(targetX, targetY).getTile().getId());
-        if (layer.getCell(targetX, targetY) == null || TileUtils.isBlocked(layer.getCell(targetX, targetY).getTile().getId())) {
+    private boolean canMove(int targetX, int targetY, TiledMap map) {
+        if (TileUtils.isBlocked(targetX, targetY, map)) {
             return false;
         }
         for (Entity e : manager.getEntities())
@@ -225,11 +220,11 @@ public class Player extends Mobile {
         }
     }
 
-    public void move(int x, int y, TiledMapTileLayer layer) {
+    public void move(int x, int y, TiledMap map) {
         updateFacing(x, y);
         if (isMoving) return;
         if (moveBool) {
-            if (!canMove(tileX + x, tileY + y, layer)) return;
+            if (!canMove(tileX + x, tileY + y, map)) return;
             OverworldScreen.DIALOGUEMANAGER.hideDialogue();
             this.targetX = tileX + x;
             this.targetY = tileY + y;

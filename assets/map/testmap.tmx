@@ -2,6 +2,21 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="54" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="TestSet" tilewidth="16" tileheight="16">
   <image source="../tiles/testtile.png" width="160" height="160"/>
+  <tile id="4">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="101" name="Obj set" tilewidth="16" tileheight="16">
   <image source="../tiles/mobtiles.png" width="160" height="160"/>
@@ -25,6 +40,11 @@
  </tileset>
  <tileset firstgid="201" name="new_tiles" tilewidth="16" tileheight="16">
   <image source="../tiles/new_tiles.png" width="320" height="240"/>
+  <tile id="2">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="MainLayer" width="45" height="54">
   <data encoding="base64" compression="zlib">

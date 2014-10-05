@@ -3,14 +3,9 @@ package org.gaem.core.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.utils.Array;
 import org.gaem.core.model.overworld.Player;
 import org.gaem.core.model.overworld.time.TileTransformEvent;
 import org.gaem.core.screen.OverworldScreen;
-
-import java.util.ArrayList;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -100,16 +95,16 @@ public class InputManager {
 
     private void handlePlayerInput() {
         if ((Gdx.input.isKeyPressed(KEY_LEFT))) {
-            player.move(-1, 0, (TiledMapTileLayer) map.getLayers().get("MainLayer"));
+            player.move(-1, 0, map);
         }
         if ((Gdx.input.isKeyPressed(KEY_RIGHT))) {
-            player.move(1, 0, (TiledMapTileLayer) map.getLayers().get("MainLayer"));
+            player.move(1, 0, map);
         }
         if ((Gdx.input.isKeyPressed(KEY_UP))) {
-            player.move(0, 1, (TiledMapTileLayer) map.getLayers().get("MainLayer"));
+            player.move(0, 1, map);
         }
         if ((Gdx.input.isKeyPressed(KEY_DOWN))) {
-            player.move(0, -1, (TiledMapTileLayer) map.getLayers().get("MainLayer"));
+            player.move(0, -1, map);
         }
         if ((Gdx.input.isKeyPressed(KEY_INTERACT))) {
             player.interactWithFace();

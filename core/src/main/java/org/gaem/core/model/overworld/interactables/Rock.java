@@ -34,7 +34,7 @@ public class Rock extends Interactable {
             if (manager.getEntityAt((int) (tileX + v.x), (int) (tileY + v.y)) != null) {
                 return;
             }
-            if (layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)) == null || TileUtils.isBlocked(layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)).getTile().getId())) {
+            if (layer.getCell((int) (tileX + v.x), (int) (tileY + v.y)) == null || TileUtils.isBlocked((int) (tileX + v.x), (int) (tileY + v.y), OverworldScreen.mapManager.currentMap)) {
                 return;
             }
             tileY += (int) v.y;
