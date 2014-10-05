@@ -28,6 +28,7 @@ public class InputManager {
     private int CODE_KEY_LEFT = Input.Keys.LEFT;
     private int CODE_KEY_INVENTORY = Input.Keys.I;
     private int CODE_KEY_MENU = Input.Keys.ENTER;
+    private int CODE_KEY_SELECT = Input.Keys.ENTER;
     private int CODE_KEY_INTERACT = Input.Keys.SPACE;
     // Keys
     private InputKey KEY_UP;
@@ -37,6 +38,7 @@ public class InputManager {
     private InputKey KEY_INVENTORY;
     private InputKey KEY_MENU;
     private InputKey KEY_INTERACT;
+    private InputKey KEY_SELECT;
 
     private ArrayList<InputKey> inputKeys;
 
@@ -71,6 +73,8 @@ public class InputManager {
 
         KEY_INTERACT = new InputKey(CODE_KEY_INTERACT);
         inputKeys.add(KEY_INTERACT);
+
+        KEY_SELECT = addNewKey(CODE_KEY_SELECT);
 
 
 
@@ -146,5 +150,12 @@ public class InputManager {
         if (KEY_INTERACT.isPressing()) {
             player.interactWithFace();
         }
+    }
+
+    private InputKey addNewKey(int keyCode){
+        InputKey tempKey = new InputKey(keyCode);
+        inputKeys.add(tempKey);
+
+        return tempKey;
     }
 }
