@@ -43,7 +43,7 @@ public class InputManager {
     }
 
     public void update(float delta) {
-
+        //refresh();
         if(!OverworldScreen.inventoryWindow.showWindow) {
             handlePlayerInput();
         }

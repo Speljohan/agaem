@@ -2,6 +2,11 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="12" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="testtile" tilewidth="16" tileheight="16">
   <image source="../tiles/testtile.png" width="160" height="160"/>
+  <tile id="4">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="101" name="objset" tilewidth="16" tileheight="16">
   <image source="../tiles/mobtiles.png" width="160" height="160"/>
