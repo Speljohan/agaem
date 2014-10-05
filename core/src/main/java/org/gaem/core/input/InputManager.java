@@ -111,7 +111,13 @@ public class InputManager {
 
 
 
+        if(KEY_MENU.justPressed()){
+            hasPressedMenu = true;
+            if(!OverworldScreen.inventoryWindow.showWindow){
+                OverworldScreen.overworldMenuWindow.visible = !OverworldScreen.overworldMenuWindow.visible;
+            }
 
+        }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             if (!LOLTEST) {
@@ -121,13 +127,17 @@ public class InputManager {
         }
         if(KEY_INVENTORY.justPressed()){
             inventoryPressed = true;
-            OverworldScreen.inventoryWindow.toggle();
+            OverworldScreen.inventoryWindow.show();
         }
 
-        if(KEY_MENU.justPressed()){
-            hasPressedMenu = true;
-            OverworldScreen.overworldMenuWindow.visible = !OverworldScreen.overworldMenuWindow.visible;
+        if(KEY_SELECT.justPressed()){
+            if(OverworldScreen.inventoryWindow.showWindow){
+                OverworldScreen.inventoryWindow.hide();
+            }
+
         }
+
+
 
        /* if(!(Gdx.input.isKeyPressed(KEY_UP) || Gdx.input.isKeyPressed(KEY_RIGHT) || Gdx.input.isKeyPressed(KEY_DOWN) || Gdx.input.isKeyPressed(KEY_LEFT))){
             hasPressedMovement = false;
