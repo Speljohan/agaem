@@ -19,6 +19,11 @@ public class TileTransformEvent extends TimedEvent {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     public void onTrigger() {
         TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
         TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();

@@ -1,7 +1,5 @@
 package org.gaem.core.model.overworld.time;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-
 import java.util.ArrayList;
 
 /**
@@ -34,6 +32,10 @@ public class TimeManager {
         toAdd.clear();
 
         for (TimedEvent e : events) {
+            if (!e.isInitialized()) {
+                e.init();
+                e.setInitialized(true);
+            }
             e.update(delta);
         }
     }

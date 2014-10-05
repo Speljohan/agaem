@@ -16,8 +16,8 @@ public abstract class Mobile extends Entity {
 
     public Animation[] animations;
     public Animation currentAnimation;
-    private float elapsed;
     protected boolean idle;
+    private float elapsed;
 
     public Mobile(SpriteSheet atlas) {
         loadAnimation(atlas);
@@ -42,13 +42,13 @@ public abstract class Mobile extends Entity {
 
 
     public void update(float delta) {
+        if (animations[facing] != currentAnimation) {
+            currentAnimation = animations[facing];
+        }
         if (!idle) {
             this.elapsed += delta;
-            if (animations[facing] != currentAnimation) {
-                currentAnimation = animations[facing];
-                currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
-            }                    }
-
+            currentAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        }
     }
 
 

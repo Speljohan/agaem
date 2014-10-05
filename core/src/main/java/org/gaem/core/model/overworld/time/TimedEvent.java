@@ -5,17 +5,25 @@ package org.gaem.core.model.overworld.time;
  */
 public abstract class TimedEvent {
 
-    private float elapsed, interval;
-
     public TimeManager owner;
-
+    private float elapsed, interval;
+    private boolean isInitialized;
     public TimedEvent(float interval) {
         this.interval = interval;
         this.elapsed = 0;
+        this.isInitialized = false;
     }
 
     public void setOwner(TimeManager owner) {
         this.owner = owner;
+    }
+
+    public boolean isInitialized() {
+        return isInitialized;
+    }
+
+    public void setInitialized(boolean initialized) {
+        this.isInitialized = initialized;
     }
 
     public void update(float delta) {
@@ -28,4 +36,6 @@ public abstract class TimedEvent {
     }
 
     public abstract void onTrigger();
+
+    public abstract void init();
 }

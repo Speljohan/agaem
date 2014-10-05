@@ -21,17 +21,19 @@ public class CropGrowthEvent extends TimedEvent {
     }
 
     @Override
+    public void init() {
+        TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
+        TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
+        cell.setTile(OverworldScreen.mapManager.currentMap.getTileSets().getTile(222));
+        layer.setCell(x, y, cell);
+        OverworldScreen.manager.add(new Crop(x * 16, y * 16, spriteIdx));
+    }
+
+    @Override
     public void onTrigger() {
         if (currentStage == 4) {
             owner.removeEvent(this);
             return;
-        }
-        if (currentStage == 0) {
-            TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
-            TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
-            cell.setTile(OverworldScreen.mapManager.currentMap.getTileSets().getTile(222));
-            layer.setCell(x, y, cell);
-            OverworldScreen.manager.add(new Crop(x * 16, y * 16, spriteIdx));
         }
 
         Entity e = OverworldScreen.manager.getEntityAt(x, y);

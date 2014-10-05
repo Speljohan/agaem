@@ -175,6 +175,25 @@ public class Player extends Mobile {
         return new Vector2(x, y);
     }
 
+    public Vector2 getLookTile() {
+        int x = tileX, y = tileY;
+        switch (facing) {
+            case 0:
+                y += 1;
+                break;
+            case 1:
+                x += 1;
+                break;
+            case 2:
+                y -= 1;
+                break;
+            case 3:
+                x -= 1;
+                break;
+        }
+        return new Vector2(x, y);
+    }
+
     private void updateFacing(int x, int y) {
         if (y == 1) facing = 0;
         if (x == 1) facing = 1;
@@ -217,6 +236,8 @@ public class Player extends Mobile {
 
         if (mobile != null) {
             mobile.interact(this);
+        } else {
+            activeItem.useAt(getLookTile());
         }
     }
 
