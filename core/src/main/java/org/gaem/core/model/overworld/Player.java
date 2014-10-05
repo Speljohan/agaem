@@ -10,6 +10,7 @@ import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.ui.inventory.items.Axe;
 import org.gaem.core.ui.inventory.items.Item;
 import org.gaem.core.ui.inventory.items.PowerGlove;
+import org.gaem.core.ui.inventory.items.SeedBag;
 import org.gaem.core.util.TileUtils;
 
 import java.util.ArrayList;
@@ -45,59 +46,8 @@ public class Player extends Mobile {
 
         itemList = new ArrayList<Item>();
         itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
         itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-        itemList.add(new Axe());
-        itemList.add(new PowerGlove());
-        itemList.add(new Axe());
-
-
-
+        itemList.add(new SeedBag());
 
     }
 
@@ -105,10 +55,6 @@ public class Player extends Mobile {
         super.update(delta);
         elapsed += delta;
         this.idle = !isMoving;
-
-        if(activeItem != null){
-         //   System.out.println("I HAVE AN ACTIVE ITEM!");
-        }
 
         if (elapsed > speed) {
             moveBool = true;
