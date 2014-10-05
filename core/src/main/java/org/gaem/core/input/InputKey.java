@@ -1,7 +1,6 @@
 package org.gaem.core.input;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 
 /**
  * Created by Joar on 2014-10-05.
@@ -28,7 +27,7 @@ public class InputKey {
         timed = 0;
     }
 
-    public void update(float delta){
+    public void update(float delta) {
 
         hasJustPressed = false;
         isPressingRightNow = false;
@@ -36,31 +35,26 @@ public class InputKey {
         isTimedPress = false;
 
 
-
-
         boolean newInput = Gdx.input.isKeyPressed(keyCode);
 
-        if(newInput == true)
-        {
-           if(oldInput == false){
-               hasJustPressed = true;
-           }
+        if (newInput == true) {
+            if (oldInput == false) {
+                hasJustPressed = true;
+            }
             isPressingRightNow = true;
         }
 
-        if(newInput == false){
-            if(oldInput == true){
-               hasJustReleased = true;
+        if (newInput == false) {
+            if (oldInput == true) {
+                hasJustReleased = true;
             }
         }
 
 
         timer += delta;
 
-        if(newInput == true) {
-            System.out.println("TIMED PRESS NOW! " + timed + " " + timer);
+        if (newInput == true) {
             if (timer > timed) {
-                System.out.println("TIMER IS LARGER");
                 timer = 0;
 
 
@@ -73,20 +67,20 @@ public class InputKey {
         oldInput = newInput;
     }
 
-    public boolean justPressed(){
+    public boolean justPressed() {
         return hasJustPressed;
     }
 
-    public boolean justReleased(){
-        return  hasJustReleased;
+    public boolean justReleased() {
+        return hasJustReleased;
 
     }
 
-    public boolean isPressing(){
-        return  isPressingRightNow;
+    public boolean isPressing() {
+        return isPressingRightNow;
     }
 
-    public  boolean timedPress(float time){
+    public boolean timedPress(float time) {
 
         timed = time;
         return isTimedPress;

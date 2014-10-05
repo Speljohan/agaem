@@ -77,7 +77,6 @@ public class InputManager {
         KEY_SELECT = addNewKey(CODE_KEY_SELECT);
 
 
-
     }
 
     public void refresh() {
@@ -86,34 +85,31 @@ public class InputManager {
     }
 
     public void update(float delta) {
-        for(InputKey key : inputKeys){
+        for (InputKey key : inputKeys) {
             key.update(delta);
         }
 
-        //refresh();
-        if(!OverworldScreen.inventoryWindow.showWindow) {
+        if (!OverworldScreen.inventoryWindow.showWindow) {
             handlePlayerInput();
-        }
-        else{
-                if (KEY_LEFT.justPressed()) {
-                    OverworldScreen.inventoryWindow.cursorPosX--;
-                }
-                if (KEY_RIGHT.justPressed()) {
-                    OverworldScreen.inventoryWindow.cursorPosX++;
-                }
-                if (KEY_UP.justPressed()) {
-                    OverworldScreen.inventoryWindow.cursorPosY--;
-                }
-                if (KEY_DOWN.justPressed()) {
-                    OverworldScreen.inventoryWindow.cursorPosY++;
-                }
+        } else {
+            if (KEY_LEFT.justPressed()) {
+                OverworldScreen.inventoryWindow.cursorPosX--;
             }
+            if (KEY_RIGHT.justPressed()) {
+                OverworldScreen.inventoryWindow.cursorPosX++;
+            }
+            if (KEY_UP.justPressed()) {
+                OverworldScreen.inventoryWindow.cursorPosY--;
+            }
+            if (KEY_DOWN.justPressed()) {
+                OverworldScreen.inventoryWindow.cursorPosY++;
+            }
+        }
 
 
-
-        if(KEY_MENU.justPressed()){
+        if (KEY_MENU.justPressed()) {
             hasPressedMenu = true;
-            if(!OverworldScreen.inventoryWindow.showWindow){
+            if (!OverworldScreen.inventoryWindow.showWindow) {
                 OverworldScreen.overworldMenuWindow.visible = !OverworldScreen.overworldMenuWindow.visible;
             }
 
@@ -125,23 +121,17 @@ public class InputManager {
                 LOLTEST = true;
             }
         }
-        if(KEY_INVENTORY.justPressed()){
+        if (KEY_INVENTORY.justPressed()) {
             inventoryPressed = true;
             OverworldScreen.inventoryWindow.show();
         }
 
-        if(KEY_SELECT.justPressed()){
-            if(OverworldScreen.inventoryWindow.showWindow){
+        if (KEY_SELECT.justPressed()) {
+            if (OverworldScreen.inventoryWindow.showWindow) {
                 OverworldScreen.inventoryWindow.hide();
             }
 
         }
-
-
-
-       /* if(!(Gdx.input.isKeyPressed(KEY_UP) || Gdx.input.isKeyPressed(KEY_RIGHT) || Gdx.input.isKeyPressed(KEY_DOWN) || Gdx.input.isKeyPressed(KEY_LEFT))){
-            hasPressedMovement = false;
-        }*/
     }
 
     private void handlePlayerInput() {
@@ -157,15 +147,12 @@ public class InputManager {
         if (KEY_DOWN.isPressing()) {
             player.move(0, -1, map);
         }
-       /* if (KEY_INTERACT.isPressing()) {
-            player.interactWithFace();
-        }*/
         if (KEY_INTERACT.timedPress(0.5f)) {
             player.interactWithFace();
         }
     }
 
-    private InputKey addNewKey(int keyCode){
+    private InputKey addNewKey(int keyCode) {
         InputKey tempKey = new InputKey(keyCode);
         inputKeys.add(tempKey);
 
