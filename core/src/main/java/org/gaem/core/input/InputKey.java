@@ -37,15 +37,15 @@ public class InputKey {
 
         boolean newInput = Gdx.input.isKeyPressed(keyCode);
 
-        if (newInput == true) {
-            if (oldInput == false) {
+        if (newInput) {
+            if (!oldInput) {
                 hasJustPressed = true;
             }
             isPressingRightNow = true;
         }
 
-        if (newInput == false) {
-            if (oldInput == true) {
+        if (!newInput) {
+            if (oldInput) {
                 hasJustReleased = true;
             }
         }
@@ -53,7 +53,7 @@ public class InputKey {
 
         timer += delta;
 
-        if (newInput == true) {
+        if (newInput) {
             if (timer > timed) {
                 timer = 0;
 
