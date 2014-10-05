@@ -40,14 +40,92 @@
  </tileset>
  <tileset firstgid="201" name="new_tiles" tilewidth="16" tileheight="16">
   <image source="../tiles/new_tiles.png" width="320" height="240"/>
+  <tile id="1">
+   <properties>
+    <property name="test" value="HA"/>
+   </properties>
+  </tile>
   <tile id="2">
    <properties>
     <property name="solid" value="true"/>
+    <property name="type" value="water"/>
    </properties>
   </tile>
   <tile id="21">
    <properties>
     <property name="test" value="HA"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="88">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="90">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="108">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="109">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="110">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="183">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="184">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="203">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="204">
+   <properties>
+    <property name="solid" value="true"/>
+    <property name="type" value="water"/>
    </properties>
   </tile>
  </tileset>

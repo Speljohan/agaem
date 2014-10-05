@@ -46,6 +46,7 @@ public class Player extends Mobile {
         itemList.add(new Axe());
         itemList.add(new SeedBag());
         itemList.add(new Hoe());
+        itemList.add(new WateringCan());
 
     }
 

@@ -22,8 +22,8 @@ public class SeedBag extends Item {
 
     @Override
     public void useAt(Vector2 tile) {
-        TiledMapTile t = TileUtils.tileForPos(tile);
-        if (t != null && t.getId() == TileUtils.TILLED_ID) {
+        TiledMapTile t = TileUtils.tileForPos(tile, "timeLayer");
+        if (t != null && (t.getId() == TileUtils.TILLED_DRY_ID || t.getId() == TileUtils.TILLED_WET_ID)) {
             OverworldScreen.timeManager.addEvent(new CropGrowthEvent(5, (int) tile.x, (int) tile.y, 0));
         }
     }

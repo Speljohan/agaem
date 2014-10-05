@@ -13,7 +13,8 @@ import org.gaem.core.screen.OverworldScreen;
  */
 public class TileUtils {
 
-    public static final int TILLED_ID = 222;
+    public static final int TILLED_WET_ID = 222;
+    public static final int TILLED_DRY_ID = 221;
 
     public static boolean isBlocked(int targetX, int targetY, TiledMap map) {
 
@@ -33,8 +34,8 @@ public class TileUtils {
         return true;
     }
 
-    public static TiledMapTile tileForPos(Vector2 location) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
+    public static TiledMapTile tileForPos(Vector2 location, String tileLayer) {
+        TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get(tileLayer);
         if (layer.getCell((int) location.x, (int) location.y) != null) {
             return layer.getCell((int) location.x, (int) location.y).getTile();
         }

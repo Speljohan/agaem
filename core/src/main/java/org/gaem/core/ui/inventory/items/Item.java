@@ -14,6 +14,7 @@ public abstract class Item { //Bör kunna laddas in via Json.
     public static final int ID_POWERGLOVE = 1;
     public static final int ID_SEEDBAG = 2;
     public static final int ID_HOE = 3;
+    public static final int ID_WATERINGCAN = 4;
 
     public int id;
     private SpriteSheet sprites;
