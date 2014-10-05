@@ -3,16 +3,17 @@ package org.gaem.core.util;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import org.gaem.core.model.overworld.Mobile;
 import org.gaem.core.screen.OverworldScreen;
 
 /**
  * Created by Johan on 2014-09-27.
  */
 public class TileUtils {
+
+    public static final int TILLED_ID = 222;
 
     public static boolean isBlocked(int targetX, int targetY, TiledMap map) {
 
@@ -32,12 +33,12 @@ public class TileUtils {
         return true;
     }
 
-    public static Vector2 tileForPos(float x, float y) {
-        return new Vector2(MathUtils.floor(x) / 16, MathUtils.floor(y) / 16);
-    }
-
-    public static double distanceTo(Mobile mobile, float targetX, float targetY) {
-        return Math.sqrt((mobile.realX - targetX) * (mobile.realX - targetX) + (mobile.realY - targetY) * (mobile.realY - targetY));
+    public static TiledMapTile tileForPos(Vector2 location) {
+        TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
+        if (layer.getCell((int) location.x, (int) location.y) != null) {
+            return layer.getCell((int) location.x, (int) location.y).getTile();
+        }
+        return null;
     }
 
 }

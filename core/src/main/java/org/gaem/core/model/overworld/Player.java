@@ -7,10 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.AGame;
 import org.gaem.core.engine.SpriteSheet;
 import org.gaem.core.screen.OverworldScreen;
-import org.gaem.core.ui.inventory.items.Axe;
-import org.gaem.core.ui.inventory.items.Item;
-import org.gaem.core.ui.inventory.items.PowerGlove;
-import org.gaem.core.ui.inventory.items.SeedBag;
+import org.gaem.core.ui.inventory.items.*;
 import org.gaem.core.util.TileUtils;
 
 import java.util.ArrayList;
@@ -48,6 +45,7 @@ public class Player extends Mobile {
         itemList.add(new PowerGlove());
         itemList.add(new Axe());
         itemList.add(new SeedBag());
+        itemList.add(new Hoe());
 
     }
 

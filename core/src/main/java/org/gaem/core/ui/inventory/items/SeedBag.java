@@ -1,8 +1,10 @@
 package org.gaem.core.ui.inventory.items;
 
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import org.gaem.core.model.overworld.time.CropGrowthEvent;
 import org.gaem.core.screen.OverworldScreen;
+import org.gaem.core.util.TileUtils;
 
 /**
  * Created by Johan on 2014-10-05.
@@ -20,6 +22,9 @@ public class SeedBag extends Item {
 
     @Override
     public void useAt(Vector2 tile) {
-        OverworldScreen.timeManager.addEvent(new CropGrowthEvent(5, (int) tile.x, (int) tile.y, 0));
+        TiledMapTile t = TileUtils.tileForPos(tile);
+        if (t != null && t.getId() == TileUtils.TILLED_ID) {
+            OverworldScreen.timeManager.addEvent(new CropGrowthEvent(5, (int) tile.x, (int) tile.y, 0));
+        }
     }
 }

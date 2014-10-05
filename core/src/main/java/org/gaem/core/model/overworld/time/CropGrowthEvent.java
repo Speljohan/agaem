@@ -1,6 +1,5 @@
 package org.gaem.core.model.overworld.time;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import org.gaem.core.model.overworld.Entity;
 import org.gaem.core.model.overworld.interactables.Crop;
 import org.gaem.core.screen.OverworldScreen;
@@ -22,10 +21,6 @@ public class CropGrowthEvent extends TimedEvent {
 
     @Override
     public void init() {
-        TiledMapTileLayer layer = (TiledMapTileLayer) OverworldScreen.mapManager.currentMap.getLayers().get("timeLayer");
-        TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
-        cell.setTile(OverworldScreen.mapManager.currentMap.getTileSets().getTile(222));
-        layer.setCell(x, y, cell);
         OverworldScreen.manager.add(new Crop(x * 16, y * 16, spriteIdx));
     }
 
