@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import org.gaem.core.model.overworld.Player;
-import org.gaem.core.model.overworld.time.TileTransformEvent;
+import org.gaem.core.model.overworld.time.CropGrowthEvent;
 import org.gaem.core.screen.OverworldScreen;
 
 /**
@@ -74,7 +74,7 @@ public class InputManager {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             if (!LOLTEST) {
-                OverworldScreen.timeManager.addEvent(new TileTransformEvent(18, 15, 5, 1));
+                OverworldScreen.timeManager.addEvent(new CropGrowthEvent(5, 14, 17, 0));
                 LOLTEST = true;
             }
         }

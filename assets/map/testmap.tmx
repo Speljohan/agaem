@@ -45,6 +45,11 @@
     <property name="solid" value="true"/>
    </properties>
   </tile>
+  <tile id="21">
+   <properties>
+    <property name="test" value="HA"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="MainLayer" width="45" height="54">
   <data encoding="base64" compression="zlib">

@@ -37,5 +37,15 @@ public class SpriteSheet {
         return slices[index];
     }
 
+    public TextureRegion get(int row, int column) {
+        return slices[row * getColumnCount() + column];
+    }
 
+    public int getColumnCount() {
+        return source.getHeight() / height;
+    }
+
+    public int getRowCount() {
+        return source.getWidth() / width;
+    }
 }
