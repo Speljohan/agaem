@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.JsonValue;
-import org.gaem.core.screen.OverworldScreen;
+import org.gaem.core.screen.MainMenuScreen;
 import org.gaem.core.util.JsonLoader;
 
 public class AGame extends Game {
@@ -20,7 +20,7 @@ public class AGame extends Game {
         ASSETS = new AssetManager();
         loadAssets();
         batch = new SpriteBatch();
-        this.setScreen(new OverworldScreen(this));
+        this.setScreen(new MainMenuScreen());
     }
 
     private void loadAssets() {
@@ -33,6 +33,7 @@ public class AGame extends Game {
         ASSETS.load("sprites/cursor.png", Texture.class);
         ASSETS.load("sprites/items.png", Texture.class);
         ASSETS.load("sprites/crops.png", Texture.class);
+        ASSETS.load("ui/ui.png", Texture.class);
 
         while (!ASSETS.update()) ;
     }

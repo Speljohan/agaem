@@ -42,7 +42,7 @@
   <image source="../tiles/new_tiles.png" width="320" height="240"/>
   <tile id="1">
    <properties>
-    <property name="test" value="HA"/>
+    <property name="type" value="farmable"/>
    </properties>
   </tile>
   <tile id="2">
@@ -72,6 +72,11 @@
    <properties>
     <property name="solid" value="true"/>
     <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="86">
+   <properties>
+    <property name="type" value="farmable"/>
    </properties>
   </tile>
   <tile id="88">
