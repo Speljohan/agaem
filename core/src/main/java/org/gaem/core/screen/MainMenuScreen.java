@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import org.gaem.core.AGame;
+import org.gaem.core.ui.widgets.KeyboardListener;
 
 /**
  * Created by Johan on 2014-09-27.
@@ -41,6 +42,7 @@ public class MainMenuScreen implements Screen {
         this.camera.zoom = 0.5f;
 
         this.stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
         this.stage.getViewport().setCamera(camera);
         this.root = new Table();
         this.root.setFillParent(true);
@@ -53,6 +55,9 @@ public class MainMenuScreen implements Screen {
         c.size(300, 200);
 
         TextButton button = new TextButton("HAI DER", getSkin());
+        stage.setKeyboardFocus(button);
+        child.addListener(new KeyboardListener());
+
         Cell c2 = child.add(button);
         //c2.size(5, 5);
     }
@@ -79,6 +84,7 @@ public class MainMenuScreen implements Screen {
         tbStyle.up = s.getDrawable("transparent");
         tbStyle.down = s.getDrawable("transparent");
         tbStyle.overFontColor = Color.BLACK;
+        tbStyle.fontColor = Color.WHITE;
         tbStyle.over = s.getDrawable("transparent");
         tbStyle.checked = s.getDrawable("transparent");
 
