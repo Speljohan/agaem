@@ -20,6 +20,12 @@
                             "willExitDialogue" : false
                         },
                         {
+                            "linkedID" : "4",
+                            "text" : "Get lost bum.",
+                            "willInitBattle" : false,
+                            "willExitDialogue" : true
+                        },
+                        {
                             "linkedID" : "1",
                             "text" : "Die bum!",
                             "willInitBattle" : true,
@@ -32,16 +38,16 @@
                     "linkedID" : "3",
                     "text" : "No change eh?",
                     "choices": [{
-                            "linkedID" : "1",
-                            "text" : "Nope",
+                            "linkedID" : "5",
+                            "text" : "Nope, sorry",
                             "willInitBattle" : false,
-                            "willExitDialogue" : true
+                            "willExitDialogue" : false
                         },
                         {
-                            "linkedID" : "1",
-                            "text" : "Not for you",
+                            "linkedID" : "4",
+                            "text" : "I have, but not for you bum!",
                             "willInitBattle" : false,
-                            "willExitDialogue" : true
+                            "willExitDialogue" : false
                         },
                         {
                             "linkedID" : "1",
@@ -59,7 +65,7 @@
                               "linkedID" : "1",
                               "text" : "No problems darling",
                               "willInitBattle" : false,
-                              "willExitDialogue" : true
+                              "willExitDialogue" : false
                           },
                           {
                               "linkedID" : "1",
@@ -68,7 +74,49 @@
                               "willExitDialogue" : true
                           }
                       ]
-                }
+                },
+                {
+                    "id" : "4",
+                    "linkedID" : "4",
+                    "text" : "I won't waste more words on you man!",
+                      "choices": [{
+                              "linkedID" : "4",
+                              "text" : "Fine by me",
+                              "willInitBattle" : false,
+                              "willExitDialogue" : true
+                          },
+                          {
+                            "linkedID" : "3",
+                            "text" : "I changed my mind, have some change",
+                            "willInitBattle" : false,
+                            "willExitDialogue" : true
+                        },
+                          {
+                              "linkedID" : "1",
+                              "text" : "Die bum!",
+                              "willInitBattle" : true,
+                              "willExitDialogue" : true
+                          }
+                      ]
+                },
+                 {
+                     "id" : "5",
+                     "linkedID" : "1",
+                     "text" : "Hey, thanks anyway man!",
+                       "choices": [{
+                               "linkedID" : "1",
+                               "text" : "Farewell",
+                               "willInitBattle" : false,
+                               "willExitDialogue" : true
+                           },
+                           {
+                               "linkedID" : "1",
+                               "text" : "Die bum!",
+                               "willInitBattle" : true,
+                               "willExitDialogue" : true
+                           }
+                       ]
+                 }
            ]
           },
           {
