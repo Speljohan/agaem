@@ -33,7 +33,7 @@ public class DialogueManager {
         isInDialogue = true;
 
         /* TEST AV CHOISES */
-        System.out.println("Creating dialogue!");
+      //  System.out.println("Creating dialogue!");
 
 
         ArrayList<DialogueChoiceItem> choices = new ArrayList<DialogueChoiceItem>();

@@ -27,7 +27,7 @@ public class NPCDialogueJsonData implements JsonObject {
 
         JsonValue chos = source.get("choices");
 
-        System.out.println("WILL THIS BRAKE: " + text);
+     //   System.out.println("WILL THIS BRAKE: " + text);
 
 
         if(chos == null) {
@@ -42,7 +42,7 @@ public class NPCDialogueJsonData implements JsonObject {
             }
         }
 
-        System.out.println(text);
+        //System.out.println(text);
 
     }
 
