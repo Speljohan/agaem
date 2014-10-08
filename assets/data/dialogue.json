@@ -65,7 +65,7 @@
                               "linkedID" : "1",
                               "text" : "No problems darling",
                               "willInitBattle" : false,
-                              "willExitDialogue" : false
+                              "willExitDialogue" : true
                           },
                           {
                               "linkedID" : "1",
@@ -89,7 +89,7 @@
                             "linkedID" : "3",
                             "text" : "I changed my mind, have some change",
                             "willInitBattle" : false,
-                            "willExitDialogue" : true
+                            "willExitDialogue" : false
                         },
                           {
                               "linkedID" : "1",
