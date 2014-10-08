@@ -1,16 +1,16 @@
 package org.gaem.core.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import org.gaem.core.AGame;
 import org.gaem.core.ui.widgets.KeyboardListener;
 
@@ -22,6 +22,12 @@ public class MainMenuScreen implements Screen {
     private Stage stage;
     private OrthographicCamera camera;
     private Table root;
+    private AGame game;
+    private Image bgImage;
+
+    public MainMenuScreen(AGame game) {
+        this.game = game;
+    }
 
     @Override
     public void render(float delta) {
@@ -39,9 +45,14 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        this.camera.zoom = 0.5f;
+      //  this.camera.zoom = 0.5f;
 
         this.stage = new Stage();
+
+        bgImage = new Image(AGame.ASSETS.get("gfx/conceptFinalHarvest.png", Texture.class));
+       // bgImage.setScale(0.5f);
+        stage.addActor(bgImage);
+
         Gdx.input.setInputProcessor(stage);
         this.stage.getViewport().setCamera(camera);
         this.root = new Table();
@@ -57,6 +68,12 @@ public class MainMenuScreen implements Screen {
         TextButton button = new TextButton("HAI DER", getSkin());
         stage.setKeyboardFocus(button);
         child.addListener(new KeyboardListener());
+        button.addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen( new OverworldScreen(game) );
+            };
+        });
 
         Cell c2 = child.add(button);
         //c2.size(5, 5);

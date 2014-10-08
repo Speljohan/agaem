@@ -21,8 +21,8 @@ public class AGame extends Game {
         ASSETS = new AssetManager();
         loadAssets();
         batch = new SpriteBatch();
-       // this.setScreen(new MainMenuScreen());
-        this.setScreen(new OverworldScreen(this));
+        this.setScreen(new MainMenuScreen(this));
+        //this.setScreen(new OverworldScreen(this));
     }
 
     private void loadAssets() {
@@ -37,6 +37,7 @@ public class AGame extends Game {
         ASSETS.load("sprites/crops.png", Texture.class);
         ASSETS.load("ui/ui.png", Texture.class);
         ASSETS.load("sprites/dialogue_cursorr.png", Texture.class);
+        ASSETS.load("gfx/conceptFinalHarvest.png", Texture.class);
 
         while (!ASSETS.update()) ;
     }
