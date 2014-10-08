@@ -103,7 +103,7 @@ public class InputManager {
                 OverworldScreen.inventoryWindow.cursorPosY++;
             }
         }
-        else if(OverworldScreen.DIALOGUEMANAGER.isInDialogue){
+        else if(OverworldScreen.DIALOGUEMANAGER.isInDialogue && OverworldScreen.DIALOGUEMANAGER.currentDialogue != null){
            // System.out.println("IS IN DIALOGUE?");
             if (KEY_UP.justPressed()) {
                 OverworldScreen.DIALOGUEMANAGER.currentDialogue.selectPrev(); //Det här är löjligt borde fixas av någon modig hjälte.

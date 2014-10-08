@@ -2,12 +2,107 @@
       "npcs": [{
           "id" : "npc_test",
           "name": "Hobo",
-          "text": "Hey man, got any change?"
+          "text" : "Hey man, got any change?",
+          "dialogues": [{
+                    "id" : "1",
+                    "text" : "Hey man, got any change?",
+                    "linkedID" : "2",
+                    "choices": [{
+                            "linkedID" : "3",
+                            "text" : "Yes",
+                            "willInitBattle" : false,
+                            "willExitDialogue" : false
+                        },
+                        {
+                            "linkedID" : "2",
+                            "text" : "No",
+                            "willInitBattle" : false,
+                            "willExitDialogue" : false
+                        },
+                        {
+                            "linkedID" : "1",
+                            "text" : "Die bum!",
+                            "willInitBattle" : true,
+                            "willExitDialogue" : true
+                        }
+                    ]
+                },
+                {
+                    "id" : "2",
+                    "linkedID" : "3",
+                    "text" : "No change eh?",
+                    "choices": [{
+                            "linkedID" : "1",
+                            "text" : "Nope",
+                            "willInitBattle" : false,
+                            "willExitDialogue" : true
+                        },
+                        {
+                            "linkedID" : "1",
+                            "text" : "Not for you",
+                            "willInitBattle" : false,
+                            "willExitDialogue" : true
+                        },
+                        {
+                            "linkedID" : "1",
+                            "text" : "Die bum!",
+                            "willInitBattle" : true,
+                            "willExitDialogue" : true
+                        }
+                    ]
+                },
+                {
+                    "id" : "3",
+                    "linkedID" : "1",
+                    "text" : "Thank you good sir!",
+                      "choices": [{
+                              "linkedID" : "1",
+                              "text" : "No problems darling",
+                              "willInitBattle" : false,
+                              "willExitDialogue" : true
+                          },
+                          {
+                              "linkedID" : "1",
+                              "text" : "Die bum!",
+                              "willInitBattle" : true,
+                              "willExitDialogue" : true
+                          }
+                      ]
+                }
+           ]
           },
           {
             "id" : "npc_test2",
             "name": "Jesus",
-            "text": "Hey man, got any weed?"
-          }]
+            "text": "Hey man, got any weed?",
+            "dialogues": [{
+                    "id" : "1",
+                    "text": "Hey man, got any weed?",
+                    "linkedID" : "2",
+                    "choices": [{
+                                "linkedID" : "2",
+                                "text" : "Yes",
+                                "willInitBattle" : false,
+                                "willExitDialogue" : false
+                            },
+                            {
+                                "linkedID" : "1",
+                                "text" : "No",
+                                "willInitBattle" : false,
+                                "willExitDialogue" : false
+                            },
+                            {
+                                "linkedID" : "1",
+                                "text" : "Die bum!",
+                                "willInitBattle" : true,
+                                "willExitDialogue" : true
+                            }
+                        ]
+                    }
+                ]
+
+
+          }
+      ]
 
 }

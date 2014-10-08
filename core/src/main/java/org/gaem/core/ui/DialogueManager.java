@@ -4,8 +4,10 @@ package org.gaem.core.ui;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import org.gaem.core.model.TextManager;
 import org.gaem.core.model.battle.Encounter;
+import org.gaem.core.model.overworld.NPC;
 import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.ui.dialogue.DialogueChoiceItem;
+import org.gaem.core.ui.dialogue.DialogueItem;
 
 import java.util.ArrayList;
 
@@ -19,17 +21,20 @@ public class DialogueManager {
     public boolean isInDialogue;
     public boolean canGoNext;
     public float timer;
+    private NPC curNPC;
 
     public DialogueManager(OrthographicCamera cam) {
         this.cam = cam;
         isInDialogue = false;
     }
 
-    public void createDialogue(String name, String text) {
+    public void createDialogue(NPC npc) {
         canGoNext = false;
         isInDialogue = true;
 
         /* TEST AV CHOISES */
+        System.out.println("Creating dialogue!");
+
 
         ArrayList<DialogueChoiceItem> choices = new ArrayList<DialogueChoiceItem>();
         choices.add(new DialogueChoiceItem("1","I do like watermelons",true,false));
@@ -38,13 +43,34 @@ public class DialogueManager {
         choices.add(new DialogueChoiceItem("1","Prepare to die, fiend!",true,true));
 
         /*  SLUT PÅ TEST */
+        curNPC = npc;
 
-        currentDialogue = new Dialogue(cam, name,text,choices);
+       DialogueItem text = new DialogueItem("WRING","I AM ERROR","50kok",choices);
+        for(DialogueItem dialogueItem : npc.dialogues)
+        {
+            if(dialogueItem.getID().equals(npc.curDialogueID))
+            {
+                text = dialogueItem;
+                break;
+
+            }
+        }
+
+        if(text.getChoices().size() == 0){
+            text.setChoices(choices);
+        }
+        currentDialogue = new Dialogue(cam, npc.name,text.getText(),text.getChoices());
+     //   currentDialogue = new Dialogue(cam, "LOLWUT","THIS IS SUM TEXT",choices);
+       // npc.setCurDialogueID(text.);
+
+        System.out.println("Creating dialogue!");
     }
 
     public void hideDialogue() {
         currentDialogue = null;
         isInDialogue = false;
+        curNPC = null;
+     //   System.out.println("HIDING DIALOGUE");
     }
 
     public void render(float delta) {
@@ -66,9 +92,18 @@ public class DialogueManager {
     }
 
     public boolean next() { //Skall returnera
+        System.out.println("NEXT DIALOGUE");
         if(canGoNext) {
             DialogueChoiceItem tempChoise = currentDialogue.getChoice();
-            hideDialogue();
+            curNPC.setCurDialogueID(tempChoise.getLinkedID());
+            if(tempChoise.isWillExitDialogue()){
+                hideDialogue();
+            }
+            else{
+                createDialogue(curNPC);
+
+            }
+
             if(tempChoise.isWillInitBattle()){
                 OverworldScreen.startBattleTransition(Encounter.generateRandomEncounter());
             }
