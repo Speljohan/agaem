@@ -17,6 +17,7 @@ import org.gaem.core.util.JsonUtil;
 public class NPC extends Mobile {
 
     public String id;
+    public int curDialogueID;
     public String name;
     public String text;
 
@@ -25,6 +26,8 @@ public class NPC extends Mobile {
         solid = true;
         tileX = MathUtils.floor(x / 16);
         tileY = MathUtils.floor(y / 16);
+
+        curDialogueID = 1;
 
         this.id = id;
 
@@ -48,7 +51,7 @@ public class NPC extends Mobile {
             OverworldScreen.DIALOGUEMANAGER.createDialogue(name, text);
         }
         else {
-            OverworldScreen.DIALOGUEMANAGER.next();
+
         }
         if(!OverworldScreen.DIALOGUEMANAGER.isInDialogue)
         OverworldScreen.startBattleTransition(Encounter.generateRandomEncounter());

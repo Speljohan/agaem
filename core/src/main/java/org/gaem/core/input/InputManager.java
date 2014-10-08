@@ -89,9 +89,7 @@ public class InputManager {
             key.update(delta);
         }
 
-        if (!OverworldScreen.inventoryWindow.showWindow) {
-            handlePlayerInput();
-        } else {
+        if(OverworldScreen.inventoryWindow.showWindow){ //TODO do a state machine with the windows.
             if (KEY_LEFT.justPressed()) {
                 OverworldScreen.inventoryWindow.cursorPosX--;
             }
@@ -105,9 +103,24 @@ public class InputManager {
                 OverworldScreen.inventoryWindow.cursorPosY++;
             }
         }
+        else if(OverworldScreen.DIALOGUEMANAGER.isInDialogue){
+           // System.out.println("IS IN DIALOGUE?");
+            if (KEY_UP.justPressed()) {
+                OverworldScreen.DIALOGUEMANAGER.currentDialogue.selectPrev(); //Det här är löjligt borde fixas av någon modig hjälte.
+            }
+            if (KEY_DOWN.justPressed()) {
+                OverworldScreen.DIALOGUEMANAGER.currentDialogue.selectNext();
+            }
+            if(KEY_INTERACT.justPressed()){
+                OverworldScreen.DIALOGUEMANAGER.next();
+            }
+        }
+        else{
+            handlePlayerInput();
+        }
 
 
-        if (KEY_MENU.justPressed()) {
+            if (KEY_MENU.justPressed()) {
             hasPressedMenu = true;
             if (!OverworldScreen.inventoryWindow.showWindow) {
                 OverworldScreen.overworldMenuWindow.visible = !OverworldScreen.overworldMenuWindow.visible;
