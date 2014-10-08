@@ -17,9 +17,6 @@ public class InputManager {
 
     private Player player;
     private TiledMap map;
-    private boolean inventoryPressed;
-    private boolean hasPressedMovement;
-    private boolean hasPressedMenu;
 
     //Control Codes
     private int CODE_KEY_UP = Input.Keys.UP;
@@ -47,9 +44,6 @@ public class InputManager {
     public InputManager(Player player, TiledMap map) {
         this.player = player;
         this.map = map;
-        inventoryPressed = false;
-        hasPressedMovement = false;
-        hasPressedMenu = false;
 
         inputKeys = new ArrayList<InputKey>();
 
@@ -121,7 +115,7 @@ public class InputManager {
 
 
             if (KEY_MENU.justPressed()) {
-            hasPressedMenu = true;
+
             if (!OverworldScreen.inventoryWindow.showWindow) {
                 OverworldScreen.overworldMenuWindow.visible = !OverworldScreen.overworldMenuWindow.visible;
             }
@@ -135,7 +129,7 @@ public class InputManager {
             }
         }
         if (KEY_INVENTORY.justPressed()) {
-            inventoryPressed = true;
+
             OverworldScreen.inventoryWindow.show();
         }
 
