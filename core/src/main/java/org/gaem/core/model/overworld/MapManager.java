@@ -12,8 +12,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import org.gaem.core.engine.PlayerData;
 import org.gaem.core.model.overworld.interactables.Rock;
-import org.gaem.core.model.overworld.triggerables.Teleporter;
+import org.gaem.core.model.overworld.triggerables.ScriptTrigger;
 import org.gaem.core.screen.OverworldScreen;
+
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by Johan on 2014-09-28.
@@ -49,6 +52,7 @@ public class MapManager {
 
         for (MapObject mot : mo) {
             MapProperties props = mot.getProperties();
+
             if (props.containsKey("gid")) {
                 int gid = (Integer) props.get("gid");
                 switch (gid) {
@@ -66,7 +70,7 @@ public class MapManager {
                         screen.manager.add(new NPC((Float) props.get("x"), (Float) props.get("y"), npcID));
                         break;
                     case 103:
-                        String map = props.get("teleport_map", String.class);
+                        /*String map = props.get("teleport_map", String.class);
                         int teleport_x = Integer.parseInt(props.get("teleport_x", String.class));
                         int teleport_y = Integer.parseInt(props.get("teleport_y", String.class));
                         screen.manager.add(new Teleporter(
@@ -74,7 +78,10 @@ public class MapManager {
                                 props.get("y", Float.class),
                                 map,
                                 teleport_x,
-                                teleport_y));
+                                teleport_y));*/
+
+                        screen.manager.add(new ScriptTrigger(props.get("x", Float.class), props.get("y", Float.class), propertiesForTmx(props)));
+
                         break;
                     case 104:
                         screen.manager.add(new Rock((Float) props.get("x"), (Float) props.get("y")));
@@ -84,6 +91,18 @@ public class MapManager {
         }
         OverworldScreen.camera.position.set((Integer) currentMap.getProperties().get("width")+OverworldScreen.camera.viewportWidth/10,(Integer) currentMap.getProperties().get("height")+OverworldScreen.camera.viewportHeight/5,0f);
         OverworldScreen.inputManager.refresh();
+    }
+
+    private HashMap<String, Object> propertiesForTmx(MapProperties properties) {
+        Iterator<String> keys = properties.getKeys();
+        Iterator<Object> values = properties.getValues();
+        HashMap<String, Object> out = new HashMap<String, Object>();
+
+        while (keys.hasNext()) {
+            out.put(keys.next(), values.next());
+        }
+
+        return out;
     }
 
     public void render(OrthographicCamera camera) {

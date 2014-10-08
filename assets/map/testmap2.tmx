@@ -25,9 +25,10 @@
   <object name="Player" gid="101" x="64" y="96"/>
   <object gid="103" x="64" y="112">
    <properties>
-    <property name="teleport_map" value="testmap"/>
-    <property name="teleport_x" value="18"/>
-    <property name="teleport_y" value="36"/>
+    <property name="destX" value="18"/>
+    <property name="destY" value="36"/>
+    <property name="map" value="testmap"/>
+    <property name="script" value="teleport"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,1 @@
+teleport args['map'], args['destX'], args['destY']

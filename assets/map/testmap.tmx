@@ -32,9 +32,7 @@
   </tile>
   <tile id="2">
    <properties>
-    <property name="teleport_map" value="amap"/>
-    <property name="teleport_x" value="5"/>
-    <property name="teleport_y" value="5"/>
+    <property name="script" value=""/>
    </properties>
   </tile>
  </tileset>
@@ -158,9 +156,10 @@
   <object name="Player" gid="101" x="288" y="608"/>
   <object name="teleporter" gid="103" x="288" y="576">
    <properties>
-    <property name="teleport_map" value="testmap2"/>
-    <property name="teleport_x" value="4"/>
-    <property name="teleport_y" value="6"/>
+    <property name="destX" value="4"/>
+    <property name="destY" value="6"/>
+    <property name="map" value="testmap2"/>
+    <property name="script" value="teleport"/>
    </properties>
   </object>
   <object gid="104" x="416" y="608"/>

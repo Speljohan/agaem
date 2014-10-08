@@ -7,18 +7,20 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.JsonValue;
+import org.gaem.core.engine.script.ScriptEngine;
 import org.gaem.core.screen.MainMenuScreen;
-import org.gaem.core.screen.OverworldScreen;
 import org.gaem.core.util.JsonLoader;
 
 public class AGame extends Game {
     public static AssetManager ASSETS;
+    public static ScriptEngine SCRIPTENGINE;
     public SpriteBatch batch;
 
     @Override
     public void create() {
 
         ASSETS = new AssetManager();
+        SCRIPTENGINE = new ScriptEngine();
         loadAssets();
         batch = new SpriteBatch();
         this.setScreen(new MainMenuScreen(this));
